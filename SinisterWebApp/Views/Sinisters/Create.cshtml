@@ -5,13 +5,17 @@
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<h2>Create</h2>
+
+<!--JUmbotron-->
+<div class="jumbotron">
+    <img src="~/Content/img/risk.jpg" class="d-block w-100 wallpaper" alt="Axa" />
+</div>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Sinisters</h4>
         <hr />

@@ -105,4 +105,9 @@ D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.csproj.CoreCom
 D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.csproj.CopyComplete
 D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.dll
 D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.pdb
-D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.csprojAssemblyReference.cache
+D:\sinister_project\repos\SinisterWebApp\bin\System.Net.Http.Formatting.dll
+D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Http.dll
+D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Http.WebHost.dll
+D:\sinister_project\repos\SinisterWebApp\bin\System.Net.Http.Formatting.xml
+D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Http.xml
+D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Http.WebHost.xml
