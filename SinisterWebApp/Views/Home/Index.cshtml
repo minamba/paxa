@@ -1,0 +1,83 @@
+﻿@model IEnumerable<SinisterWebApp.Models.Sinisters>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!--JUmbotron-->
+<div class="jumbotron">
+    <img src="~/Content/img/risk.jpg" class="d-block w-100 wallpaper" alt="Axa" />
+</div>
+
+<!--Map-->
+<div class="container-fluid pb-5 mapBackground">
+    <div class="rounded-pill" data-aos="fade-up">
+        <h1 class="text-center bigTitleColor">Latest global disasters</h1>
+    </div>
+    <div id="map" class="row col-12">
+        <div class="map-wrapper">
+            <img src="https://achology.com/wp-content/uploads/worldmap-dots-white.png" alt="Map" />
+        </div>
+        <div id="points-wrapper">
+            <div class="point point-1"></div>
+            <div class="point point-2"></div>
+            <div class="point point-3"></div>
+            <div class="point point-4"></div>
+            <div class="point point-5"></div>
+            <div class="point point-6"></div>
+            <div class="point point-7"></div>
+            <div class="point point-8"></div>
+            <div class="point point-9"></div>
+            <div class="point point-10"></div>
+        </div>
+    </div>
+</div>
+
+<!--table-->
+<div class="container-fluid">
+    <table class="table table-striped text-muted border shadow">
+        <tr class="tableHeader">
+            <th>
+                Country
+            </th>
+            <th>
+                Client
+            </th>
+            <th>
+                Site
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Sector
+            </th>
+            <th>
+                Date
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            <b>@Html.DisplayFor(modelItem => item.Countries.Name)</b>
+        </td>
+        <td>
+            <b>@Html.DisplayFor(modelItem => item.Clients.Name)</b>
+        </td>
+        <td>
+            <b>@Html.DisplayFor(modelItem => item.Sites.Name)</b>
+        </td>
+        <td>
+            <b>@Html.DisplayFor(modelItem => item.SinisterTypes.Name)</b>
+        </td>
+        <td>
+            <b>@Html.DisplayFor(modelItem => item.ActivitySectors.Name)</b>
+        </td>
+        <td>
+            <b>@Html.DisplayFor(modelItem => item.CreateDate)</b>
+        </td>
+    </tr>
+        }
+    </table>
+</div>

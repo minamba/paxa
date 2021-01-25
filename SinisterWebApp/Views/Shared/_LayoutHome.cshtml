@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("Script", false)
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/v4-shims.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/NavBar.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Map.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Footer.css" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+        <nav class="navbar navbar-expand-md bg-white bg-dark sticky-top shadow-lg">
+           <a href="#"></a> <img class="navbar-brand d-block img-thumbnail" src="~/Content/img/axa_logo_3.png"/></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Add sinister<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Clients</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="https://codepen.io">My account</a>
+                        <a class="dropdown-toggle " href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">My informations</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        @RenderBody()
+        @Scripts.Render("~/bundles/bootstrap")
+        @Styles.Render("~/bundles/jquery")
+
+        @Html.Partial("_FooterPartial")
+</body>
+</html>
+
+
+<script>
+    $(document).ready(function () {
+        // Transition effect for navbar 
+        $(window).scroll(function () {
+            // checks if window is scrolled more than 500px, adds/removes solid class
+            if ($(this).scrollTop() > 100) {
+                $('.navbar').addClass('solid');
+            } else {
+                $('.navbar').removeClass('solid');
+            }
+        });
+    });
+</script>

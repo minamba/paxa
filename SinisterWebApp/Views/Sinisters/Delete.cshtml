@@ -1,0 +1,193 @@
+﻿@model SinisterWebApp.Models.Sinisters
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Sinisters</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LoBId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoBId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Consequence)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Consequence)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FileOrigine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FileOrigine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FileName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AggravatingFactor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AggravatingFactor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KeyWord)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KeyWord)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateUserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditUserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivitySectors.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivitySectors.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clients.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clients.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Countries.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Countries.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Currencies.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currencies.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DestructionLevels.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DestructionLevels.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Documents.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Documents.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SinisterStatus.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SinisterStatus.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SinisterTypes.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SinisterTypes.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sites.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sites.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.EmployeeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.EmployeeID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

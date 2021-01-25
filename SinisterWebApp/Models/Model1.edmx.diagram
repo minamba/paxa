@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d8bc50b4391a409a9ae9f4d8be489bd6" Name="Diagram1">
+        <EntityTypeShape EntityType="sinisterModel.ActivitySectors" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="sinisterModel.Clients" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sinisterModel.Countries" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sinisterModel.Currencies" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sinisterModel.DestructionLevels" Width="1.5" PointX="0.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sinisterModel.Documents" Width="1.5" PointX="0.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="sinisterModel.Lobs" Width="1.5" PointX="6" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sinisterModel.Roles" Width="1.5" PointX="3.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sinisterModel.SinisterLob" Width="1.5" PointX="8.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sinisterModel.Sinisters" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sinisterModel.SinisterStatus" Width="1.5" PointX="0.75" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sinisterModel.SinisterTypes" Width="1.5" PointX="0.75" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sinisterModel.Sites" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sinisterModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sinisterModel.Users" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="sinisterModel.FK_ActivitySectorId" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.FK_Sites_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.fk_CountryId" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.FK_Sites_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.FK_Users_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_Currencies" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_DestructionLevels" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_Documents" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.FK_SinisterLob_Lobs" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.FK_Users_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.FK_SinisterLob_Sinisters" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_SinisterStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_SinisterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_Sites" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

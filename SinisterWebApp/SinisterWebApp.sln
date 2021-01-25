@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinisterWebApp", "SinisterWebApp.csproj", "{EDFFE74E-1B56-439C-9930-047A7E7B57E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinisterWebApp.Tests", "..\SinisterWebApp.Tests\SinisterWebApp.Tests.csproj", "{70150B21-B3A4-4F05-A682-129251080E21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDFFE74E-1B56-439C-9930-047A7E7B57E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDFFE74E-1B56-439C-9930-047A7E7B57E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDFFE74E-1B56-439C-9930-047A7E7B57E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDFFE74E-1B56-439C-9930-047A7E7B57E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70150B21-B3A4-4F05-A682-129251080E21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70150B21-B3A4-4F05-A682-129251080E21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70150B21-B3A4-4F05-A682-129251080E21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70150B21-B3A4-4F05-A682-129251080E21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {794BAF65-E5F2-463A-B311-701D3B955A22}
+	EndGlobalSection
+EndGlobal

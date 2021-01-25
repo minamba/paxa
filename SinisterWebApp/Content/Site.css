@@ -1,0 +1,20 @@
+﻿.jumbotron {
+    padding: 0rem !important;
+    margin-bottom: 0rem !important;
+    background-size: cover;
+}
+
+.nav{
+    padding : 0px;
+}
+
+.tableHeader {
+    background-color: #00008F !important;
+    color : white;
+}
+
+.bigTitleColor {
+    color: #00008F;
+}
+
+

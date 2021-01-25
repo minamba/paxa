@@ -1,0 +1,154 @@
+﻿.mapBackground {
+    background-color: lightgray;
+}
+
+
+
+#map {
+    margin: 0 auto;
+    max-width: 700px;
+}
+
+.point {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: red;
+    border-radius: 50%;
+    -webkit-animation: pulse 3.5s infinite;
+    -moz-animation: pulse 3.5s infinite;
+    -o-animation: pulse 3.5s infinite;
+    animation: pulse 3.5s infinite;
+}
+
+/* North America */
+.point-1 {
+    top: 39%;
+    left: 14%;
+}
+
+.point-2 {
+    animation-delay: 0.4s;
+    top: 25%;
+    left: 15.5%;
+}
+
+.point-3 {
+    animation-delay: 0.8s;
+    top: 42%;
+    left: 22.5%;
+}
+
+.point-4 {
+    animation-delay: 1.2s;
+    top: 36%;
+    left: 24%;
+}
+
+/* South America */
+.point-5 {
+    animation-delay: 1.6s;
+    top: 61%;
+    left: 27%;
+}
+
+/* Europe */
+.point-6 {
+    animation-delay: 2s;
+    top: 26%;
+    left: 46%;
+}
+
+.point-7 {
+    animation-delay: 2.4s;
+    top: 37%;
+    left: 51%;
+}
+
+/* Asia */
+.point-8 {
+    animation-delay: 2.8s;
+    top: 50%;
+    left: 68.5%;
+}
+
+/* Eurasia */
+.point-9 {
+    animation-delay: 3.2s;
+    top: 84.5%;
+    left: 88%;
+}
+
+.point-10 {
+    animation-delay: 3.6s;
+    top: 90%;
+    left: 95%;
+}
+
+@-webkit-keyframes pulse {
+    from {
+        background-color: red;
+        box-shadow: 0 0 0 0 rgb(255, 0, 0);
+    }
+
+    60% {
+        background-color: red;
+        box-shadow: 0 0 0 40px rgb(255, 0, 0);
+    }
+
+    to {
+        background-color: red;
+        box-shadow: 0 0 0 0 rgb(255, 0, 0);
+    }
+}
+
+@-moz-keyframes pulse {
+    from {
+        background-color: red;
+        box-shadow: 0 0 0 0 rgb(255, 0, 0);
+    }
+
+    60% {
+        background-color: red;
+        box-shadow: 0 0 0 40px rgba(255, 78, 0, 0);
+    }
+
+    to {
+        background-color: red;
+        box-shadow: 0 0 0 0 rgba(255, 78, 0, 0);
+    }
+}
+
+@-o-keyframes pulse {
+    from {
+        background-color: red;
+        box-shadow: 0 0 0 0 rgb(255, 0, 0);
+    }
+
+    60% {
+        background-color: red;
+        box-shadow: 0 0 0 40px rgba(255, 78, 0, 0);
+    }
+
+    to {
+        background-color: red;
+        box-shadow: 0 0 0 0 rgba(255, 78, 0, 0);
+    }
+}
+
+@keyframes pulse {
+    from {
+        background-color: red;
+        box-shadow: 0 0 0 0 rgb(255, 0, 0);
+    }
+
+    60% {
+        background-color: red;
+        box-shadow: 0 0 0 40px rgba(255, 78, 0, 0);
+    }
+
+    to {
+        background-color: red;
+        box-shadow: 0 0 0 0 rgba(255, 78, 0, 0);
+    }
+}
