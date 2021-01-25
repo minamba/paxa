@@ -17,4 +17,12 @@
     color: #00008F;
 }
 
+.backgroundHome {
+    background-image: url(../Content//img/risk.jpg);
+    background-repeat : no-repeat;
+    background-size : cover;
+    background-position : center;
+    height : 50vh;
+}
+
 

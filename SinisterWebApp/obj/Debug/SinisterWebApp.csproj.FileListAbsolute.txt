@@ -111,3 +111,4 @@ D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Http.WebHost.dll
 D:\sinister_project\repos\SinisterWebApp\bin\System.Net.Http.Formatting.xml
 D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Http.xml
 D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Http.WebHost.xml
+D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.csprojAssemblyReference.cache
