@@ -28,8 +28,13 @@
 .titleHome {
     color : white;
     text-align : left;
-    margin-left : 2rem;
+    margin-left : 10rem;
     padding-top : 5rem;
+}
+
+.underTitleHome {;
+    text-align: left;
+    margin-left: 10rem;
 }
 
 

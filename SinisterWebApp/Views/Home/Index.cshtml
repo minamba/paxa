@@ -5,15 +5,15 @@
 }
 
 <!--JUmbotron-->
-@*<div class="jumbotron backgroundHome">
-    <h1 class="text-white text-left ml-4 pt-4">Axa global sinisters</h1>
-    <p class="text-light ml-4">This platform is a census of all disasters happening in the world</p>
-</div>*@
+<div class="jumbotron backgroundHome">
+    <h1 class="titleHome">Axa global sinisters</h1>
+    <p class="text-light underTitleHome">This platform is a census of all disasters happening in the world</p>
+</div>
 
 <!--Map-->
 <div class="container-fluid pb-5 mapBackground">
     <div class="rounded-pill" data-aos="fade-up">
-        <h1 class="text-center bigTitleColor">Latest global disasters</h1>
+        <h2 class="text-center bigTitleColor">Latest global disasters</h2>
     </div>
     <div id="map" class="row col-12">
         <div class="map-wrapper">
@@ -59,26 +59,26 @@
         </tr>
         @foreach (var item in Model)
         {
-    <tr>
-        <td>
-            <b>@Html.DisplayFor(modelItem => item.Countries.Name)</b>
-        </td>
-        <td>
-            <b>@Html.DisplayFor(modelItem => item.Clients.Name)</b>
-        </td>
-        <td>
-            <b>@Html.DisplayFor(modelItem => item.Sites.Name)</b>
-        </td>
-        <td>
-            <b>@Html.DisplayFor(modelItem => item.SinisterTypes.Name)</b>
-        </td>
-        <td>
-            <b>@Html.DisplayFor(modelItem => item.ActivitySectors.Name)</b>
-        </td>
-        <td>
-            <b>@Html.DisplayFor(modelItem => item.CreateDate)</b>
-        </td>
-    </tr>
+            <tr>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.Countries.Name)</b>
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.Clients.Name)</b>
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.Sites.Name)</b>
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.SinisterTypes.Name)</b>
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.ActivitySectors.Name)</b>
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.CreateDate)</b>
+                </td>
+            </tr>
         }
     </table>
 </div>
