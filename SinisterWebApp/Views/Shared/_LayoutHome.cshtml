@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     @Styles.Render("~/Content/css")
@@ -15,29 +14,38 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md bg-white bg-dark sticky-top shadow-lg">
-        <a href="@Url.Action("Index","Home")"><img class="navbar-brand d-block img-thumbnail" src="~/Content/img/axa_logo_3.png" /></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="@Url.Action("Create","Sinisters")">Add sinister<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Clients</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="https://codepen.io">My account</a>
-                    <a class="dropdown-toggle " href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">My informations</a>
-                    </div>
-                </li>
-            </ul>
+    <div>
+        <nav class="navbar navbar-expand-md bg-transparent sticky-top shadow-lg">
+            <a href="@Url.Action("Index","Home")"><img class="navbar-brand d-block img-thumbnail" src="~/Content/img/axa_logo_3.png" /></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="@Url.Action("Create","Sinisters")">Add sinister<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Clients</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="https://codepen.io">My account</a>
+                        <a class="dropdown-toggle " href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">My informations</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--JUmbotron-->
+        <div class="jumbotron backgroundHome">
+
+
+            <h1 class="titleHome">Axa global sinisters</h1>
+            <p class="text-light ml-4">This platform is a census of all disasters happening in the world</p>
         </div>
-    </nav>
+    </div>
     @RenderBody()
     @Scripts.Render("~/bundles/bootstrap")
     @Styles.Render("~/bundles/jquery")

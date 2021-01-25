@@ -1,5 +1,7 @@
 ﻿.navbar {
     padding: 0 16px;
+    position : fixed;
+    padding-bottom : 5rem;
 }
 
 .navbar-brand {
