@@ -41,21 +41,25 @@ namespace SinisterWebApp.Controllers
         {
             var vm = new SinisterViewModel();
 
-            ViewBag.ActivitySectorId = new SelectList(db.ActivitySectors, "ActivitySectorId", "Name");
-            ViewBag.Clientid = new SelectList(db.Clients, "ClientId", "Code");
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Code");
-            ViewBag.CurrencyId = new SelectList(db.Currencies, "CurrencyId", "Name");
-            ViewBag.DestructionLevelId = new SelectList(db.DestructionLevels, "DestructionLevelId", "Name");
-            ViewBag.DocumentId = new SelectList(db.Documents, "DocumentId", "Name");
-            ViewBag.SinisterStatusId = new SelectList(db.SinisterStatus, "SinisterStatusId", "Name");
-            ViewBag.SinisterTypeId = new SelectList(db.SinisterTypes, "SinisterTypeId", "Name");
-            ViewBag.SiteId = new SelectList(db.Sites, "SiteId", "Code");
-            ViewBag.UserId = new SelectList(db.Users, "Userid", "EmployeeID");
-
-
-
+            //ViewBag.ActivitySectorId = new SelectList(db.ActivitySectors, "ActivitySectorId", "Name");
+            //ViewBag.Clientid = new SelectList(db.Clients, "ClientId", "Code");
+            //ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Code");
+            //ViewBag.CurrencyId = new SelectList(db.Currencies, "CurrencyId", "Name");
+            //ViewBag.DestructionLevelId = new SelectList(db.DestructionLevels, "DestructionLevelId", "Name");
+            //ViewBag.DocumentId = new SelectList(db.Documents, "DocumentId", "Name");
+            //ViewBag.SinisterStatusId = new SelectList(db.SinisterStatus, "SinisterStatusId", "Name");
+            //ViewBag.SinisterTypeId = new SelectList(db.SinisterTypes, "SinisterTypeId", "Name");
+            //ViewBag.SiteId = new SelectList(db.Sites, "SiteId", "Code");
+            //ViewBag.UserId = new SelectList(db.Users, "Userid", "EmployeeID");
 
             vm.ListClient = GetAllClient();
+            vm.ListSite = GetAllSite();
+            vm.ListCountries = GetAllCountries();
+            vm.ListActivitySector = GetAllActivitySectors();
+            vm.ListCurrency = GetAllCurrencies();
+            vm.ListLob = GetAllLobs();
+            vm.ListSinisterType = GetAllSinisterType();
+            vm.ListDestructionLevel = GetAllDestructionLevels();
             
             return View(vm);
         }
