@@ -14,10 +14,18 @@ namespace SinisterWebApp.Models
     
     public partial class Keywords
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Keywords()
+        {
+            this.SinisterKeywords = new HashSet<SinisterKeywords>();
+        }
+    
         public int KeywordId { get; set; }
         public string Name { get; set; }
         public Nullable<int> SinisterType_fk { get; set; }
     
         public virtual SinisterTypes SinisterTypes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SinisterKeywords> SinisterKeywords { get; set; }
     }
 }

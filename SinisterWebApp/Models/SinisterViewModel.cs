@@ -15,6 +15,7 @@ namespace SinisterWebApp.Models
         public List<ActivitySectors> ListActivitySector { get; set; }
         public List<DestructionLevels> ListDestructionLevel { get; set; }
         public List<Currencies> ListCurrency { get; set; }
+        public List<Keywords> ListKeyword { get; set; }
 
         public Sinisters Sinister { get; set; }
     }

@@ -39,6 +39,9 @@
         <AssociationConnector Association="sinisterModel.FK_SinisterTypes_Lobs" />
         <EntityTypeShape EntityType="sinisterModel.Keywords" Width="1.5" PointX="3" PointY="21.875" />
         <AssociationConnector Association="sinisterModel.FK_Keywords_SinisterTypes" />
+        <EntityTypeShape EntityType="sinisterModel.SinisterKeywords" Width="1.5" PointX="5.25" PointY="15.75" />
+        <AssociationConnector Association="sinisterModel.FK_SinisterKeywords_Keywords" />
+        <AssociationConnector Association="sinisterModel.FK_SinisterKeywords_Sinisters" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

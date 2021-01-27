@@ -18,6 +18,7 @@ namespace SinisterWebApp.Models
         public Sinisters()
         {
             this.SinisterLob = new HashSet<SinisterLob>();
+            this.SinisterKeywords = new HashSet<SinisterKeywords>();
         }
     
         public int SinisterId { get; set; }
@@ -55,5 +56,7 @@ namespace SinisterWebApp.Models
         public virtual SinisterTypes SinisterTypes { get; set; }
         public virtual Sites Sites { get; set; }
         public virtual Users Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SinisterKeywords> SinisterKeywords { get; set; }
     }
 }
