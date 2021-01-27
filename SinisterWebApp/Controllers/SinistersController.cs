@@ -39,6 +39,8 @@ namespace SinisterWebApp.Controllers
         // GET: Sinisters/Create
         public ActionResult Create()
         {
+            var vm = new SinisterViewModel();
+
             ViewBag.ActivitySectorId = new SelectList(db.ActivitySectors, "ActivitySectorId", "Name");
             ViewBag.Clientid = new SelectList(db.Clients, "ClientId", "Code");
             ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Code");
@@ -49,7 +51,13 @@ namespace SinisterWebApp.Controllers
             ViewBag.SinisterTypeId = new SelectList(db.SinisterTypes, "SinisterTypeId", "Name");
             ViewBag.SiteId = new SelectList(db.Sites, "SiteId", "Code");
             ViewBag.UserId = new SelectList(db.Users, "Userid", "EmployeeID");
-            return View();
+
+
+
+
+            vm.ListClient = GetAllClient();
+            
+            return View(vm);
         }
 
         // POST: Sinisters/Create
@@ -163,6 +171,66 @@ namespace SinisterWebApp.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        //List<Currencies> ListCurrency { get; set; }
+
+        public List<Clients> GetAllClient()
+        {
+            var lclient = (from c in db.Clients
+                           select c).ToList();
+
+            return lclient;
+        }
+
+        public List<Sites> GetAllSite()
+        {
+            var lsite = (from s in db.Sites
+                           select s).ToList();
+
+            return lsite;
+        }
+        public List<SinisterTypes> GetAllSinisterType()
+        {
+            var lsinisterType = (from st in db.SinisterTypes
+                                    select st).ToList();
+
+            return lsinisterType;
+        }
+        public List<Countries> GetAllCountries()
+        {
+            var lcountries = (from c in db.Countries
+                           select c).ToList();
+
+            return lcountries;
+        }
+        public List<Lobs> GetAllLobs()
+        {
+            var llobs = (from l in db.Lobs
+                           select l).ToList();
+
+            return llobs;
+        }
+        public List<ActivitySectors> GetAllActivitySectors()
+        {
+            var lactivitySectors = (from ase in db.ActivitySectors
+                                    select ase).ToList();
+
+            return lactivitySectors;
+        }
+        public List<DestructionLevels> GetAllDestructionLevels()
+        {
+            var ldestrcutionLeveles = (from dl in db.DestructionLevels
+                                        select dl).ToList();
+
+            return ldestrcutionLeveles;
+        }
+        public List<Currencies> GetAllCurrencies()
+        {
+            var lcurrencies = (from cr in db.Currencies
+                                select cr).ToList();
+
+            return lcurrencies;
         }
     }
 }
