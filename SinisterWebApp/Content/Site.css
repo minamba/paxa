@@ -35,12 +35,33 @@
 .otherTitle {
     color: white;
     text-align: center;
-    padding-top: 7rem;
 }
 
-.underTitleHome {;
+.otherTitle2 {
+    color: white;
+    text-align: center;
+}
+
+.underTitleHome {
     text-align: left;
     margin-left: 10rem;
 }
 
+.hrColor {
+    border: 1px solid #ff0000;
+    background-color: #ff0000;
+    margin : 0px;
+}
+
+.subTitle {
+    color: #3E1E9C;
+}
+
+label{
+    font-weight :  600;
+}
+
+textarea{
+    width : 100%;
+}
 
