@@ -121,6 +121,7 @@
     <NavigationProperty Name="SinisterTypes" Relationship="Self.FK_Sinisters_SinisterTypes" FromRole="Sinisters" ToRole="SinisterTypes" />
     <NavigationProperty Name="Sites" Relationship="Self.FK_Sinisters_Sites" FromRole="Sinisters" ToRole="Sites" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Sinisters_Users" FromRole="Sinisters" ToRole="Users" />
+    <NavigationProperty Name="SinisterKeywords" Relationship="sinisterModel.FK_SinisterKeywords_Sinisters" FromRole="Sinisters" ToRole="SinisterKeywords" />
   </EntityType>
   <EntityType Name="SinisterStatus">
     <Key>
@@ -139,6 +140,7 @@
     <NavigationProperty Name="Sinisters" Relationship="Self.FK_Sinisters_SinisterTypes" FromRole="SinisterTypes" ToRole="Sinisters" />
     <Property Name="LobId_fk" Type="Int32" />
     <NavigationProperty Name="Lobs" Relationship="sinisterModel.FK_SinisterTypes_Lobs" FromRole="SinisterTypes" ToRole="Lobs" />
+    <NavigationProperty Name="Keywords" Relationship="sinisterModel.FK_Keywords_SinisterTypes" FromRole="SinisterTypes" ToRole="Keywords" />
   </EntityType>
   <EntityType Name="Sites">
     <Key>
@@ -488,6 +490,20 @@
       <End Role="Lobs" EntitySet="Lobs" />
       <End Role="SinisterTypes" EntitySet="SinisterTypes" />
     </AssociationSet>
+    <EntitySet Name="Keywords" EntityType="sinisterModel.Keywords" />
+    <AssociationSet Name="FK_Keywords_SinisterTypes" Association="sinisterModel.FK_Keywords_SinisterTypes">
+      <End Role="SinisterTypes" EntitySet="SinisterTypes" />
+      <End Role="Keywords" EntitySet="Keywords" />
+    </AssociationSet>
+    <EntitySet Name="SinisterKeywords" EntityType="sinisterModel.SinisterKeywords" />
+    <AssociationSet Name="FK_SinisterKeywords_Keywords" Association="sinisterModel.FK_SinisterKeywords_Keywords">
+      <End Role="Keywords" EntitySet="Keywords" />
+      <End Role="SinisterKeywords" EntitySet="SinisterKeywords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SinisterKeywords_Sinisters" Association="sinisterModel.FK_SinisterKeywords_Sinisters">
+      <End Role="Sinisters" EntitySet="Sinisters" />
+      <End Role="SinisterKeywords" EntitySet="SinisterKeywords" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -509,6 +525,62 @@
       </Principal>
       <Dependent Role="SinisterTypes">
         <PropertyRef Name="LobId_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Keywords">
+    <Key>
+      <PropertyRef Name="KeywordId" />
+    </Key>
+    <Property Name="KeywordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SinisterType_fk" Type="Int32" />
+    <NavigationProperty Name="SinisterTypes" Relationship="sinisterModel.FK_Keywords_SinisterTypes" FromRole="Keywords" ToRole="SinisterTypes" />
+    <NavigationProperty Name="SinisterKeywords" Relationship="sinisterModel.FK_SinisterKeywords_Keywords" FromRole="Keywords" ToRole="SinisterKeywords" />
+  </EntityType>
+  <Association Name="FK_Keywords_SinisterTypes">
+    <End Type="sinisterModel.SinisterTypes" Role="SinisterTypes" Multiplicity="0..1" />
+    <End Type="sinisterModel.Keywords" Role="Keywords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SinisterTypes">
+        <PropertyRef Name="SinisterTypeId" />
+      </Principal>
+      <Dependent Role="Keywords">
+        <PropertyRef Name="SinisterType_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SinisterKeywords">
+    <Key>
+      <PropertyRef Name="SinisterKeywordId" />
+    </Key>
+    <Property Name="SinisterKeywordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KeywordId_fk" Type="Int32" />
+    <Property Name="SinisterId_fk" Type="Int32" />
+    <NavigationProperty Name="Keywords" Relationship="sinisterModel.FK_SinisterKeywords_Keywords" FromRole="SinisterKeywords" ToRole="Keywords" />
+    <NavigationProperty Name="Sinisters" Relationship="sinisterModel.FK_SinisterKeywords_Sinisters" FromRole="SinisterKeywords" ToRole="Sinisters" />
+  </EntityType>
+  <Association Name="FK_SinisterKeywords_Keywords">
+    <End Type="sinisterModel.Keywords" Role="Keywords" Multiplicity="0..1" />
+    <End Type="sinisterModel.SinisterKeywords" Role="SinisterKeywords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Keywords">
+        <PropertyRef Name="KeywordId" />
+      </Principal>
+      <Dependent Role="SinisterKeywords">
+        <PropertyRef Name="KeywordId_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SinisterKeywords_Sinisters">
+    <End Type="sinisterModel.Sinisters" Role="Sinisters" Multiplicity="0..1" />
+    <End Type="sinisterModel.SinisterKeywords" Role="SinisterKeywords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sinisters">
+        <PropertyRef Name="SinisterId" />
+      </Principal>
+      <Dependent Role="SinisterKeywords">
+        <PropertyRef Name="SinisterId_fk" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

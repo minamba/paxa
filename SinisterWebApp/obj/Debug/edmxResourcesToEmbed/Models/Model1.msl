@@ -188,5 +188,23 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="sinisterModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="sinisterModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="Keywords">
+      <EntityTypeMapping TypeName="sinisterModel.Keywords">
+        <MappingFragment StoreEntitySet="Keywords">
+          <ScalarProperty Name="SinisterType_fk" ColumnName="SinisterType_fk" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="KeywordId" ColumnName="KeywordId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SinisterKeywords">
+      <EntityTypeMapping TypeName="sinisterModel.SinisterKeywords">
+        <MappingFragment StoreEntitySet="SinisterKeywords">
+          <ScalarProperty Name="SinisterId_fk" ColumnName="SinisterId_fk" />
+          <ScalarProperty Name="KeywordId_fk" ColumnName="KeywordId_fk" />
+          <ScalarProperty Name="SinisterKeywordId" ColumnName="SinisterKeywordId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -48,6 +48,14 @@
     <Property Name="DocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="Keywords">
+    <Key>
+      <PropertyRef Name="KeywordId" />
+    </Key>
+    <Property Name="KeywordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="SinisterType_fk" Type="int" />
+  </EntityType>
   <EntityType Name="Lobs">
     <Key>
       <PropertyRef Name="LobId" />
@@ -61,6 +69,14 @@
     </Key>
     <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SinisterKeywords">
+    <Key>
+      <PropertyRef Name="SinisterKeywordId" />
+    </Key>
+    <Property Name="SinisterKeywordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KeywordId_fk" Type="int" />
+    <Property Name="SinisterId_fk" Type="int" />
   </EntityType>
   <EntityType Name="SinisterLob">
     <Key>
@@ -169,6 +185,42 @@
       </Principal>
       <Dependent Role="Sinisters">
         <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Keywords_SinisterTypes">
+    <End Role="SinisterTypes" Type="Self.SinisterTypes" Multiplicity="0..1" />
+    <End Role="Keywords" Type="Self.Keywords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SinisterTypes">
+        <PropertyRef Name="SinisterTypeId" />
+      </Principal>
+      <Dependent Role="Keywords">
+        <PropertyRef Name="SinisterType_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SinisterKeywords_Keywords">
+    <End Role="Keywords" Type="Self.Keywords" Multiplicity="0..1" />
+    <End Role="SinisterKeywords" Type="Self.SinisterKeywords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Keywords">
+        <PropertyRef Name="KeywordId" />
+      </Principal>
+      <Dependent Role="SinisterKeywords">
+        <PropertyRef Name="KeywordId_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SinisterKeywords_Sinisters">
+    <End Role="Sinisters" Type="Self.Sinisters" Multiplicity="0..1" />
+    <End Role="SinisterKeywords" Type="Self.SinisterKeywords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sinisters">
+        <PropertyRef Name="SinisterId" />
+      </Principal>
+      <Dependent Role="SinisterKeywords">
+        <PropertyRef Name="SinisterId_fk" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -390,8 +442,10 @@
     <EntitySet Name="Currencies" EntityType="Self.Currencies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DestructionLevels" EntityType="Self.DestructionLevels" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Keywords" EntityType="Self.Keywords" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Lobs" EntityType="Self.Lobs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SinisterKeywords" EntityType="Self.SinisterKeywords" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SinisterLob" EntityType="Self.SinisterLob" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sinisters" EntityType="Self.Sinisters" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SinisterStatus" EntityType="Self.SinisterStatus" Schema="dbo" store:Type="Tables" />
@@ -406,6 +460,18 @@
     <AssociationSet Name="fk_CountryId" Association="Self.fk_CountryId">
       <End Role="Countries" EntitySet="Countries" />
       <End Role="Sinisters" EntitySet="Sinisters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Keywords_SinisterTypes" Association="Self.FK_Keywords_SinisterTypes">
+      <End Role="SinisterTypes" EntitySet="SinisterTypes" />
+      <End Role="Keywords" EntitySet="Keywords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SinisterKeywords_Keywords" Association="Self.FK_SinisterKeywords_Keywords">
+      <End Role="Keywords" EntitySet="Keywords" />
+      <End Role="SinisterKeywords" EntitySet="SinisterKeywords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SinisterKeywords_Sinisters" Association="Self.FK_SinisterKeywords_Sinisters">
+      <End Role="Sinisters" EntitySet="Sinisters" />
+      <End Role="SinisterKeywords" EntitySet="SinisterKeywords" />
     </AssociationSet>
     <AssociationSet Name="FK_SinisterLob_Lobs" Association="Self.FK_SinisterLob_Lobs">
       <End Role="Lobs" EntitySet="Lobs" />

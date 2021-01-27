@@ -60,7 +60,8 @@ namespace SinisterWebApp.Controllers
             vm.ListLob = GetAllLobs();
             vm.ListSinisterType = GetAllSinisterType();
             vm.ListDestructionLevel = GetAllDestructionLevels();
-            vm.ListKeyword = GetAllKeyword();
+            vm.ListKeyword = GetAllKeywords();
+            vm.ListSinisterKeyword = GetAllSinisterKeywords();
             
             return View(vm);
         }
@@ -238,13 +239,20 @@ namespace SinisterWebApp.Controllers
             return lcurrencies;
         }
 
-
-        public List<Keywords> GetAllKeyword()
+        public List<Keywords> GetAllKeywords()
         {
             var lkeyword = (from k in db.Keywords
                                select k).ToList();
 
             return lkeyword;
+        }
+
+        public List<SinisterKeywords> GetAllSinisterKeywords()
+        {
+            var lsinisterKeyword = (from sk in db.SinisterKeywords
+                                    select sk).ToList();
+
+            return lsinisterKeyword;
         }
 
     }

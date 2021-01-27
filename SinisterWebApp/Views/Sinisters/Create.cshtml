@@ -129,10 +129,18 @@
 
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Sinister.KeyWord, htmlAttributes: new { @class = "control-label col-12" })
+                @Html.LabelFor(model => model.ListKeyword, htmlAttributes: new { @class = "control-label col-12" })
                 <div class="col-12">
-                    @Html.EditorFor(model => model.Sinister.KeyWord, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Sinister.KeyWord, "", new { @class = "text-danger" })
+                    @foreach (var item in Model.ListKeyword)
+                    {
+                        
+                    <div class="checkbox control-label col-12">
+                        <label class="text-muted" for="@item.KeywordId">@item.Name</label>
+                        <input type="checkbox"
+                               id="@item.KeywordId"
+                               name="@item.Name" />
+                    </div>
+                    }
                 </div>
             </div>
 
