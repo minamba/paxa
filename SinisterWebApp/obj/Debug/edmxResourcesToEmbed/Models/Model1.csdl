@@ -64,6 +64,7 @@
     <Property Name="LobId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="SinisterLob" Relationship="Self.FK_SinisterLob_Lobs" FromRole="Lobs" ToRole="SinisterLob" />
+    <NavigationProperty Name="SinisterTypes" Relationship="sinisterModel.FK_SinisterTypes_Lobs" FromRole="Lobs" ToRole="SinisterTypes" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>
@@ -136,6 +137,8 @@
     <Property Name="SinisterTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Sinisters" Relationship="Self.FK_Sinisters_SinisterTypes" FromRole="SinisterTypes" ToRole="Sinisters" />
+    <Property Name="LobId_fk" Type="Int32" />
+    <NavigationProperty Name="Lobs" Relationship="sinisterModel.FK_SinisterTypes_Lobs" FromRole="SinisterTypes" ToRole="Lobs" />
   </EntityType>
   <EntityType Name="Sites">
     <Key>
@@ -481,6 +484,10 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <AssociationSet Name="FK_SinisterTypes_Lobs" Association="sinisterModel.FK_SinisterTypes_Lobs">
+      <End Role="Lobs" EntitySet="Lobs" />
+      <End Role="SinisterTypes" EntitySet="SinisterTypes" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -493,4 +500,16 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <Association Name="FK_SinisterTypes_Lobs">
+    <End Type="sinisterModel.Lobs" Role="Lobs" Multiplicity="0..1" />
+    <End Type="sinisterModel.SinisterTypes" Role="SinisterTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lobs">
+        <PropertyRef Name="LobId" />
+      </Principal>
+      <Dependent Role="SinisterTypes">
+        <PropertyRef Name="LobId_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

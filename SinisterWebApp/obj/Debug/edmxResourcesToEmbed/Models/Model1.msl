@@ -119,6 +119,7 @@
     <EntitySetMapping Name="SinisterTypes">
       <EntityTypeMapping TypeName="sinisterModel.SinisterTypes">
         <MappingFragment StoreEntitySet="SinisterTypes">
+          <ScalarProperty Name="LobId_fk" ColumnName="LobId_fk" />
           <ScalarProperty Name="SinisterTypeId" ColumnName="SinisterTypeId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>

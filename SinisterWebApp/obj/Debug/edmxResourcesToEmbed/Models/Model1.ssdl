@@ -110,6 +110,7 @@
     </Key>
     <Property Name="SinisterTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="LobId_fk" Type="int" />
   </EntityType>
   <EntityType Name="Sites">
     <Key>
@@ -291,6 +292,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SinisterTypes_Lobs">
+    <End Role="Lobs" Type="Self.Lobs" Multiplicity="0..1" />
+    <End Role="SinisterTypes" Type="Self.SinisterTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lobs">
+        <PropertyRef Name="LobId" />
+      </Principal>
+      <Dependent Role="SinisterTypes">
+        <PropertyRef Name="LobId_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Sites_Clients">
     <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
     <End Role="Sites" Type="Self.Sites" Multiplicity="*" />
@@ -433,6 +446,10 @@
     <AssociationSet Name="FK_Sinisters_Users" Association="Self.FK_Sinisters_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="Sinisters" EntitySet="Sinisters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SinisterTypes_Lobs" Association="Self.FK_SinisterTypes_Lobs">
+      <End Role="Lobs" EntitySet="Lobs" />
+      <End Role="SinisterTypes" EntitySet="SinisterTypes" />
     </AssociationSet>
     <AssociationSet Name="FK_Sites_Clients" Association="Self.FK_Sites_Clients">
       <End Role="Clients" EntitySet="Clients" />

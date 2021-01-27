@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="sinisterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="sinisterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ActivitySectors">
           <Key>
             <PropertyRef Name="ActivitySectorId" />
@@ -52,6 +52,14 @@
           </Key>
           <Property Name="DocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Keywords">
+          <Key>
+            <PropertyRef Name="KeywordId" />
+          </Key>
+          <Property Name="KeywordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="SinisterType_fk" Type="int" />
         </EntityType>
         <EntityType Name="Lobs">
           <Key>
@@ -115,6 +123,7 @@
           </Key>
           <Property Name="SinisterTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LobId_fk" Type="int" />
         </EntityType>
         <EntityType Name="Sites">
           <Key>
@@ -173,6 +182,18 @@
             </Principal>
             <Dependent Role="Sinisters">
               <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Keywords_SinisterTypes">
+          <End Role="SinisterTypes" Type="Self.SinisterTypes" Multiplicity="0..1" />
+          <End Role="Keywords" Type="Self.Keywords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SinisterTypes">
+              <PropertyRef Name="SinisterTypeId" />
+            </Principal>
+            <Dependent Role="Keywords">
+              <PropertyRef Name="SinisterType_fk" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -296,6 +317,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SinisterTypes_Lobs">
+          <End Role="Lobs" Type="Self.Lobs" Multiplicity="0..1" />
+          <End Role="SinisterTypes" Type="Self.SinisterTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lobs">
+              <PropertyRef Name="LobId" />
+            </Principal>
+            <Dependent Role="SinisterTypes">
+              <PropertyRef Name="LobId_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sites_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
           <End Role="Sites" Type="Self.Sites" Multiplicity="*" />
@@ -382,6 +415,7 @@
           <EntitySet Name="Currencies" EntityType="Self.Currencies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DestructionLevels" EntityType="Self.DestructionLevels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Keywords" EntityType="Self.Keywords" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lobs" EntityType="Self.Lobs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SinisterLob" EntityType="Self.SinisterLob" Schema="dbo" store:Type="Tables" />
@@ -398,6 +432,10 @@
           <AssociationSet Name="fk_CountryId" Association="Self.fk_CountryId">
             <End Role="Countries" EntitySet="Countries" />
             <End Role="Sinisters" EntitySet="Sinisters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Keywords_SinisterTypes" Association="Self.FK_Keywords_SinisterTypes">
+            <End Role="SinisterTypes" EntitySet="SinisterTypes" />
+            <End Role="Keywords" EntitySet="Keywords" />
           </AssociationSet>
           <AssociationSet Name="FK_SinisterLob_Lobs" Association="Self.FK_SinisterLob_Lobs">
             <End Role="Lobs" EntitySet="Lobs" />
@@ -439,6 +477,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Sinisters" EntitySet="Sinisters" />
           </AssociationSet>
+          <AssociationSet Name="FK_SinisterTypes_Lobs" Association="Self.FK_SinisterTypes_Lobs">
+            <End Role="Lobs" EntitySet="Lobs" />
+            <End Role="SinisterTypes" EntitySet="SinisterTypes" />
+          </AssociationSet>
           <AssociationSet Name="FK_Sites_Clients" Association="Self.FK_Sites_Clients">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Sites" EntitySet="Sites" />
@@ -456,8 +498,7 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="sinisterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -525,6 +566,7 @@
           <Property Name="LobId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SinisterLob" Relationship="Self.FK_SinisterLob_Lobs" FromRole="Lobs" ToRole="SinisterLob" />
+          <NavigationProperty Name="SinisterTypes" Relationship="sinisterModel.FK_SinisterTypes_Lobs" FromRole="Lobs" ToRole="SinisterTypes" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -597,6 +639,9 @@
           <Property Name="SinisterTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Sinisters" Relationship="Self.FK_Sinisters_SinisterTypes" FromRole="SinisterTypes" ToRole="Sinisters" />
+          <Property Name="LobId_fk" Type="Int32" />
+          <NavigationProperty Name="Lobs" Relationship="sinisterModel.FK_SinisterTypes_Lobs" FromRole="SinisterTypes" ToRole="Lobs" />
+          <NavigationProperty Name="Keywords" Relationship="sinisterModel.FK_Keywords_SinisterTypes" FromRole="SinisterTypes" ToRole="Keywords" />
         </EntityType>
         <EntityType Name="Sites">
           <Key>
@@ -942,6 +987,15 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <AssociationSet Name="FK_SinisterTypes_Lobs" Association="sinisterModel.FK_SinisterTypes_Lobs">
+            <End Role="Lobs" EntitySet="Lobs" />
+            <End Role="SinisterTypes" EntitySet="SinisterTypes" />
+          </AssociationSet>
+          <EntitySet Name="Keywords" EntityType="sinisterModel.Keywords" />
+          <AssociationSet Name="FK_Keywords_SinisterTypes" Association="sinisterModel.FK_Keywords_SinisterTypes">
+            <End Role="SinisterTypes" EntitySet="SinisterTypes" />
+            <End Role="Keywords" EntitySet="Keywords" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -954,6 +1008,39 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <Association Name="FK_SinisterTypes_Lobs">
+          <End Type="sinisterModel.Lobs" Role="Lobs" Multiplicity="0..1" />
+          <End Type="sinisterModel.SinisterTypes" Role="SinisterTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lobs">
+              <PropertyRef Name="LobId" />
+            </Principal>
+            <Dependent Role="SinisterTypes">
+              <PropertyRef Name="LobId_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Keywords">
+          <Key>
+            <PropertyRef Name="KeywordId" />
+          </Key>
+          <Property Name="KeywordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SinisterType_fk" Type="Int32" />
+          <NavigationProperty Name="SinisterTypes" Relationship="sinisterModel.FK_Keywords_SinisterTypes" FromRole="Keywords" ToRole="SinisterTypes" />
+        </EntityType>
+        <Association Name="FK_Keywords_SinisterTypes">
+          <End Type="sinisterModel.SinisterTypes" Role="SinisterTypes" Multiplicity="0..1" />
+          <End Type="sinisterModel.Keywords" Role="Keywords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SinisterTypes">
+              <PropertyRef Name="SinisterTypeId" />
+            </Principal>
+            <Dependent Role="Keywords">
+              <PropertyRef Name="SinisterType_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1078,6 +1165,7 @@
           <EntitySetMapping Name="SinisterTypes">
             <EntityTypeMapping TypeName="sinisterModel.SinisterTypes">
               <MappingFragment StoreEntitySet="SinisterTypes">
+                <ScalarProperty Name="LobId_fk" ColumnName="LobId_fk" />
                 <ScalarProperty Name="SinisterTypeId" ColumnName="SinisterTypeId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
@@ -1146,6 +1234,15 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="sinisterModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="sinisterModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Keywords">
+            <EntityTypeMapping TypeName="sinisterModel.Keywords">
+              <MappingFragment StoreEntitySet="Keywords">
+                <ScalarProperty Name="SinisterType_fk" ColumnName="SinisterType_fk" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="KeywordId" ColumnName="KeywordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -18,12 +18,17 @@ namespace SinisterWebApp.Models
         public SinisterTypes()
         {
             this.Sinisters = new HashSet<Sinisters>();
+            this.Keywords = new HashSet<Keywords>();
         }
     
         public int SinisterTypeId { get; set; }
         public string Name { get; set; }
+        public Nullable<int> LobId_fk { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sinisters> Sinisters { get; set; }
+        public virtual Lobs Lobs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Keywords> Keywords { get; set; }
     }
 }

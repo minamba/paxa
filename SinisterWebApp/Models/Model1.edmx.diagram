@@ -36,6 +36,9 @@
         <AssociationConnector Association="sinisterModel.FK_Sinisters_SinisterTypes" ManuallyRouted="false" />
         <AssociationConnector Association="sinisterModel.FK_Sinisters_Sites" ManuallyRouted="false" />
         <AssociationConnector Association="sinisterModel.FK_Sinisters_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="sinisterModel.FK_SinisterTypes_Lobs" />
+        <EntityTypeShape EntityType="sinisterModel.Keywords" Width="1.5" PointX="3" PointY="21.875" />
+        <AssociationConnector Association="sinisterModel.FK_Keywords_SinisterTypes" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
