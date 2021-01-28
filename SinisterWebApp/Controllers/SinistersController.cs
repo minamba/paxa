@@ -269,5 +269,15 @@ namespace SinisterWebApp.Controllers
             return Json(obgSite);
         }
 
+        [HttpPost]
+        public ActionResult GetSinisterTypeByLobID (int lobid)
+        {
+            List<SinisterTypes> objSinisterType = new List<SinisterTypes>();
+            objSinisterType = GetAllSinisterType().Where(st => st.LobId_fk == lobid).ToList();
+            SelectList obgSinisterType = new SelectList(objSinisterType, "SinisterTypeId", "Name", 0);
+
+            return Json(obgSinisterType);
+        }
+
     }
 }

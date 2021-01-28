@@ -19,8 +19,8 @@
         {
             @Html.AntiForgeryToken()
 
-            <!--populate the site list-->
-            <script language="javascript" type="text/javascript">
+            <!--populate the site list and sinister type-->
+        <script language="javascript" type="text/javascript">
                 function GetSite(_clientId) {
                     var procemessage = "<option value ='0'> No site selected...</option>";
                     $("#sid").html(procemessage).show();
@@ -43,7 +43,30 @@
                         }
                     });
                 }
-            </script>
+
+                    function GetSinisterType(_lobid) {
+                    var procemessage = "<option value ='0'> No type selected...</option>";
+                    $("#stid").html(procemessage).show();
+                    var url = "@Url.Action("GetSinisterTypeByLobID", "Sinisters")";
+
+                    $.ajax({
+                        url: url,
+                        data: { lobid: _lobid },
+                        cache: false,
+                        type: "POST",
+                        success: function (data) {
+                            var markup = "<option value='0'> Select a type</option>";
+                            for (var x = 0; x < data.length; x++) {
+                                markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                            }
+                            $("#stid").html(markup).show();
+                        },
+                        error: function (response) {
+                            alert("error : " + reponse);
+                        }
+                    });
+                }
+        </script>
 
             <div class="form-horizontal pt-3">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -65,7 +88,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.ListLob, "Lob", htmlAttributes: new { @class = "control-label col-12" })
                     <div class="col-12">
-                        @Html.DropDownListFor(model => model.ListLob, new SelectList(Model.ListLob, "LobId", "Name"), htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.ListLob, new SelectList(Model.ListLob, "LobId", "Name"), "Select a lob", new { id = "ddlc", style = "width:100%;", onChange = "javascript: GetSinisterType(this.value);" })
                         @*@Html.ValidationMessageFor(model => model.LoBId, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
@@ -73,8 +96,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.ListSinisterType, "Sinister type", htmlAttributes: new { @class = "control-label col-12" })
                     <div class="col-12">
-                        @Html.DropDownListFor(model => model.ListSinisterType, new SelectList(Model.ListSinisterType, "SinisterTypeId", "Name"), htmlAttributes: new { @class = "form-control" })
-                        @*@Html.ValidationMessageFor(model => model.SinisterTypeId, "", new { @class = "text-danger" })*@
+                        <select id="stid" name="SinisterTypeId" style="width : 100%"></select>
                     </div>
                 </div>
 
