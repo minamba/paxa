@@ -62,7 +62,10 @@ namespace SinisterWebApp.Controllers
             vm.ListDestructionLevel = GetAllDestructionLevels();
             vm.ListKeyword = GetAllKeywords();
             vm.ListSinisterKeyword = GetAllSinisterKeywords();
-            
+
+            ViewBag.SiteId = new SelectList(db.Sites,"SiteId","Name");
+
+
             return View(vm);
         }
 
@@ -253,6 +256,17 @@ namespace SinisterWebApp.Controllers
                                     select sk).ToList();
 
             return lsinisterKeyword;
+        }
+
+        //Action result for ajax call
+        [HttpPost]
+        public ActionResult GetSiteByClientId(int clientId)
+        {
+            List<Sites> objSite = new List<Sites>();
+            objSite = GetAllSite().Where(s => s.Clientid == clientId).ToList();
+            SelectList obgSite = new SelectList(objSite,"SiteId","Name",0);
+
+            return Json(obgSite);
         }
 
     }
