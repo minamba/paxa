@@ -258,7 +258,8 @@ namespace SinisterWebApp.Controllers
             return lsinisterKeyword;
         }
 
-        //Action result for ajax call
+
+        /////////////////////////////////////////////////////Action result for ajax call///////////////////////////////////////////////////////////:
         [HttpPost]
         public ActionResult GetSiteByClientId(int clientId)
         {
@@ -279,5 +280,49 @@ namespace SinisterWebApp.Controllers
             return Json(obgSinisterType);
         }
 
+
+
+        //[HttpPost]
+        //public ActionResult GetCountriesByClientId(int clienid)
+        //{
+        //    var siteList = (from s in db.Sites
+        //                 where s.Clientid == clienid
+        //                 select s).ToList();
+
+        //    List<Countries> countryList = new List<Countries>();
+        //    countryList.Clear();
+
+        //    Countries country = new Countries();
+
+        //    foreach( var item in siteList){
+        //        country = (from c in db.Countries
+        //                   where c.CountryId == item.CountryId
+        //                   select c).SingleOrDefault();
+
+        //        countryList.Add(country);
+        //    }
+
+
+        //    List<Countries> objCountry = new List<Countries>();
+        //    objCountry = countryList;
+        //    SelectList obgCountry = new SelectList(objCountry, "CountryId", "Name", 0);
+
+        //    return Json(obgCountry);
+        //}
+
+
+        [HttpPost]
+        public ActionResult GetCountriesBySiteId(int siteid)
+        {
+            var site = (from s in db.Sites
+                        where s.SiteId == siteid
+                        select s).FirstOrDefault();
+
+            List<Countries> objCountry = new List<Countries>();
+            objCountry = db.Countries.Where(st => st.CountryId == site.CountryId).ToList();
+            SelectList obgCountry = new SelectList(objCountry, "CountryId", "Name", 0);
+
+            return Json(obgCountry);
+        }
     }
 }

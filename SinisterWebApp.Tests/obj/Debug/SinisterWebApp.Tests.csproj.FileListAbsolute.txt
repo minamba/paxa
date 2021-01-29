@@ -1,3 +1,5 @@
+D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\System.Web.Mvc.xml
+D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\WebGrease.dll
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
@@ -25,13 +27,14 @@ D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Microsoft.AspNet.Identi
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\EntityFramework.dll
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.dll
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.dll
+D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Microsoft.Owin.Security.OAuth.dll
+D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Antlr3.Runtime.dll
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\SinisterWebApp.pdb
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\SinisterWebApp.dll.config
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Newtonsoft.Json.xml
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\System.Web.Helpers.xml
-D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\System.Web.Mvc.xml
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\System.Web.Razor.xml
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\System.Web.WebPages.xml
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\System.Web.WebPages.Deployment.xml
@@ -45,13 +48,10 @@ D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Microsoft.AspNet.Identi
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\EntityFramework.xml
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.xml
 D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.xml
+D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Microsoft.Owin.Security.OAuth.xml
+D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Antlr3.Runtime.pdb
 D:\sinister_project\repos\SinisterWebApp.Tests\obj\Debug\SinisterWebApp.Tests.csprojAssemblyReference.cache
 D:\sinister_project\repos\SinisterWebApp.Tests\obj\Debug\SinisterWebApp.Tests.csproj.CoreCompileInputs.cache
 D:\sinister_project\repos\SinisterWebApp.Tests\obj\Debug\SinisterWebApp.Tests.csproj.CopyComplete
 D:\sinister_project\repos\SinisterWebApp.Tests\obj\Debug\SinisterWebApp.Tests.dll
 D:\sinister_project\repos\SinisterWebApp.Tests\obj\Debug\SinisterWebApp.Tests.pdb
-D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\WebGrease.dll
-D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Microsoft.Owin.Security.OAuth.dll
-D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Antlr3.Runtime.dll
-D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Microsoft.Owin.Security.OAuth.xml
-D:\sinister_project\repos\SinisterWebApp.Tests\bin\Debug\Antlr3.Runtime.pdb

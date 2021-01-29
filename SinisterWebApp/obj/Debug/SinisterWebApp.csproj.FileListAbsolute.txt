@@ -69,7 +69,10 @@ D:\sinister_project\repos\SinisterWebApp\bin\Microsoft.Owin.Security.Twitter.dll
 D:\sinister_project\repos\SinisterWebApp\bin\Microsoft.Web.Infrastructure.dll
 D:\sinister_project\repos\SinisterWebApp\bin\Newtonsoft.Json.dll
 D:\sinister_project\repos\SinisterWebApp\bin\Owin.dll
+D:\sinister_project\repos\SinisterWebApp\bin\System.Net.Http.Formatting.dll
 D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Helpers.dll
+D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Http.dll
+D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Http.WebHost.dll
 D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Mvc.dll
 D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Optimization.dll
 D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Razor.dll
@@ -77,6 +80,9 @@ D:\sinister_project\repos\SinisterWebApp\bin\System.Web.WebPages.Deployment.dll
 D:\sinister_project\repos\SinisterWebApp\bin\System.Web.WebPages.dll
 D:\sinister_project\repos\SinisterWebApp\bin\System.Web.WebPages.Razor.dll
 D:\sinister_project\repos\SinisterWebApp\bin\WebGrease.dll
+D:\sinister_project\repos\SinisterWebApp\bin\System.Net.Http.Formatting.xml
+D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Http.xml
+D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Http.WebHost.xml
 D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Helpers.xml
 D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Mvc.xml
 D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Optimization.xml
@@ -105,10 +111,3 @@ D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.csproj.CoreCom
 D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.csproj.CopyComplete
 D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.dll
 D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.pdb
-D:\sinister_project\repos\SinisterWebApp\bin\System.Net.Http.Formatting.dll
-D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Http.dll
-D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Http.WebHost.dll
-D:\sinister_project\repos\SinisterWebApp\bin\System.Net.Http.Formatting.xml
-D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Http.xml
-D:\sinister_project\repos\SinisterWebApp\bin\System.Web.Http.WebHost.xml
-D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.csprojAssemblyReference.cache
