@@ -14,35 +14,35 @@
         <EntityTypeShape EntityType="sinisterModel.Lobs" Width="1.5" PointX="6" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="sinisterModel.Roles" Width="1.5" PointX="3.75" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="sinisterModel.SinisterLob" Width="1.5" PointX="8.25" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="sinisterModel.Sinisters" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="sinisterModel.SinisterStatus" Width="1.5" PointX="0.75" PointY="19.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="sinisterModel.SinisterTypes" Width="1.5" PointX="0.75" PointY="21.625" IsExpanded="true" />
         <EntityTypeShape EntityType="sinisterModel.Sites" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="sinisterModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="sinisterModel.Users" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
-        <AssociationConnector Association="sinisterModel.FK_ActivitySectorId" ManuallyRouted="false" />
-        <AssociationConnector Association="sinisterModel.FK_Sinisters_Clients" ManuallyRouted="false" />
         <AssociationConnector Association="sinisterModel.FK_Sites_Clients" ManuallyRouted="false" />
-        <AssociationConnector Association="sinisterModel.fk_CountryId" ManuallyRouted="false" />
         <AssociationConnector Association="sinisterModel.FK_Sites_Countries" ManuallyRouted="false" />
         <AssociationConnector Association="sinisterModel.FK_Users_Countries" ManuallyRouted="false" />
-        <AssociationConnector Association="sinisterModel.FK_Sinisters_Currencies" ManuallyRouted="false" />
-        <AssociationConnector Association="sinisterModel.FK_Sinisters_DestructionLevels" ManuallyRouted="false" />
-        <AssociationConnector Association="sinisterModel.FK_Sinisters_Documents" ManuallyRouted="false" />
         <AssociationConnector Association="sinisterModel.FK_SinisterLob_Lobs" ManuallyRouted="false" />
         <AssociationConnector Association="sinisterModel.FK_Users_Roles" ManuallyRouted="false" />
-        <AssociationConnector Association="sinisterModel.FK_SinisterLob_Sinisters" ManuallyRouted="false" />
-        <AssociationConnector Association="sinisterModel.FK_Sinisters_SinisterStatus" ManuallyRouted="false" />
-        <AssociationConnector Association="sinisterModel.FK_Sinisters_SinisterTypes" ManuallyRouted="false" />
-        <AssociationConnector Association="sinisterModel.FK_Sinisters_Sites" ManuallyRouted="false" />
-        <AssociationConnector Association="sinisterModel.FK_Sinisters_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="sinisterModel.FK_SinisterTypes_Lobs" />
-        <EntityTypeShape EntityType="sinisterModel.Keywords" Width="1.5" PointX="3" PointY="21.875" />
+        <EntityTypeShape EntityType="sinisterModel.Keywords" Width="1.5" PointX="3" PointY="16" />
+        <EntityTypeShape EntityType="sinisterModel.Sinisters" Width="1.5" PointX="11.25" PointY="7.25" />
+        <AssociationConnector Association="sinisterModel.FK_ActivitySectorId" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_Clients" />
+        <AssociationConnector Association="sinisterModel.fk_CountryId" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_Currencies" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_DestructionLevels" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_Documents" />
+        <AssociationConnector Association="sinisterModel.FK_SinisterLob_Sinisters" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_SinisterStatus" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_Sites" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_Users" />
+        <EntityTypeShape EntityType="sinisterModel.SinisterTypes" Width="1.5" PointX="8.25" PointY="12.125" />
         <AssociationConnector Association="sinisterModel.FK_Keywords_SinisterTypes" />
-        <EntityTypeShape EntityType="sinisterModel.SinisterKeywords" Width="1.5" PointX="5.25" PointY="15.75" />
+        <AssociationConnector Association="sinisterModel.FK_SinisterTypes_Lobs" />
+        <AssociationConnector Association="sinisterModel.FK_Sinisters_SinisterTypes" />
+        <EntityTypeShape EntityType="sinisterModel.SinisterKeywords" Width="1.5" PointX="13.5" PointY="11.625" />
         <AssociationConnector Association="sinisterModel.FK_SinisterKeywords_Keywords" />
         <AssociationConnector Association="sinisterModel.FK_SinisterKeywords_Sinisters" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

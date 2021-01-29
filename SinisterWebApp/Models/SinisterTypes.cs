@@ -17,18 +17,18 @@ namespace SinisterWebApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SinisterTypes()
         {
-            this.Sinisters = new HashSet<Sinisters>();
             this.Keywords = new HashSet<Keywords>();
+            this.Sinisters = new HashSet<Sinisters>();
         }
     
         public int SinisterTypeId { get; set; }
         public string Name { get; set; }
-        public Nullable<int> LobId_fk { get; set; }
+        public Nullable<int> LobId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sinisters> Sinisters { get; set; }
+        public virtual ICollection<Keywords> Keywords { get; set; }
         public virtual Lobs Lobs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Keywords> Keywords { get; set; }
+        public virtual ICollection<Sinisters> Sinisters { get; set; }
     }
 }

@@ -5,22 +5,9 @@
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<!--JUmbotron-->
-<div class="jumbotron backgroundHome">
-    <h1 class="otherTitle text-center">Declare a sinister</h1>
-</div>
 
-<div class="container pt-3 pb-3 col-lg-12 col-md-12 col-12">
-    <h4 class=" pt-2 subTitle">New sinister</h4>
-    <hr class="hrColor" />
-    <div class="bg-light align-content-center col-lg-12 col-md-12 col-12 shadow">
-
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <!--populate the site list and sinister type-->
-        <script language="javascript" type="text/javascript">
+<!--populate the site list and sinister type-->
+<script language="javascript" type="text/javascript">
                 function GetSites(_clientId) {
                     var procemessage = "<option value ='0'> No site selected...</option>";
                     $("#sid").html(procemessage).show();
@@ -89,152 +76,189 @@
                             }
                         });
                     }
-        </script>
 
-        <div class="form-horizontal pt-3">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.ListClient, "Client", htmlAttributes: new { @class = "control-label col-12" })
-                <div class="col-12">
-                    @Html.DropDownListFor(model => model.ListClient, new SelectList(Model.ListClient, "ClientId", "Name"), "Select a client", new { id = "ddlc", style = "width:100%;", onChange = "javascript: GetSites(this.value);" })
-                    @*@Html.ValidationMessageFor(model => model.ListClient, "", new { @class = "text-danger" })*@
+
+                        @*function GetKeywords(_sinisterTypeId) {
+                            var procemessage = "<option value=" + data[0].Value + ">" + data[0].Text + "</option>";
+                            $("#kid").html(procemessage).show();
+                            var url = "@Url.Action("GetKeywordBySinisterTypeId", "Sinisters")";
+                            $.ajax({
+                                url: url,
+                                data: { sinisterTypeid: _sinisterTypeId },
+                                cache: false,
+                                type: "POST",
+                                success: function (data) {
+                                    //for (var x = 0; x < data.length; x++) {
+                                            @ViewBag.newListKeyword = data;
+                                        //}
+
+                                },
+                                error: function (response) {
+                                    alert("error : " + reponse);
+                                }
+                            });
+                        }*@
+</script>
+
+
+<!--JUmbotron-->
+<div class="jumbotron backgroundHome">
+    <h1 class="otherTitle text-center">Declare a sinister</h1>
+</div>
+
+<div class="container pt-3 pb-3 col-lg-12 col-md-12 col-12">
+    <h4 class=" pt-2 subTitle">New sinister</h4>
+    <hr class="hrColor" />
+    <div class="bg-light align-content-center col-lg-12 col-md-12 col-12 shadow">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal pt-3">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ListClient, "Client", htmlAttributes: new { @class = "control-label col-12" })
+                    <div class="col-12">
+                        @Html.DropDownListFor(model => model.ListClient, new SelectList(Model.ListClient, "ClientId", "Name"), "Select a client", new { id = "ddlc", style = "width:100%;", onChange = "javascript: GetSites(this.value);", @class= "col-12 form-control" })
+                        @*@Html.ValidationMessageFor(model => model.ListClient, "", new { @class = "text-danger" })*@
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Site.Name, "Site", htmlAttributes: new { @class = "control-label col-12" })
-                <div class="col-12">
-                    <select id="sid" name="SiteId" style="width : 100%" onclick="javascript: GetCountries(this.value);"></select>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Site.Name, "Site", htmlAttributes: new { @class = "control-label col-12" })
+                    <div class="col-12">
+                        <select id="sid" name="SiteId" @*style="width : 100%"*@ onclick="javascript: GetCountries(this.value);" class="control-label col-12 form-control"></select>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.ListCountries, "Country", htmlAttributes: new { @class = "control-label col-12" })
-                <div class="col-12">
-                    <select id="cid" name="CountryID" style="width : 100%"></select>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ListCountries, "Country", htmlAttributes: new { @class = "control-label col-12" })
+                    <div class="col-12">
+                        <select id="cid" name="CountryID" style="width : 100%" contenteditable="false" class="control-label col-12 form-control"></select>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.ListLob, "Lob", htmlAttributes: new { @class = "control-label col-12" })
-                <div class="col-12">
-                    @Html.DropDownListFor(model => model.ListLob, new SelectList(Model.ListLob, "LobId", "Name"), "Select a lob", new { id = "ddlc", style = "width:100%;", onChange = "javascript: GetSinisterTypes(this.value);" })
-                    @*@Html.ValidationMessageFor(model => model.LoBId, "", new { @class = "text-danger" })*@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ListLob, "Lob", htmlAttributes: new { @class = "control-label col-12" })
+                    <div class="col-12">
+                        @Html.DropDownListFor(model => model.ListLob, new SelectList(Model.ListLob, "LobId", "Name"), "Select a lob", new { id = "ddlc", style = "width:100%;", onChange = "javascript: GetSinisterTypes(this.value);", @class = "col-12 form-control" })
+                        @*@Html.ValidationMessageFor(model => model.LoBId, "", new { @class = "text-danger" })*@
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.ListSinisterType, "Sinister type", htmlAttributes: new { @class = "control-label col-12" })
-                <div class="col-12">
-                    <select id="stid" name="SinisterTypeId" style="width : 100%"></select>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ListSinisterType, "Sinister type", htmlAttributes: new { @class = "control-label col-12" })
+                    <div class="col-12">
+                        <select id="stid" name="SinisterTypeId" style="width : 100%" onclick="'javascript: GetKeywords(this.value)'" class="control-label col-12 form-control"></select>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.ListActivitySector, "Activity sector", htmlAttributes: new { @class = "control-label col-12" })
-                <div class="col-12">
-                    @Html.DropDownListFor(model => model.ListActivitySector, new SelectList(Model.ListActivitySector, "ActivitySectorId", "Name"), htmlAttributes: new { @class = "form-control" })
-                    @*@Html.ValidationMessageFor(model => model.ActivitySectorId, "", new { @class = "text-danger" })*@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ListActivitySector, "Activity sector", htmlAttributes: new { @class = "control-label col-12" })
+                    <div class="col-12">
+                        @Html.DropDownListFor(model => model.ListActivitySector, new SelectList(Model.ListActivitySector, "ActivitySectorId", "Name"), htmlAttributes: new { @class = "form-control" })
+                        @*@Html.ValidationMessageFor(model => model.ActivitySectorId, "", new { @class = "text-danger" })*@
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.ListDestructionLevel, "Destruction level", htmlAttributes: new { @class = "control-label col-12" })
-                <div class="col-12">
-                    @Html.DropDownListFor(model => model.ListDestructionLevel, new SelectList(Model.ListDestructionLevel, "DestructionLevelId", "Name"), htmlAttributes: new { @class = "form-control" })
-                    @*@Html.ValidationMessageFor(model => model.DestructionLevelId, "", new { @class = "text-danger" })*@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ListDestructionLevel, "Destruction level", htmlAttributes: new { @class = "control-label col-12" })
+                    <div class="col-12">
+                        @Html.DropDownListFor(model => model.ListDestructionLevel, new SelectList(Model.ListDestructionLevel, "DestructionLevelId", "Name"), htmlAttributes: new { @class = "form-control" })
+                        @*@Html.ValidationMessageFor(model => model.DestructionLevelId, "", new { @class = "text-danger" })*@
+                    </div>
                 </div>
-            </div>
 
-            @*<div class="form-group">
-                @Html.LabelFor(model => model.Sinister.Consequence, htmlAttributes: new { @class = "control-label col-12" })
-                <div class="col-12">
-                    @Html.TextAreaFor(model => model.Sinister.Consequence, new { htmlAttributes = new { @class = "form-control col-lg-12" } })
-                    @Html.ValidationMessageFor(model => model.Sinister.Consequence, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Sinister.AggravatingFactor, "Aggravating factor", htmlAttributes: new { @class = "control-label col-12" })
-                <div class="col-12">
-                    @Html.TextAreaFor(model => model.Sinister.AggravatingFactor, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Sinister.AggravatingFactor, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ListCurrency, "Currency", htmlAttributes: new { @class = "control-label col-12" })
-                <div class="col-12">
-                    @Html.DropDownListFor(model => model.ListCurrency, new SelectList(Model.ListCurrency, "CurrencyId", "Name"), htmlAttributes: new { @class = "form-control" })
-                    @*@Html.ValidationMessageFor(model => model.CurrencyId, "", new { @class = "text-danger" })*@
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Sinister.Amount, htmlAttributes: new { @class = "control-label col-12" })
-                <div class="col-12">
-                    @Html.EditorFor(model => model.Sinister.Amount, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Sinister.Amount, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Sinister.FileOrigine, htmlAttributes: new { @class = "control-label col-12" })
-                <div class="col-12">
-                    @Html.EditorFor(model => model.Sinister.FileOrigine, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Sinister.FileOrigine, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Sinister.FileName, htmlAttributes: new { @class = "control-label col-12" })
-                <div class="col-12">
-                    @Html.EditorFor(model => model.Sinister.FileName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Sinister.FileName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ListKeyword, htmlAttributes: new { @class = "control-label col-12" })
-                <div class="col-12">
-                    @foreach (var item in Model.ListKeyword)
-                    {
-
-                        <div class="checkbox control-label col-12">
-                            <label class="text-muted" for="@item.KeywordId">@item.Name</label>
-                            <input type="checkbox"
-                                   id="@item.KeywordId"
-                                   name="@item.Name" />
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.Sinister.Consequence, htmlAttributes: new { @class = "control-label col-12" })
+                        <div class="col-12">
+                            @Html.TextAreaFor(model => model.Sinister.Consequence, new { htmlAttributes = new { @class = "form-control col-lg-12" } })
+                            @Html.ValidationMessageFor(model => model.Sinister.Consequence, "", new { @class = "text-danger" })
                         </div>
-                    }
+                    </div>*@
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sinister.AggravatingFactor, "Aggravating factor", htmlAttributes: new { @class = "control-label col-12" })
+                    <div class="col-12">
+                        @Html.TextAreaFor(model => model.Sinister.AggravatingFactor, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Sinister.AggravatingFactor, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ListCurrency, "Currency", htmlAttributes: new { @class = "control-label col-12" })
+                    <div class="col-12">
+                        @Html.DropDownListFor(model => model.ListCurrency, new SelectList(Model.ListCurrency, "CurrencyId", "Name"), htmlAttributes: new { @class = "form-control" })
+                        @*@Html.ValidationMessageFor(model => model.CurrencyId, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sinister.Amount, htmlAttributes: new { @class = "control-label col-12" })
+                    <div class="col-12">
+                        @Html.EditorFor(model => model.Sinister.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Sinister.Amount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sinister.FileOrigine, htmlAttributes: new { @class = "control-label col-12" })
+                    <div class="col-12">
+                        @Html.EditorFor(model => model.Sinister.FileOrigine, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Sinister.FileOrigine, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sinister.FileName, htmlAttributes: new { @class = "control-label col-12" })
+                    <div class="col-12">
+                        @Html.EditorFor(model => model.Sinister.FileName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Sinister.FileName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ListKeyword, htmlAttributes: new { @class = "control-label col-12" })
+                    <div class="col-12">
+                        @foreach (var item in ViewBag.newListKeyword)
+                        {
+
+                            <div class="checkbox control-label col-12">
+                                <label class="text-muted" for="@item.KeywordId">@item.Name</label>
+                                <input type="checkbox"
+                                       id="@item.KeywordId"
+                                       name="@item.Name" />
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.Sinister.DocumentId, "Document", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("DocumentId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Sinister.DocumentId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                <div class="form-group align-content-center p-3">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default bg-success text-white" />
+                    </div>
                 </div>
             </div>
-
-            @*<div class="form-group">
-            @Html.LabelFor(model => model.Sinister.DocumentId, "Document", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("DocumentId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Sinister.DocumentId, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-            <div class="form-group align-content-center p-3">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default bg-success text-white" />
-                </div>
-            </div>
-        </div>
         }
 
     </div>
 </div>
 
 @*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

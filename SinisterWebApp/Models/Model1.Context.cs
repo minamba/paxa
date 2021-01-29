@@ -36,13 +36,13 @@ namespace SinisterWebApp.Models
         public virtual DbSet<Lobs> Lobs { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<SinisterLob> SinisterLob { get; set; }
-        public virtual DbSet<Sinisters> Sinisters { get; set; }
         public virtual DbSet<SinisterStatus> SinisterStatus { get; set; }
-        public virtual DbSet<SinisterTypes> SinisterTypes { get; set; }
         public virtual DbSet<Sites> Sites { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Keywords> Keywords { get; set; }
+        public virtual DbSet<Sinisters> Sinisters { get; set; }
+        public virtual DbSet<SinisterTypes> SinisterTypes { get; set; }
         public virtual DbSet<SinisterKeywords> SinisterKeywords { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

@@ -17,9 +17,9 @@ namespace SinisterWebApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Countries()
         {
-            this.Sinisters = new HashSet<Sinisters>();
             this.Sites = new HashSet<Sites>();
             this.Users = new HashSet<Users>();
+            this.Sinisters = new HashSet<Sinisters>();
         }
     
         public int CountryId { get; set; }
@@ -30,10 +30,10 @@ namespace SinisterWebApp.Models
         public string ISOCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sinisters> Sinisters { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sites> Sites { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sinisters> Sinisters { get; set; }
     }
 }

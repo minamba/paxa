@@ -52,6 +52,8 @@ namespace SinisterWebApp.Controllers
             //ViewBag.SiteId = new SelectList(db.Sites, "SiteId", "Code");
             //ViewBag.UserId = new SelectList(db.Users, "Userid", "EmployeeID");
 
+            ViewBag.newListKeyword = new List<Keywords>();
+
             vm.ListClient = GetAllClient();
             vm.ListSite = GetAllSite();
             vm.ListCountries = GetAllCountries();
@@ -274,7 +276,7 @@ namespace SinisterWebApp.Controllers
         public ActionResult GetSinisterTypeByLobID (int lobid)
         {
             List<SinisterTypes> objSinisterType = new List<SinisterTypes>();
-            objSinisterType = GetAllSinisterType().Where(st => st.LobId_fk == lobid).ToList();
+            objSinisterType = GetAllSinisterType().Where(st => st.LobId == lobid).ToList();
             SelectList obgSinisterType = new SelectList(objSinisterType, "SinisterTypeId", "Name", 0);
 
             return Json(obgSinisterType);
@@ -324,5 +326,18 @@ namespace SinisterWebApp.Controllers
 
             return Json(obgCountry);
         }
+
+
+        [HttpPost]
+        public ActionResult GetKeywordBySinisterTypeId(int sinisterTypeid)
+        {
+            List<Keywords> objKeyword = new List<Keywords>();
+            objKeyword = db.Keywords.Where(k => k.SinisterTypeId == sinisterTypeid).ToList();
+            SelectList obgKeyword = new SelectList(objKeyword, "KeywordId", "Name", 0);
+
+            return Json(obgKeyword);
+        }
+
+
     }
 }

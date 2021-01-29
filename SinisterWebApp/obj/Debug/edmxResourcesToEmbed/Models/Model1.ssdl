@@ -54,7 +54,7 @@
     </Key>
     <Property Name="KeywordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="SinisterType_fk" Type="int" />
+    <Property Name="SinisterTypeId" Type="int" />
   </EntityType>
   <EntityType Name="Lobs">
     <Key>
@@ -75,8 +75,8 @@
       <PropertyRef Name="SinisterKeywordId" />
     </Key>
     <Property Name="SinisterKeywordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="KeywordId_fk" Type="int" />
-    <Property Name="SinisterId_fk" Type="int" />
+    <Property Name="KeywordId" Type="int" />
+    <Property Name="SinisterId" Type="int" />
   </EntityType>
   <EntityType Name="SinisterLob">
     <Key>
@@ -107,7 +107,6 @@
     <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
     <Property Name="CreateDate" Type="datetime" />
     <Property Name="EditDate" Type="datetime" />
-    <Property Name="KeyWord" Type="nvarchar" MaxLength="500" />
     <Property Name="CreateUserId" Type="int" />
     <Property Name="EditUserId" Type="int" />
     <Property Name="DocumentId" Type="int" />
@@ -126,7 +125,7 @@
     </Key>
     <Property Name="SinisterTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="LobId_fk" Type="int" />
+    <Property Name="LobId" Type="int" />
   </EntityType>
   <EntityType Name="Sites">
     <Key>
@@ -196,7 +195,7 @@
         <PropertyRef Name="SinisterTypeId" />
       </Principal>
       <Dependent Role="Keywords">
-        <PropertyRef Name="SinisterType_fk" />
+        <PropertyRef Name="SinisterTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -208,7 +207,7 @@
         <PropertyRef Name="KeywordId" />
       </Principal>
       <Dependent Role="SinisterKeywords">
-        <PropertyRef Name="KeywordId_fk" />
+        <PropertyRef Name="KeywordId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -220,7 +219,7 @@
         <PropertyRef Name="SinisterId" />
       </Principal>
       <Dependent Role="SinisterKeywords">
-        <PropertyRef Name="SinisterId_fk" />
+        <PropertyRef Name="SinisterId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -352,7 +351,7 @@
         <PropertyRef Name="LobId" />
       </Principal>
       <Dependent Role="SinisterTypes">
-        <PropertyRef Name="LobId_fk" />
+        <PropertyRef Name="LobId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

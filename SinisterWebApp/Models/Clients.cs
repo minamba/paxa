@@ -17,8 +17,8 @@ namespace SinisterWebApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Clients()
         {
-            this.Sinisters = new HashSet<Sinisters>();
             this.Sites = new HashSet<Sites>();
+            this.Sinisters = new HashSet<Sinisters>();
         }
     
         public int ClientId { get; set; }
@@ -26,8 +26,8 @@ namespace SinisterWebApp.Models
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sinisters> Sinisters { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sites> Sites { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sinisters> Sinisters { get; set; }
     }
 }

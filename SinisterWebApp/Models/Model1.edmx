@@ -59,7 +59,7 @@
           </Key>
           <Property Name="KeywordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="SinisterType_fk" Type="int" />
+          <Property Name="SinisterTypeId" Type="int" />
         </EntityType>
         <EntityType Name="Lobs">
           <Key>
@@ -80,8 +80,8 @@
             <PropertyRef Name="SinisterKeywordId" />
           </Key>
           <Property Name="SinisterKeywordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="KeywordId_fk" Type="int" />
-          <Property Name="SinisterId_fk" Type="int" />
+          <Property Name="KeywordId" Type="int" />
+          <Property Name="SinisterId" Type="int" />
         </EntityType>
         <EntityType Name="SinisterLob">
           <Key>
@@ -112,7 +112,6 @@
           <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="EditDate" Type="datetime" />
-          <Property Name="KeyWord" Type="nvarchar" MaxLength="500" />
           <Property Name="CreateUserId" Type="int" />
           <Property Name="EditUserId" Type="int" />
           <Property Name="DocumentId" Type="int" />
@@ -131,7 +130,7 @@
           </Key>
           <Property Name="SinisterTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="LobId_fk" Type="int" />
+          <Property Name="LobId" Type="int" />
         </EntityType>
         <EntityType Name="Sites">
           <Key>
@@ -201,7 +200,7 @@
               <PropertyRef Name="SinisterTypeId" />
             </Principal>
             <Dependent Role="Keywords">
-              <PropertyRef Name="SinisterType_fk" />
+              <PropertyRef Name="SinisterTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -213,7 +212,7 @@
               <PropertyRef Name="KeywordId" />
             </Principal>
             <Dependent Role="SinisterKeywords">
-              <PropertyRef Name="KeywordId_fk" />
+              <PropertyRef Name="KeywordId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -225,7 +224,7 @@
               <PropertyRef Name="SinisterId" />
             </Principal>
             <Dependent Role="SinisterKeywords">
-              <PropertyRef Name="SinisterId_fk" />
+              <PropertyRef Name="SinisterId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -357,7 +356,7 @@
               <PropertyRef Name="LobId" />
             </Principal>
             <Dependent Role="SinisterTypes">
-              <PropertyRef Name="LobId_fk" />
+              <PropertyRef Name="LobId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -549,7 +548,7 @@
           </Key>
           <Property Name="ActivitySectorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Sinisters" Relationship="Self.FK_ActivitySectorId" FromRole="ActivitySectors" ToRole="Sinisters" />
+          <NavigationProperty Name="Sinisters" Relationship="sinisterModel.FK_ActivitySectorId" FromRole="ActivitySectors" ToRole="Sinisters" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
@@ -558,8 +557,8 @@
           <Property Name="ClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Sinisters" Relationship="Self.FK_Sinisters_Clients" FromRole="Clients" ToRole="Sinisters" />
           <NavigationProperty Name="Sites" Relationship="Self.FK_Sites_Clients" FromRole="Clients" ToRole="Sites" />
+          <NavigationProperty Name="Sinisters" Relationship="sinisterModel.FK_Sinisters_Clients" FromRole="Clients" ToRole="Sinisters" />
         </EntityType>
         <EntityType Name="Countries">
           <Key>
@@ -571,9 +570,9 @@
           <Property Name="Active" Type="Boolean" />
           <Property Name="Fictive" Type="Boolean" />
           <Property Name="ISOCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Sinisters" Relationship="Self.fk_CountryId" FromRole="Countries" ToRole="Sinisters" />
           <NavigationProperty Name="Sites" Relationship="Self.FK_Sites_Countries" FromRole="Countries" ToRole="Sites" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_Countries" FromRole="Countries" ToRole="Users" />
+          <NavigationProperty Name="Sinisters" Relationship="sinisterModel.fk_CountryId" FromRole="Countries" ToRole="Sinisters" />
         </EntityType>
         <EntityType Name="Currencies">
           <Key>
@@ -582,7 +581,7 @@
           <Property Name="CurrencyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Active" Type="Boolean" />
-          <NavigationProperty Name="Sinisters" Relationship="Self.FK_Sinisters_Currencies" FromRole="Currencies" ToRole="Sinisters" />
+          <NavigationProperty Name="Sinisters" Relationship="sinisterModel.FK_Sinisters_Currencies" FromRole="Currencies" ToRole="Sinisters" />
         </EntityType>
         <EntityType Name="DestructionLevels">
           <Key>
@@ -590,7 +589,7 @@
           </Key>
           <Property Name="DestructionLevelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Sinisters" Relationship="Self.FK_Sinisters_DestructionLevels" FromRole="DestructionLevels" ToRole="Sinisters" />
+          <NavigationProperty Name="Sinisters" Relationship="sinisterModel.FK_Sinisters_DestructionLevels" FromRole="DestructionLevels" ToRole="Sinisters" />
         </EntityType>
         <EntityType Name="Documents">
           <Key>
@@ -598,7 +597,7 @@
           </Key>
           <Property Name="DocumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Sinisters" Relationship="Self.FK_Sinisters_Documents" FromRole="Documents" ToRole="Sinisters" />
+          <NavigationProperty Name="Sinisters" Relationship="sinisterModel.FK_Sinisters_Documents" FromRole="Documents" ToRole="Sinisters" />
         </EntityType>
         <EntityType Name="Lobs">
           <Key>
@@ -625,46 +624,7 @@
           <Property Name="SinisterId" Type="Int32" />
           <Property Name="LobId" Type="Int32" />
           <NavigationProperty Name="Lobs" Relationship="Self.FK_SinisterLob_Lobs" FromRole="SinisterLob" ToRole="Lobs" />
-          <NavigationProperty Name="Sinisters" Relationship="Self.FK_SinisterLob_Sinisters" FromRole="SinisterLob" ToRole="Sinisters" />
-        </EntityType>
-        <EntityType Name="Sinisters">
-          <Key>
-            <PropertyRef Name="SinisterId" />
-          </Key>
-          <Property Name="SinisterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Clientid" Type="Int32" />
-          <Property Name="SiteId" Type="Int32" />
-          <Property Name="SinisterTypeId" Type="Int32" />
-          <Property Name="ActivitySectorId" Type="Int32" />
-          <Property Name="CountryId" Type="Int32" />
-          <Property Name="DestructionLevelId" Type="Int32" />
-          <Property Name="CurrencyId" Type="Int32" />
-          <Property Name="LoBId" Type="Int32" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="Consequence" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FileOrigine" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AggravatingFactor" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="EditDate" Type="DateTime" Precision="3" />
-          <Property Name="KeyWord" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="CreateUserId" Type="Int32" />
-          <Property Name="EditUserId" Type="Int32" />
-          <Property Name="DocumentId" Type="Int32" />
-          <Property Name="SinisterStatusId" Type="Int32" />
-          <NavigationProperty Name="ActivitySectors" Relationship="Self.FK_ActivitySectorId" FromRole="Sinisters" ToRole="ActivitySectors" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK_Sinisters_Clients" FromRole="Sinisters" ToRole="Clients" />
-          <NavigationProperty Name="Countries" Relationship="Self.fk_CountryId" FromRole="Sinisters" ToRole="Countries" />
-          <NavigationProperty Name="Currencies" Relationship="Self.FK_Sinisters_Currencies" FromRole="Sinisters" ToRole="Currencies" />
-          <NavigationProperty Name="DestructionLevels" Relationship="Self.FK_Sinisters_DestructionLevels" FromRole="Sinisters" ToRole="DestructionLevels" />
-          <NavigationProperty Name="Documents" Relationship="Self.FK_Sinisters_Documents" FromRole="Sinisters" ToRole="Documents" />
-          <NavigationProperty Name="SinisterLob" Relationship="Self.FK_SinisterLob_Sinisters" FromRole="Sinisters" ToRole="SinisterLob" />
-          <NavigationProperty Name="SinisterStatus" Relationship="Self.FK_Sinisters_SinisterStatus" FromRole="Sinisters" ToRole="SinisterStatus" />
-          <NavigationProperty Name="SinisterTypes" Relationship="Self.FK_Sinisters_SinisterTypes" FromRole="Sinisters" ToRole="SinisterTypes" />
-          <NavigationProperty Name="Sites" Relationship="Self.FK_Sinisters_Sites" FromRole="Sinisters" ToRole="Sites" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Sinisters_Users" FromRole="Sinisters" ToRole="Users" />
-          <NavigationProperty Name="SinisterKeywords" Relationship="sinisterModel.FK_SinisterKeywords_Sinisters" FromRole="Sinisters" ToRole="SinisterKeywords" />
+          <NavigationProperty Name="Sinisters" Relationship="sinisterModel.FK_SinisterLob_Sinisters" FromRole="SinisterLob" ToRole="Sinisters" />
         </EntityType>
         <EntityType Name="SinisterStatus">
           <Key>
@@ -672,18 +632,7 @@
           </Key>
           <Property Name="SinisterStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Sinisters" Relationship="Self.FK_Sinisters_SinisterStatus" FromRole="SinisterStatus" ToRole="Sinisters" />
-        </EntityType>
-        <EntityType Name="SinisterTypes">
-          <Key>
-            <PropertyRef Name="SinisterTypeId" />
-          </Key>
-          <Property Name="SinisterTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Sinisters" Relationship="Self.FK_Sinisters_SinisterTypes" FromRole="SinisterTypes" ToRole="Sinisters" />
-          <Property Name="LobId_fk" Type="Int32" />
-          <NavigationProperty Name="Lobs" Relationship="sinisterModel.FK_SinisterTypes_Lobs" FromRole="SinisterTypes" ToRole="Lobs" />
-          <NavigationProperty Name="Keywords" Relationship="sinisterModel.FK_Keywords_SinisterTypes" FromRole="SinisterTypes" ToRole="Keywords" />
+          <NavigationProperty Name="Sinisters" Relationship="sinisterModel.FK_Sinisters_SinisterStatus" FromRole="SinisterStatus" ToRole="Sinisters" />
         </EntityType>
         <EntityType Name="Sites">
           <Key>
@@ -698,7 +647,7 @@
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Clients" Relationship="Self.FK_Sites_Clients" FromRole="Sites" ToRole="Clients" />
           <NavigationProperty Name="Countries" Relationship="Self.FK_Sites_Countries" FromRole="Sites" ToRole="Countries" />
-          <NavigationProperty Name="Sinisters" Relationship="Self.FK_Sinisters_Sites" FromRole="Sites" ToRole="Sinisters" />
+          <NavigationProperty Name="Sinisters" Relationship="sinisterModel.FK_Sinisters_Sites" FromRole="Sites" ToRole="Sinisters" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -725,32 +674,8 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Countries" Relationship="Self.FK_Users_Countries" FromRole="Users" ToRole="Countries" />
           <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
-          <NavigationProperty Name="Sinisters" Relationship="Self.FK_Sinisters_Users" FromRole="Users" ToRole="Sinisters" />
+          <NavigationProperty Name="Sinisters" Relationship="sinisterModel.FK_Sinisters_Users" FromRole="Users" ToRole="Sinisters" />
         </EntityType>
-        <Association Name="FK_ActivitySectorId">
-          <End Role="ActivitySectors" Type="Self.ActivitySectors" Multiplicity="0..1" />
-          <End Role="Sinisters" Type="Self.Sinisters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ActivitySectors">
-              <PropertyRef Name="ActivitySectorId" />
-            </Principal>
-            <Dependent Role="Sinisters">
-              <PropertyRef Name="ActivitySectorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sinisters_Clients">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
-          <End Role="Sinisters" Type="Self.Sinisters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clients">
-              <PropertyRef Name="ClientId" />
-            </Principal>
-            <Dependent Role="Sinisters">
-              <PropertyRef Name="Clientid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Sites_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
           <End Role="Sites" Type="Self.Sites" Multiplicity="*" />
@@ -760,18 +685,6 @@
             </Principal>
             <Dependent Role="Sites">
               <PropertyRef Name="Clientid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_CountryId">
-          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
-          <End Role="Sinisters" Type="Self.Sinisters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Countries">
-              <PropertyRef Name="CountryId" />
-            </Principal>
-            <Dependent Role="Sinisters">
-              <PropertyRef Name="CountryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -799,42 +712,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Sinisters_Currencies">
-          <End Role="Currencies" Type="Self.Currencies" Multiplicity="0..1" />
-          <End Role="Sinisters" Type="Self.Sinisters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Currencies">
-              <PropertyRef Name="CurrencyId" />
-            </Principal>
-            <Dependent Role="Sinisters">
-              <PropertyRef Name="CurrencyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sinisters_DestructionLevels">
-          <End Role="DestructionLevels" Type="Self.DestructionLevels" Multiplicity="0..1" />
-          <End Role="Sinisters" Type="Self.Sinisters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DestructionLevels">
-              <PropertyRef Name="DestructionLevelId" />
-            </Principal>
-            <Dependent Role="Sinisters">
-              <PropertyRef Name="DestructionLevelId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sinisters_Documents">
-          <End Role="Documents" Type="Self.Documents" Multiplicity="0..1" />
-          <End Role="Sinisters" Type="Self.Sinisters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Documents">
-              <PropertyRef Name="DocumentId" />
-            </Principal>
-            <Dependent Role="Sinisters">
-              <PropertyRef Name="DocumentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SinisterLob_Lobs">
           <End Role="Lobs" Type="Self.Lobs" Multiplicity="0..1" />
           <End Role="SinisterLob" Type="Self.SinisterLob" Multiplicity="*" />
@@ -859,66 +736,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SinisterLob_Sinisters">
-          <End Role="Sinisters" Type="Self.Sinisters" Multiplicity="0..1" />
-          <End Role="SinisterLob" Type="Self.SinisterLob" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sinisters">
-              <PropertyRef Name="SinisterId" />
-            </Principal>
-            <Dependent Role="SinisterLob">
-              <PropertyRef Name="SinisterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sinisters_SinisterStatus">
-          <End Role="SinisterStatus" Type="Self.SinisterStatus" Multiplicity="0..1" />
-          <End Role="Sinisters" Type="Self.Sinisters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SinisterStatus">
-              <PropertyRef Name="SinisterStatusId" />
-            </Principal>
-            <Dependent Role="Sinisters">
-              <PropertyRef Name="SinisterStatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sinisters_SinisterTypes">
-          <End Role="SinisterTypes" Type="Self.SinisterTypes" Multiplicity="0..1" />
-          <End Role="Sinisters" Type="Self.Sinisters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SinisterTypes">
-              <PropertyRef Name="SinisterTypeId" />
-            </Principal>
-            <Dependent Role="Sinisters">
-              <PropertyRef Name="SinisterTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sinisters_Sites">
-          <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
-          <End Role="Sinisters" Type="Self.Sinisters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sites">
-              <PropertyRef Name="SiteId" />
-            </Principal>
-            <Dependent Role="Sinisters">
-              <PropertyRef Name="SiteId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sinisters_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="Sinisters" Type="Self.Sinisters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Userid" />
-            </Principal>
-            <Dependent Role="Sinisters">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="sinisterEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ActivitySectors" EntityType="Self.ActivitySectors" />
           <EntitySet Name="Clients" EntityType="Self.Clients" />
@@ -929,27 +746,13 @@
           <EntitySet Name="Lobs" EntityType="Self.Lobs" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="SinisterLob" EntityType="Self.SinisterLob" />
-          <EntitySet Name="Sinisters" EntityType="Self.Sinisters" />
           <EntitySet Name="SinisterStatus" EntityType="Self.SinisterStatus" />
-          <EntitySet Name="SinisterTypes" EntityType="Self.SinisterTypes" />
           <EntitySet Name="Sites" EntityType="Self.Sites" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <AssociationSet Name="FK_ActivitySectorId" Association="Self.FK_ActivitySectorId">
-            <End Role="ActivitySectors" EntitySet="ActivitySectors" />
-            <End Role="Sinisters" EntitySet="Sinisters" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sinisters_Clients" Association="Self.FK_Sinisters_Clients">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="Sinisters" EntitySet="Sinisters" />
-          </AssociationSet>
           <AssociationSet Name="FK_Sites_Clients" Association="Self.FK_Sites_Clients">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Sites" EntitySet="Sites" />
-          </AssociationSet>
-          <AssociationSet Name="fk_CountryId" Association="Self.fk_CountryId">
-            <End Role="Countries" EntitySet="Countries" />
-            <End Role="Sinisters" EntitySet="Sinisters" />
           </AssociationSet>
           <AssociationSet Name="FK_Sites_Countries" Association="Self.FK_Sites_Countries">
             <End Role="Countries" EntitySet="Countries" />
@@ -959,18 +762,6 @@
             <End Role="Countries" EntitySet="Countries" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="FK_Sinisters_Currencies" Association="Self.FK_Sinisters_Currencies">
-            <End Role="Currencies" EntitySet="Currencies" />
-            <End Role="Sinisters" EntitySet="Sinisters" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sinisters_DestructionLevels" Association="Self.FK_Sinisters_DestructionLevels">
-            <End Role="DestructionLevels" EntitySet="DestructionLevels" />
-            <End Role="Sinisters" EntitySet="Sinisters" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sinisters_Documents" Association="Self.FK_Sinisters_Documents">
-            <End Role="Documents" EntitySet="Documents" />
-            <End Role="Sinisters" EntitySet="Sinisters" />
-          </AssociationSet>
           <AssociationSet Name="FK_SinisterLob_Lobs" Association="Self.FK_SinisterLob_Lobs">
             <End Role="Lobs" EntitySet="Lobs" />
             <End Role="SinisterLob" EntitySet="SinisterLob" />
@@ -978,26 +769,6 @@
           <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SinisterLob_Sinisters" Association="Self.FK_SinisterLob_Sinisters">
-            <End Role="Sinisters" EntitySet="Sinisters" />
-            <End Role="SinisterLob" EntitySet="SinisterLob" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sinisters_SinisterStatus" Association="Self.FK_Sinisters_SinisterStatus">
-            <End Role="SinisterStatus" EntitySet="SinisterStatus" />
-            <End Role="Sinisters" EntitySet="Sinisters" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sinisters_SinisterTypes" Association="Self.FK_Sinisters_SinisterTypes">
-            <End Role="SinisterTypes" EntitySet="SinisterTypes" />
-            <End Role="Sinisters" EntitySet="Sinisters" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sinisters_Sites" Association="Self.FK_Sinisters_Sites">
-            <End Role="Sites" EntitySet="Sites" />
-            <End Role="Sinisters" EntitySet="Sinisters" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sinisters_Users" Association="Self.FK_Sinisters_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Sinisters" EntitySet="Sinisters" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1029,14 +800,60 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Keywords" EntityType="sinisterModel.Keywords" />
+          <EntitySet Name="Sinisters" EntityType="sinisterModel.Sinisters" />
+          <AssociationSet Name="FK_ActivitySectorId" Association="sinisterModel.FK_ActivitySectorId">
+            <End Role="ActivitySectors" EntitySet="ActivitySectors" />
+            <End Role="Sinisters" EntitySet="Sinisters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sinisters_Clients" Association="sinisterModel.FK_Sinisters_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Sinisters" EntitySet="Sinisters" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CountryId" Association="sinisterModel.fk_CountryId">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Sinisters" EntitySet="Sinisters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sinisters_Currencies" Association="sinisterModel.FK_Sinisters_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="Sinisters" EntitySet="Sinisters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sinisters_DestructionLevels" Association="sinisterModel.FK_Sinisters_DestructionLevels">
+            <End Role="DestructionLevels" EntitySet="DestructionLevels" />
+            <End Role="Sinisters" EntitySet="Sinisters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sinisters_Documents" Association="sinisterModel.FK_Sinisters_Documents">
+            <End Role="Documents" EntitySet="Documents" />
+            <End Role="Sinisters" EntitySet="Sinisters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SinisterLob_Sinisters" Association="sinisterModel.FK_SinisterLob_Sinisters">
+            <End Role="Sinisters" EntitySet="Sinisters" />
+            <End Role="SinisterLob" EntitySet="SinisterLob" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sinisters_SinisterStatus" Association="sinisterModel.FK_Sinisters_SinisterStatus">
+            <End Role="SinisterStatus" EntitySet="SinisterStatus" />
+            <End Role="Sinisters" EntitySet="Sinisters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sinisters_Sites" Association="sinisterModel.FK_Sinisters_Sites">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Sinisters" EntitySet="Sinisters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sinisters_Users" Association="sinisterModel.FK_Sinisters_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Sinisters" EntitySet="Sinisters" />
+          </AssociationSet>
+          <EntitySet Name="SinisterTypes" EntityType="sinisterModel.SinisterTypes" />
+          <AssociationSet Name="FK_Keywords_SinisterTypes" Association="sinisterModel.FK_Keywords_SinisterTypes">
+            <End Role="SinisterTypes" EntitySet="SinisterTypes" />
+            <End Role="Keywords" EntitySet="Keywords" />
+          </AssociationSet>
           <AssociationSet Name="FK_SinisterTypes_Lobs" Association="sinisterModel.FK_SinisterTypes_Lobs">
             <End Role="Lobs" EntitySet="Lobs" />
             <End Role="SinisterTypes" EntitySet="SinisterTypes" />
           </AssociationSet>
-          <EntitySet Name="Keywords" EntityType="sinisterModel.Keywords" />
-          <AssociationSet Name="FK_Keywords_SinisterTypes" Association="sinisterModel.FK_Keywords_SinisterTypes">
+          <AssociationSet Name="FK_Sinisters_SinisterTypes" Association="sinisterModel.FK_Sinisters_SinisterTypes">
             <End Role="SinisterTypes" EntitySet="SinisterTypes" />
-            <End Role="Keywords" EntitySet="Keywords" />
+            <End Role="Sinisters" EntitySet="Sinisters" />
           </AssociationSet>
           <EntitySet Name="SinisterKeywords" EntityType="sinisterModel.SinisterKeywords" />
           <AssociationSet Name="FK_SinisterKeywords_Keywords" Association="sinisterModel.FK_SinisterKeywords_Keywords">
@@ -1047,7 +864,7 @@
             <End Role="Sinisters" EntitySet="Sinisters" />
             <End Role="SinisterKeywords" EntitySet="SinisterKeywords" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -1059,27 +876,184 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <Association Name="FK_SinisterTypes_Lobs">
-          <End Type="sinisterModel.Lobs" Role="Lobs" Multiplicity="0..1" />
-          <End Type="sinisterModel.SinisterTypes" Role="SinisterTypes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lobs">
-              <PropertyRef Name="LobId" />
-            </Principal>
-            <Dependent Role="SinisterTypes">
-              <PropertyRef Name="LobId_fk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Keywords">
           <Key>
             <PropertyRef Name="KeywordId" />
           </Key>
           <Property Name="KeywordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SinisterType_fk" Type="Int32" />
+          <Property Name="SinisterTypeId" Type="Int32" />
           <NavigationProperty Name="SinisterTypes" Relationship="sinisterModel.FK_Keywords_SinisterTypes" FromRole="Keywords" ToRole="SinisterTypes" />
           <NavigationProperty Name="SinisterKeywords" Relationship="sinisterModel.FK_SinisterKeywords_Keywords" FromRole="Keywords" ToRole="SinisterKeywords" />
+        </EntityType>
+        <EntityType Name="Sinisters">
+          <Key>
+            <PropertyRef Name="SinisterId" />
+          </Key>
+          <Property Name="SinisterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Clientid" Type="Int32" />
+          <Property Name="SiteId" Type="Int32" />
+          <Property Name="SinisterTypeId" Type="Int32" />
+          <Property Name="ActivitySectorId" Type="Int32" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="DestructionLevelId" Type="Int32" />
+          <Property Name="CurrencyId" Type="Int32" />
+          <Property Name="LoBId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Consequence" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileOrigine" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AggravatingFactor" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateUserId" Type="Int32" />
+          <Property Name="EditUserId" Type="Int32" />
+          <Property Name="DocumentId" Type="Int32" />
+          <Property Name="SinisterStatusId" Type="Int32" />
+          <NavigationProperty Name="ActivitySectors" Relationship="sinisterModel.FK_ActivitySectorId" FromRole="Sinisters" ToRole="ActivitySectors" />
+          <NavigationProperty Name="Clients" Relationship="sinisterModel.FK_Sinisters_Clients" FromRole="Sinisters" ToRole="Clients" />
+          <NavigationProperty Name="Countries" Relationship="sinisterModel.fk_CountryId" FromRole="Sinisters" ToRole="Countries" />
+          <NavigationProperty Name="Currencies" Relationship="sinisterModel.FK_Sinisters_Currencies" FromRole="Sinisters" ToRole="Currencies" />
+          <NavigationProperty Name="DestructionLevels" Relationship="sinisterModel.FK_Sinisters_DestructionLevels" FromRole="Sinisters" ToRole="DestructionLevels" />
+          <NavigationProperty Name="Documents" Relationship="sinisterModel.FK_Sinisters_Documents" FromRole="Sinisters" ToRole="Documents" />
+          <NavigationProperty Name="SinisterLob" Relationship="sinisterModel.FK_SinisterLob_Sinisters" FromRole="Sinisters" ToRole="SinisterLob" />
+          <NavigationProperty Name="SinisterStatus" Relationship="sinisterModel.FK_Sinisters_SinisterStatus" FromRole="Sinisters" ToRole="SinisterStatus" />
+          <NavigationProperty Name="Sites" Relationship="sinisterModel.FK_Sinisters_Sites" FromRole="Sinisters" ToRole="Sites" />
+          <NavigationProperty Name="Users" Relationship="sinisterModel.FK_Sinisters_Users" FromRole="Sinisters" ToRole="Users" />
+          <NavigationProperty Name="SinisterTypes" Relationship="sinisterModel.FK_Sinisters_SinisterTypes" FromRole="Sinisters" ToRole="SinisterTypes" />
+          <NavigationProperty Name="SinisterKeywords" Relationship="sinisterModel.FK_SinisterKeywords_Sinisters" FromRole="Sinisters" ToRole="SinisterKeywords" />
+        </EntityType>
+        <Association Name="FK_ActivitySectorId">
+          <End Type="sinisterModel.ActivitySectors" Role="ActivitySectors" Multiplicity="0..1" />
+          <End Type="sinisterModel.Sinisters" Role="Sinisters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivitySectors">
+              <PropertyRef Name="ActivitySectorId" />
+            </Principal>
+            <Dependent Role="Sinisters">
+              <PropertyRef Name="ActivitySectorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sinisters_Clients">
+          <End Type="sinisterModel.Clients" Role="Clients" Multiplicity="0..1" />
+          <End Type="sinisterModel.Sinisters" Role="Sinisters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="Sinisters">
+              <PropertyRef Name="Clientid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CountryId">
+          <End Type="sinisterModel.Countries" Role="Countries" Multiplicity="0..1" />
+          <End Type="sinisterModel.Sinisters" Role="Sinisters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="Sinisters">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sinisters_Currencies">
+          <End Type="sinisterModel.Currencies" Role="Currencies" Multiplicity="0..1" />
+          <End Type="sinisterModel.Sinisters" Role="Sinisters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="CurrencyId" />
+            </Principal>
+            <Dependent Role="Sinisters">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sinisters_DestructionLevels">
+          <End Type="sinisterModel.DestructionLevels" Role="DestructionLevels" Multiplicity="0..1" />
+          <End Type="sinisterModel.Sinisters" Role="Sinisters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DestructionLevels">
+              <PropertyRef Name="DestructionLevelId" />
+            </Principal>
+            <Dependent Role="Sinisters">
+              <PropertyRef Name="DestructionLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sinisters_Documents">
+          <End Type="sinisterModel.Documents" Role="Documents" Multiplicity="0..1" />
+          <End Type="sinisterModel.Sinisters" Role="Sinisters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documents">
+              <PropertyRef Name="DocumentId" />
+            </Principal>
+            <Dependent Role="Sinisters">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SinisterLob_Sinisters">
+          <End Type="sinisterModel.Sinisters" Role="Sinisters" Multiplicity="0..1" />
+          <End Type="sinisterModel.SinisterLob" Role="SinisterLob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sinisters">
+              <PropertyRef Name="SinisterId" />
+            </Principal>
+            <Dependent Role="SinisterLob">
+              <PropertyRef Name="SinisterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sinisters_SinisterStatus">
+          <End Type="sinisterModel.SinisterStatus" Role="SinisterStatus" Multiplicity="0..1" />
+          <End Type="sinisterModel.Sinisters" Role="Sinisters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SinisterStatus">
+              <PropertyRef Name="SinisterStatusId" />
+            </Principal>
+            <Dependent Role="Sinisters">
+              <PropertyRef Name="SinisterStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sinisters_Sites">
+          <End Type="sinisterModel.Sites" Role="Sites" Multiplicity="0..1" />
+          <End Type="sinisterModel.Sinisters" Role="Sinisters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="SiteId" />
+            </Principal>
+            <Dependent Role="Sinisters">
+              <PropertyRef Name="SiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sinisters_Users">
+          <End Type="sinisterModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="sinisterModel.Sinisters" Role="Sinisters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Userid" />
+            </Principal>
+            <Dependent Role="Sinisters">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SinisterTypes">
+          <Key>
+            <PropertyRef Name="SinisterTypeId" />
+          </Key>
+          <Property Name="SinisterTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LobId" Type="Int32" />
+          <NavigationProperty Name="Keywords" Relationship="sinisterModel.FK_Keywords_SinisterTypes" FromRole="SinisterTypes" ToRole="Keywords" />
+          <NavigationProperty Name="Lobs" Relationship="sinisterModel.FK_SinisterTypes_Lobs" FromRole="SinisterTypes" ToRole="Lobs" />
+          <NavigationProperty Name="Sinisters" Relationship="sinisterModel.FK_Sinisters_SinisterTypes" FromRole="SinisterTypes" ToRole="Sinisters" />
         </EntityType>
         <Association Name="FK_Keywords_SinisterTypes">
           <End Type="sinisterModel.SinisterTypes" Role="SinisterTypes" Multiplicity="0..1" />
@@ -1089,7 +1063,31 @@
               <PropertyRef Name="SinisterTypeId" />
             </Principal>
             <Dependent Role="Keywords">
-              <PropertyRef Name="SinisterType_fk" />
+              <PropertyRef Name="SinisterTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SinisterTypes_Lobs">
+          <End Type="sinisterModel.Lobs" Role="Lobs" Multiplicity="0..1" />
+          <End Type="sinisterModel.SinisterTypes" Role="SinisterTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lobs">
+              <PropertyRef Name="LobId" />
+            </Principal>
+            <Dependent Role="SinisterTypes">
+              <PropertyRef Name="LobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sinisters_SinisterTypes">
+          <End Type="sinisterModel.SinisterTypes" Role="SinisterTypes" Multiplicity="0..1" />
+          <End Type="sinisterModel.Sinisters" Role="Sinisters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SinisterTypes">
+              <PropertyRef Name="SinisterTypeId" />
+            </Principal>
+            <Dependent Role="Sinisters">
+              <PropertyRef Name="SinisterTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1098,8 +1096,8 @@
             <PropertyRef Name="SinisterKeywordId" />
           </Key>
           <Property Name="SinisterKeywordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="KeywordId_fk" Type="Int32" />
-          <Property Name="SinisterId_fk" Type="Int32" />
+          <Property Name="KeywordId" Type="Int32" />
+          <Property Name="SinisterId" Type="Int32" />
           <NavigationProperty Name="Keywords" Relationship="sinisterModel.FK_SinisterKeywords_Keywords" FromRole="SinisterKeywords" ToRole="Keywords" />
           <NavigationProperty Name="Sinisters" Relationship="sinisterModel.FK_SinisterKeywords_Sinisters" FromRole="SinisterKeywords" ToRole="Sinisters" />
         </EntityType>
@@ -1111,7 +1109,7 @@
               <PropertyRef Name="KeywordId" />
             </Principal>
             <Dependent Role="SinisterKeywords">
-              <PropertyRef Name="KeywordId_fk" />
+              <PropertyRef Name="KeywordId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1123,11 +1121,11 @@
               <PropertyRef Name="SinisterId" />
             </Principal>
             <Dependent Role="SinisterKeywords">
-              <PropertyRef Name="SinisterId_fk" />
+              <PropertyRef Name="SinisterId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1212,47 +1210,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sinisters">
-            <EntityTypeMapping TypeName="sinisterModel.Sinisters">
-              <MappingFragment StoreEntitySet="Sinisters">
-                <ScalarProperty Name="SinisterId" ColumnName="SinisterId" />
-                <ScalarProperty Name="Clientid" ColumnName="Clientid" />
-                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
-                <ScalarProperty Name="SinisterTypeId" ColumnName="SinisterTypeId" />
-                <ScalarProperty Name="ActivitySectorId" ColumnName="ActivitySectorId" />
-                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-                <ScalarProperty Name="DestructionLevelId" ColumnName="DestructionLevelId" />
-                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
-                <ScalarProperty Name="LoBId" ColumnName="LoBId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Consequence" ColumnName="Consequence" />
-                <ScalarProperty Name="FileOrigine" ColumnName="FileOrigine" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="AggravatingFactor" ColumnName="AggravatingFactor" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="KeyWord" ColumnName="KeyWord" />
-                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
-                <ScalarProperty Name="EditUserId" ColumnName="EditUserId" />
-                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
-                <ScalarProperty Name="SinisterStatusId" ColumnName="SinisterStatusId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SinisterStatus">
             <EntityTypeMapping TypeName="sinisterModel.SinisterStatus">
               <MappingFragment StoreEntitySet="SinisterStatus">
                 <ScalarProperty Name="SinisterStatusId" ColumnName="SinisterStatusId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SinisterTypes">
-            <EntityTypeMapping TypeName="sinisterModel.SinisterTypes">
-              <MappingFragment StoreEntitySet="SinisterTypes">
-                <ScalarProperty Name="LobId_fk" ColumnName="LobId_fk" />
-                <ScalarProperty Name="SinisterTypeId" ColumnName="SinisterTypeId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1323,17 +1284,53 @@
           <EntitySetMapping Name="Keywords">
             <EntityTypeMapping TypeName="sinisterModel.Keywords">
               <MappingFragment StoreEntitySet="Keywords">
-                <ScalarProperty Name="SinisterType_fk" ColumnName="SinisterType_fk" />
+                <ScalarProperty Name="SinisterTypeId" ColumnName="SinisterTypeId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="KeywordId" ColumnName="KeywordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sinisters">
+            <EntityTypeMapping TypeName="sinisterModel.Sinisters">
+              <MappingFragment StoreEntitySet="Sinisters">
+                <ScalarProperty Name="SinisterStatusId" ColumnName="SinisterStatusId" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="EditUserId" ColumnName="EditUserId" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AggravatingFactor" ColumnName="AggravatingFactor" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileOrigine" ColumnName="FileOrigine" />
+                <ScalarProperty Name="Consequence" ColumnName="Consequence" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoBId" ColumnName="LoBId" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="DestructionLevelId" ColumnName="DestructionLevelId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="ActivitySectorId" ColumnName="ActivitySectorId" />
+                <ScalarProperty Name="SinisterTypeId" ColumnName="SinisterTypeId" />
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+                <ScalarProperty Name="Clientid" ColumnName="Clientid" />
+                <ScalarProperty Name="SinisterId" ColumnName="SinisterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SinisterTypes">
+            <EntityTypeMapping TypeName="sinisterModel.SinisterTypes">
+              <MappingFragment StoreEntitySet="SinisterTypes">
+                <ScalarProperty Name="LobId" ColumnName="LobId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SinisterTypeId" ColumnName="SinisterTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SinisterKeywords">
             <EntityTypeMapping TypeName="sinisterModel.SinisterKeywords">
               <MappingFragment StoreEntitySet="SinisterKeywords">
-                <ScalarProperty Name="SinisterId_fk" ColumnName="SinisterId_fk" />
-                <ScalarProperty Name="KeywordId_fk" ColumnName="KeywordId_fk" />
+                <ScalarProperty Name="SinisterId" ColumnName="SinisterId" />
+                <ScalarProperty Name="KeywordId" ColumnName="KeywordId" />
                 <ScalarProperty Name="SinisterKeywordId" ColumnName="SinisterKeywordId" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -38,7 +38,6 @@ namespace SinisterWebApp.Models
         public Nullable<decimal> Amount { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
-        public string KeyWord { get; set; }
         public Nullable<int> CreateUserId { get; set; }
         public Nullable<int> EditUserId { get; set; }
         public Nullable<int> DocumentId { get; set; }
@@ -53,9 +52,9 @@ namespace SinisterWebApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SinisterLob> SinisterLob { get; set; }
         public virtual SinisterStatus SinisterStatus { get; set; }
-        public virtual SinisterTypes SinisterTypes { get; set; }
         public virtual Sites Sites { get; set; }
         public virtual Users Users { get; set; }
+        public virtual SinisterTypes SinisterTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SinisterKeywords> SinisterKeywords { get; set; }
     }

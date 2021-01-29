@@ -15,8 +15,8 @@ namespace SinisterWebApp.Models
     public partial class SinisterKeywords
     {
         public int SinisterKeywordId { get; set; }
-        public Nullable<int> KeywordId_fk { get; set; }
-        public Nullable<int> SinisterId_fk { get; set; }
+        public Nullable<int> KeywordId { get; set; }
+        public Nullable<int> SinisterId { get; set; }
     
         public virtual Keywords Keywords { get; set; }
         public virtual Sinisters Sinisters { get; set; }
