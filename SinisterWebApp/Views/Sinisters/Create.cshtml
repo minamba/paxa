@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
+
+    int sinisterid = 0;
+    List<string> slist = new List<string>();
 }
 
 
@@ -78,26 +81,27 @@
                     }
 
 
-                        @*function GetKeywords(_sinisterTypeId) {
-                            var procemessage = "<option value=" + data[0].Value + ">" + data[0].Text + "</option>";
-                            $("#kid").html(procemessage).show();
-                            var url = "@Url.Action("GetKeywordBySinisterTypeId", "Sinisters")";
+
+                        function GetKeywords(_sinistertypeid) {
+                            var url = "@Url.Action("GetKeywordList", "Sinisters")";
                             $.ajax({
                                 url: url,
-                                data: { sinisterTypeid: _sinisterTypeId },
+                                data: { sinisterTypeid: _sinistertypeid },
                                 cache: false,
                                 type: "POST",
                                 success: function (data) {
-                                    //for (var x = 0; x < data.length; x++) {
-                                            @ViewBag.newListKeyword = data;
-                                        //}
+                                    var items = "";
+                                    for (var x = 0; x < data.length; x++) {
+                                        items += "<input name = 'CheckboxKeyword' type = checkbox value='"+ data[x].Value + "'/>" + "&nbsp" + data[x].Text + "</br>"
+                                    }
 
+                                    $("#checkboxList").html(items).show();
                                 },
                                 error: function (response) {
                                     alert("error : " + reponse);
                                 }
                             });
-                        }*@
+                        }
 </script>
 
 
@@ -120,7 +124,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.ListClient, "Client", htmlAttributes: new { @class = "control-label col-12" })
                     <div class="col-12">
-                        @Html.DropDownListFor(model => model.ListClient, new SelectList(Model.ListClient, "ClientId", "Name"), "Select a client", new { id = "ddlc", style = "width:100%;", onChange = "javascript: GetSites(this.value);", @class= "col-12 form-control" })
+                        @Html.DropDownListFor(model => model.ListClient, new SelectList(Model.ListClient, "ClientId", "Name"), "Select a client", new { id = "ddlc", style = "width:100%;", onChange = "javascript: GetSites(this.value);", @class = "col-12 form-control" })
                         @*@Html.ValidationMessageFor(model => model.ListClient, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
@@ -150,7 +154,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.ListSinisterType, "Sinister type", htmlAttributes: new { @class = "control-label col-12" })
                     <div class="col-12">
-                        <select id="stid" name="SinisterTypeId" style="width : 100%" onclick="'javascript: GetKeywords(this.value)'" class="control-label col-12 form-control"></select>
+                        <select id="stid" name="SinisterTypeId" style="width : 100%" onchange="javascript: GetKeywords(this.value)" class="control-label col-12 form-control"></select>
                     </div>
                 </div>
 
@@ -182,7 +186,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Sinister.AggravatingFactor, "Aggravating factor", htmlAttributes: new { @class = "control-label col-12" })
                     <div class="col-12">
-                        @Html.TextAreaFor(model => model.Sinister.AggravatingFactor, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.TextAreaFor(model => model.Sinister.AggravatingFactor, new { htmlAttributes = new { @class = "form-control" }, rows = 8 })
                         @Html.ValidationMessageFor(model => model.Sinister.AggravatingFactor, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -219,31 +223,10 @@
                     </div>
                 </div>
 
-
-
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ListKeyword, htmlAttributes: new { @class = "control-label col-12" })
-                    <div class="col-12">
-                        @foreach (var item in ViewBag.newListKeyword)
-                        {
-
-                            <div class="checkbox control-label col-12">
-                                <label class="text-muted" for="@item.KeywordId">@item.Name</label>
-                                <input type="checkbox"
-                                       id="@item.KeywordId"
-                                       name="@item.Name" />
-                            </div>
-                        }
-                    </div>
+                    @Html.LabelFor(model => model.ListKeyword,"Keyword list", htmlAttributes: new { @class = "control-label col-12" })
+                    <div class="col-12" id="checkboxList"></div>
                 </div>
-
-                @*<div class="form-group">
-                        @Html.LabelFor(model => model.Sinister.DocumentId, "Document", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("DocumentId", null, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Sinister.DocumentId, "", new { @class = "text-danger" })
-                        </div>
-                    </div>*@
 
                 <div class="form-group align-content-center p-3">
                     <div class="col-md-offset-2 col-md-10">
@@ -251,7 +234,7 @@
                     </div>
                 </div>
             </div>
-        }
+                            }
 
     </div>
 </div>

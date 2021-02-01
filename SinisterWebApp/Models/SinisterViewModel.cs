@@ -6,7 +6,9 @@ using System.Web;
 namespace SinisterWebApp.Models
 {    
     public class SinisterViewModel
-    { 
+    {
+        sinisterEntities db = new sinisterEntities();
+
         public List<Clients> ListClient { get; set; }
         public List<Sites> ListSite { get; set; }
         public List<SinisterTypes> ListSinisterType { get; set; }
@@ -20,5 +22,12 @@ namespace SinisterWebApp.Models
         public Sites Site { get; set; }
 
         public Sinisters Sinister { get; set; }
+
+
+        public List<Keywords> GetKeywordList(int sinisterTypeid)
+        {
+            var lstKeyword = db.Keywords.Where(k => k.SinisterTypeId == sinisterTypeid).ToList();
+            return lstKeyword;
+        }
     }
 }

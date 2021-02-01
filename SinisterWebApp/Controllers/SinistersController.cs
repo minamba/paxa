@@ -18,7 +18,7 @@ namespace SinisterWebApp.Controllers
         public ActionResult Index()
         {
             var sinisters = db.Sinisters.Include(s => s.ActivitySectors).Include(s => s.Clients).Include(s => s.Countries).Include(s => s.Currencies).Include(s => s.DestructionLevels).Include(s => s.Documents).Include(s => s.SinisterStatus).Include(s => s.SinisterTypes).Include(s => s.Sites).Include(s => s.Users);
-            return View(sinisters.ToList());
+            return View(sinisters.ToListAsync());
         }
 
         // GET: Sinisters/Details/5
@@ -53,6 +53,7 @@ namespace SinisterWebApp.Controllers
             //ViewBag.UserId = new SelectList(db.Users, "Userid", "EmployeeID");
 
             ViewBag.newListKeyword = new List<Keywords>();
+            ViewBag.sinisterid=1;
 
             vm.ListClient = GetAllClient();
             vm.ListSite = GetAllSite();
@@ -62,8 +63,9 @@ namespace SinisterWebApp.Controllers
             vm.ListLob = GetAllLobs();
             vm.ListSinisterType = GetAllSinisterType();
             vm.ListDestructionLevel = GetAllDestructionLevels();
-            vm.ListKeyword = GetAllKeywords();
-            vm.ListSinisterKeyword = GetAllSinisterKeywords();
+            //vm.ListKeyword = GetKeywordList(ViewBag.sinisterid);
+            //vm.ListSinisterKeyword = GetAllSinisterKeywords();
+            
 
             ViewBag.SiteId = new SelectList(db.Sites,"SiteId","Name");
 
@@ -120,6 +122,7 @@ namespace SinisterWebApp.Controllers
             ViewBag.SinisterTypeId = new SelectList(db.SinisterTypes, "SinisterTypeId", "Name", sinisters.SinisterTypeId);
             ViewBag.SiteId = new SelectList(db.Sites, "SiteId", "Code", sinisters.SiteId);
             ViewBag.UserId = new SelectList(db.Users, "Userid", "EmployeeID", sinisters.UserId);
+            
             return View(sinisters);
         }
 
@@ -338,6 +341,15 @@ namespace SinisterWebApp.Controllers
             return Json(obgKeyword);
         }
 
+
+        [HttpPost]
+        public ActionResult GetKeywordList(int sinisterTypeid)
+        {
+            List<Keywords> lstKeyword = new List<Keywords>();
+            lstKeyword = db.Keywords.Where(st => st.SinisterTypeId == sinisterTypeid).ToList();
+            SelectList obgKey = new SelectList(lstKeyword, "KeywordId", "Name", 0);
+            return Json(obgKey);
+        }
 
     }
 }

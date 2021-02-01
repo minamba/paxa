@@ -111,3 +111,4 @@ D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.csproj.CoreCom
 D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.csproj.CopyComplete
 D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.dll
 D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.pdb
+D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.csprojAssemblyReference.cache
