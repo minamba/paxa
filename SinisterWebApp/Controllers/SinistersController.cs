@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using SinisterWebApp.Models;
@@ -39,7 +40,7 @@ namespace SinisterWebApp.Controllers
         // GET: Sinisters/Create
         public ActionResult Create()
         {
-            var vm = new SinisterViewModel();
+            var vm = new Sinisters();
 
             //ViewBag.ActivitySectorId = new SelectList(db.ActivitySectors, "ActivitySectorId", "Name");
             //ViewBag.Clientid = new SelectList(db.Clients, "ClientId", "Code");
@@ -52,8 +53,8 @@ namespace SinisterWebApp.Controllers
             //ViewBag.SiteId = new SelectList(db.Sites, "SiteId", "Code");
             //ViewBag.UserId = new SelectList(db.Users, "Userid", "EmployeeID");
 
-            ViewBag.newListKeyword = new List<Keywords>();
-            ViewBag.sinisterid=1;
+            //ViewBag.newListKeyword = new List<Keywords>();
+            //ViewBag.sinisterid=1;
 
             vm.ListClient = GetAllClient();
             vm.ListSite = GetAllSite();
@@ -63,11 +64,12 @@ namespace SinisterWebApp.Controllers
             vm.ListLob = GetAllLobs();
             vm.ListSinisterType = GetAllSinisterType();
             vm.ListDestructionLevel = GetAllDestructionLevels();
+
             //vm.ListKeyword = GetKeywordList(ViewBag.sinisterid);
             //vm.ListSinisterKeyword = GetAllSinisterKeywords();
-            
 
-            ViewBag.SiteId = new SelectList(db.Sites,"SiteId","Name");
+
+            //ViewBag.SiteId = new SelectList(db.Sites,"SiteId","Name");
 
 
             return View(vm);
@@ -78,26 +80,33 @@ namespace SinisterWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SinisterId,Clientid,SiteId,SinisterTypeId,ActivitySectorId,CountryId,DestructionLevelId,CurrencyId,LoBId,UserId,Consequence,FileOrigine,FileName,AggravatingFactor,Amount,CreateDate,EditDate,KeyWord,CreateUserId,EditUserId,DocumentId,SinisterStatusId")] Sinisters sinisters)
+        public  ActionResult Create([Bind(Include = "SinisterId,Clientid,SiteId,CountryId,LobId,SinisterTypeId,ActivitySectorId,DestructionLevelId,AggravatingFactor,CurrencyId,Amount,Consequence,FileOrigine,FileName,SinisterKeywords")] Sinisters s)
+        //public ActionResult Create([Bind(Include = "ListClient")] SinisterViewModel sinisterVm)
         {
             if (ModelState.IsValid)
             {
-                db.Sinisters.Add(sinisters);
+                s.SinisterStatusId = 1;
+                s.CreateDate = DateTime.Now;
+                s.UserId = 1;
+                s.CreateUserId = s.UserId;
+                
+                db.Sinisters.Add(s);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
-            ViewBag.ActivitySectorId = new SelectList(db.ActivitySectors, "ActivitySectorId", "Name", sinisters.ActivitySectorId);
-            ViewBag.Clientid = new SelectList(db.Clients, "ClientId", "Code", sinisters.Clientid);
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Code", sinisters.CountryId);
-            ViewBag.CurrencyId = new SelectList(db.Currencies, "CurrencyId", "Name", sinisters.CurrencyId);
-            ViewBag.DestructionLevelId = new SelectList(db.DestructionLevels, "DestructionLevelId", "Name", sinisters.DestructionLevelId);
-            ViewBag.DocumentId = new SelectList(db.Documents, "DocumentId", "Name", sinisters.DocumentId);
-            ViewBag.SinisterStatusId = new SelectList(db.SinisterStatus, "SinisterStatusId", "Name", sinisters.SinisterStatusId);
-            ViewBag.SinisterTypeId = new SelectList(db.SinisterTypes, "SinisterTypeId", "Name", sinisters.SinisterTypeId);
-            ViewBag.SiteId = new SelectList(db.Sites, "SiteId", "Code", sinisters.SiteId);
-            ViewBag.UserId = new SelectList(db.Users, "Userid", "EmployeeID", sinisters.UserId);
-            return View(sinisters);
+            //ViewBag.ActivitySectorId = new SelectList(db.ActivitySectors, "ActivitySectorId", "Name", sinisters.ActivitySectorId);
+            //ViewBag.Clientid = new SelectList(db.Clients, "ClientId", "Code", sinisters.Clientid);
+            //ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Code", sinisters.CountryId);
+            //ViewBag.CurrencyId = new SelectList(db.Currencies, "CurrencyId", "Name", sinisters.CurrencyId);
+            //ViewBag.DestructionLevelId = new SelectList(db.DestructionLevels, "DestructionLevelId", "Name", sinisters.DestructionLevelId);
+            //ViewBag.DocumentId = new SelectList(db.Documents, "DocumentId", "Name", sinisters.DocumentId);
+            //ViewBag.SinisterStatusId = new SelectList(db.SinisterStatus, "SinisterStatusId", "Name", sinisters.SinisterStatusId);
+            //ViewBag.SinisterTypeId = new SelectList(db.SinisterTypes, "SinisterTypeId", "Name", sinisters.SinisterTypeId);
+            //ViewBag.SiteId = new SelectList(db.Sites, "SiteId", "Code", sinisters.SiteId);
+            //ViewBag.UserId = new SelectList(db.Users, "Userid", "EmployeeID", sinisters.UserId);
+            return RedirectToAction("Create");
+            //return View();
         }
 
         // GET: Sinisters/Edit/5
@@ -191,10 +200,13 @@ namespace SinisterWebApp.Controllers
 
         public List<Clients> GetAllClient()
         {
+            List<Clients> cl = new List<Clients>();
+
             var lclient = (from c in db.Clients
                            select c).ToList();
 
-            return lclient;
+            cl = lclient;
+            return cl;
         }
 
         public List<Sites> GetAllSite()

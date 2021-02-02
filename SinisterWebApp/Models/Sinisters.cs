@@ -17,8 +17,8 @@ namespace SinisterWebApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Sinisters()
         {
-            this.SinisterLob = new HashSet<SinisterLob>();
-            this.SinisterKeywords = new HashSet<SinisterKeywords>();
+            this.SinisterLob = new List<SinisterLob>();
+            this.SinisterKeywords = new List<SinisterKeywords>();
         }
     
         public int SinisterId { get; set; }
@@ -42,7 +42,22 @@ namespace SinisterWebApp.Models
         public Nullable<int> EditUserId { get; set; }
         public Nullable<int> DocumentId { get; set; }
         public Nullable<int> SinisterStatusId { get; set; }
-    
+
+
+
+        public List<Clients> ListClient { get; set; }
+        public List<Sites> ListSite { get; set; }
+        public List<SinisterTypes> ListSinisterType { get; set; }
+        public List<Countries> ListCountries { get; set; }
+        public List<Lobs> ListLob { get; set; }
+        public List<ActivitySectors> ListActivitySector { get; set; }
+        public List<DestructionLevels> ListDestructionLevel { get; set; }
+        public List<Currencies> ListCurrency { get; set; }
+        public List<Keywords> ListKeyword { get; set; }
+        public List<SinisterKeywords> ListSinisterKeyword { get; set; }
+        //public List<CheckBoxViewModel> CheckBoxList { get; set; }
+
+
         public virtual ActivitySectors ActivitySectors { get; set; }
         public virtual Clients Clients { get; set; }
         public virtual Countries Countries { get; set; }
@@ -50,12 +65,12 @@ namespace SinisterWebApp.Models
         public virtual DestructionLevels DestructionLevels { get; set; }
         public virtual Documents Documents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SinisterLob> SinisterLob { get; set; }
+        public virtual List<SinisterLob> SinisterLob { get; set; }
         public virtual SinisterStatus SinisterStatus { get; set; }
         public virtual Sites Sites { get; set; }
         public virtual Users Users { get; set; }
         public virtual SinisterTypes SinisterTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SinisterKeywords> SinisterKeywords { get; set; }
+        public virtual List<SinisterKeywords> SinisterKeywords { get; set; }
     }
 }
