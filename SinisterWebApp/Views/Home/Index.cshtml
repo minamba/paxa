@@ -56,6 +56,9 @@
             <th>
                 Date
             </th>
+            <th>
+                Edit
+            </th>
         </tr>
         @foreach (var item in Model)
         {
@@ -77,6 +80,9 @@
                 </td>
                 <td>
                     <b>@Html.DisplayFor(modelItem => item.CreateDate)</b>
+                </td>
+                <td class="text-success">
+                    <a href="@Url.Action("Edit", "Sinisters", new { id = item.SinisterId })">Edit</a>
                 </td>
             </tr>
         }

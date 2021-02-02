@@ -94,17 +94,6 @@ namespace SinisterWebApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Create");
             }
-
-            //ViewBag.ActivitySectorId = new SelectList(db.ActivitySectors, "ActivitySectorId", "Name", sinisters.ActivitySectorId);
-            //ViewBag.Clientid = new SelectList(db.Clients, "ClientId", "Code", sinisters.Clientid);
-            //ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Code", sinisters.CountryId);
-            //ViewBag.CurrencyId = new SelectList(db.Currencies, "CurrencyId", "Name", sinisters.CurrencyId);
-            //ViewBag.DestructionLevelId = new SelectList(db.DestructionLevels, "DestructionLevelId", "Name", sinisters.DestructionLevelId);
-            //ViewBag.DocumentId = new SelectList(db.Documents, "DocumentId", "Name", sinisters.DocumentId);
-            //ViewBag.SinisterStatusId = new SelectList(db.SinisterStatus, "SinisterStatusId", "Name", sinisters.SinisterStatusId);
-            //ViewBag.SinisterTypeId = new SelectList(db.SinisterTypes, "SinisterTypeId", "Name", sinisters.SinisterTypeId);
-            //ViewBag.SiteId = new SelectList(db.Sites, "SiteId", "Code", sinisters.SiteId);
-            //ViewBag.UserId = new SelectList(db.Users, "Userid", "EmployeeID", sinisters.UserId);
             return RedirectToAction("Create");
             //return View();
         }
@@ -122,16 +111,16 @@ namespace SinisterWebApp.Controllers
                 return HttpNotFound();
             }
             ViewBag.ActivitySectorId = new SelectList(db.ActivitySectors, "ActivitySectorId", "Name", sinisters.ActivitySectorId);
-            ViewBag.Clientid = new SelectList(db.Clients, "ClientId", "Code", sinisters.Clientid);
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Code", sinisters.CountryId);
+            ViewBag.Clientid = new SelectList(db.Clients, "Clientid", "Name", sinisters.Clients.ClientId);
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", sinisters.CountryId);
             ViewBag.CurrencyId = new SelectList(db.Currencies, "CurrencyId", "Name", sinisters.CurrencyId);
             ViewBag.DestructionLevelId = new SelectList(db.DestructionLevels, "DestructionLevelId", "Name", sinisters.DestructionLevelId);
             ViewBag.DocumentId = new SelectList(db.Documents, "DocumentId", "Name", sinisters.DocumentId);
             ViewBag.SinisterStatusId = new SelectList(db.SinisterStatus, "SinisterStatusId", "Name", sinisters.SinisterStatusId);
             ViewBag.SinisterTypeId = new SelectList(db.SinisterTypes, "SinisterTypeId", "Name", sinisters.SinisterTypeId);
-            ViewBag.SiteId = new SelectList(db.Sites, "SiteId", "Code", sinisters.SiteId);
+            ViewBag.SiteId = new SelectList(db.Sites, "SiteId", "Name", sinisters.SiteId);
             ViewBag.UserId = new SelectList(db.Users, "Userid", "EmployeeID", sinisters.UserId);
-            
+
             return View(sinisters);
         }
 
