@@ -11,7 +11,8 @@ namespace SinisterWebApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Sinisters
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -36,6 +37,8 @@ namespace SinisterWebApp.Models
         public string FileName { get; set; }
         public string AggravatingFactor { get; set; }
         public Nullable<decimal> Amount { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
         public Nullable<int> CreateUserId { get; set; }
