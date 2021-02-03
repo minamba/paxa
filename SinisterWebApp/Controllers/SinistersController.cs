@@ -110,18 +110,29 @@ namespace SinisterWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ActivitySectorId = new SelectList(db.ActivitySectors, "ActivitySectorId", "Name", sinisters.ActivitySectorId);
-            ViewBag.Clientid = new SelectList(db.Clients, "Clientid", "Name", sinisters.Clients.ClientId);
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name", sinisters.CountryId);
-            ViewBag.CurrencyId = new SelectList(db.Currencies, "CurrencyId", "Name", sinisters.CurrencyId);
-            ViewBag.DestructionLevelId = new SelectList(db.DestructionLevels, "DestructionLevelId", "Name", sinisters.DestructionLevelId);
-            ViewBag.DocumentId = new SelectList(db.Documents, "DocumentId", "Name", sinisters.DocumentId);
-            ViewBag.SinisterStatusId = new SelectList(db.SinisterStatus, "SinisterStatusId", "Name", sinisters.SinisterStatusId);
-            ViewBag.SinisterTypeId = new SelectList(db.SinisterTypes, "SinisterTypeId", "Name", sinisters.SinisterTypeId);
-            ViewBag.SiteId = new SelectList(db.Sites, "SiteId", "Name", sinisters.SiteId);
-            ViewBag.UserId = new SelectList(db.Users, "Userid", "EmployeeID", sinisters.UserId);
 
-            return View(sinisters);
+
+            var vm = new Sinisters();
+
+            ViewBag.Clid = sinisters.Clientid;
+            ViewBag.Sid = sinisters.SiteId;
+            ViewBag.Crid = sinisters.CountryId;
+            ViewBag.Lobid = sinisters.LoBId;
+            ViewBag.Sntid = sinisters.SinisterTypeId;
+            ViewBag.Actsectid = sinisters.ActivitySectorId;
+            ViewBag.Dlevelid = sinisters.DestructionLevelId;
+            ViewBag.consequence = sinisters.Consequence;
+            ViewBag.aggrfactor = sinisters.AggravatingFactor;
+            vm.ListClient = GetAllClient();
+            vm.ListSite = GetAllSiteByClientId(sinisters.Clientid);
+            vm.ListCountries = GetCountriesByClientId(sinisters.Clientid);
+            vm.ListActivitySector = GetAllActivitySectors();
+            vm.ListCurrency = GetAllCurrencies();
+            vm.ListLob = GetAllLobs();
+            vm.ListSinisterType = GetAllSinisterTypeByLobId(sinisters.LoBId);
+            vm.ListDestructionLevel = GetAllDestructionLevels();
+
+            return View(vm);
         }
 
         // POST: Sinisters/Edit/5
@@ -205,6 +216,17 @@ namespace SinisterWebApp.Controllers
 
             return lsite;
         }
+
+        public List<Sites> GetAllSiteByClientId(int? id)
+        {
+            var lsite = (from s in db.Sites
+                         where s.Clientid == id
+                         select s).ToList();
+
+            return lsite;
+        }
+
+
         public List<SinisterTypes> GetAllSinisterType()
         {
             var lsinisterType = (from st in db.SinisterTypes
@@ -264,6 +286,40 @@ namespace SinisterWebApp.Controllers
             return lsinisterKeyword;
         }
 
+        public List<Countries> GetCountriesByClientId(int? clienid)
+        {
+            var siteList = (from s in db.Sites
+                            where s.Clientid == clienid
+                            select s).ToList();
+
+            List<Countries> countryList = new List<Countries>();
+            countryList.Clear();
+
+            Countries country = new Countries();
+
+            foreach (var item in siteList)
+            {
+                country = (from c in db.Countries
+                           where c.CountryId == item.CountryId
+                           select c).SingleOrDefault();
+
+                countryList.Add(country);
+            }
+
+            return countryList;
+        }
+
+
+        public List<SinisterTypes> GetAllSinisterTypeByLobId(int? id)
+        {
+            var lsinisterType = (from st in db.SinisterTypes
+                                 where st.LobId == id
+                                 select st).ToList();
+
+            return lsinisterType;
+        }
+
+
 
         /////////////////////////////////////////////////////Action result for ajax call///////////////////////////////////////////////////////////:
         [HttpPost]
@@ -285,36 +341,6 @@ namespace SinisterWebApp.Controllers
 
             return Json(obgSinisterType);
         }
-
-
-
-        //[HttpPost]
-        //public ActionResult GetCountriesByClientId(int clienid)
-        //{
-        //    var siteList = (from s in db.Sites
-        //                 where s.Clientid == clienid
-        //                 select s).ToList();
-
-        //    List<Countries> countryList = new List<Countries>();
-        //    countryList.Clear();
-
-        //    Countries country = new Countries();
-
-        //    foreach( var item in siteList){
-        //        country = (from c in db.Countries
-        //                   where c.CountryId == item.CountryId
-        //                   select c).SingleOrDefault();
-
-        //        countryList.Add(country);
-        //    }
-
-
-        //    List<Countries> objCountry = new List<Countries>();
-        //    objCountry = countryList;
-        //    SelectList obgCountry = new SelectList(objCountry, "CountryId", "Name", 0);
-
-        //    return Json(obgCountry);
-        //}
 
 
         [HttpPost]
