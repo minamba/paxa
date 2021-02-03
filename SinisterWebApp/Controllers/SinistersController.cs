@@ -111,9 +111,6 @@ namespace SinisterWebApp.Controllers
                 return HttpNotFound();
             }
 
-
-            var vm = new Sinisters();
-
             ViewBag.Clid = sinisters.Clientid;
             ViewBag.Sid = sinisters.SiteId;
             ViewBag.Crid = sinisters.CountryId;
@@ -122,18 +119,20 @@ namespace SinisterWebApp.Controllers
             ViewBag.Actsectid = sinisters.ActivitySectorId;
             ViewBag.Dlevelid = sinisters.DestructionLevelId;
             ViewBag.consequence = sinisters.Consequence;
-            ViewBag.aggrfactor = sinisters.AggravatingFactor;
-            ViewBag.amt = sinisters.Amount;
-            vm.ListClient = GetAllClient();
-            vm.ListSite = GetAllSiteByClientId(sinisters.Clientid);
-            vm.ListCountries = GetCountriesByClientId(sinisters.Clientid);
-            vm.ListActivitySector = GetAllActivitySectors();
-            vm.ListCurrency = GetAllCurrencies();
-            vm.ListLob = GetAllLobs();
-            vm.ListSinisterType = GetAllSinisterTypeByLobId(sinisters.LoBId);
-            vm.ListDestructionLevel = GetAllDestructionLevels();
+            ViewBag.Aggrfactor = sinisters.AggravatingFactor;
+            ViewBag.Amt = sinisters.Amount.ToString();
+            ViewBag.Filename = sinisters.FileName;
+            ViewBag.Fileorigine = sinisters.FileOrigine;
+            sinisters.ListClient = GetAllClient();
+            sinisters.ListSite = GetAllSiteByClientId(sinisters.Clientid);
+            sinisters.ListCountries = GetCountriesByClientId(sinisters.Clientid);
+            sinisters.ListActivitySector = GetAllActivitySectors();
+            sinisters.ListCurrency = GetAllCurrencies();
+            sinisters.ListLob = GetAllLobs();
+            sinisters.ListSinisterType = GetAllSinisterTypeByLobId(sinisters.LoBId);
+            sinisters.ListDestructionLevel = GetAllDestructionLevels();
 
-            return View(vm);
+            return View(sinisters);
         }
 
         // POST: Sinisters/Edit/5
