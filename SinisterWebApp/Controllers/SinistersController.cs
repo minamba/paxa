@@ -123,6 +123,7 @@ namespace SinisterWebApp.Controllers
             ViewBag.Dlevelid = sinisters.DestructionLevelId;
             ViewBag.consequence = sinisters.Consequence;
             ViewBag.aggrfactor = sinisters.AggravatingFactor;
+            ViewBag.amt = sinisters.Amount;
             vm.ListClient = GetAllClient();
             vm.ListSite = GetAllSiteByClientId(sinisters.Clientid);
             vm.ListCountries = GetCountriesByClientId(sinisters.Clientid);
