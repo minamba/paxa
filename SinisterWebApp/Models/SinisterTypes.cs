@@ -11,7 +11,8 @@ namespace SinisterWebApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class SinisterTypes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,8 @@ namespace SinisterWebApp.Models
         }
     
         public int SinisterTypeId { get; set; }
+
+        [DisplayName("Type of sinister")]
         public string Name { get; set; }
         public Nullable<int> LobId { get; set; }
     

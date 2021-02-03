@@ -59,34 +59,40 @@
                 Date
             </th>
             <th>
+                Details
+            </th>
+            <th>
                 Edit
             </th>
         </tr>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    <b>@Html.DisplayFor(modelItem => item.Countries.Name)</b>
-                </td>
-                <td>
-                    <b>@Html.DisplayFor(modelItem => item.Clients.Name)</b>
-                </td>
-                <td>
-                    <b>@Html.DisplayFor(modelItem => item.Sites.Name)</b>
-                </td>
-                <td>
-                    <b>@Html.DisplayFor(modelItem => item.SinisterTypes.Name)</b>
-                </td>
-                <td>
-                    <b>@Html.DisplayFor(modelItem => item.ActivitySectors.Name)</b>
-                </td>
-                <td>
-                    <b>@Html.DisplayFor(modelItem => item.CreateDate)</b>
-                </td>
-                <td class="text-success">
-                    <a href="@Url.Action("Edit", "Sinisters", new { id = item.SinisterId })">Edit</a>
-                </td>
-            </tr>
+    <tr>
+        <td>
+            <b>@Html.DisplayFor(modelItem => item.Countries.Name)</b>
+        </td>
+        <td>
+            <b>@Html.DisplayFor(modelItem => item.Clients.Name)</b>
+        </td>
+        <td>
+            <b>@Html.DisplayFor(modelItem => item.Sites.Name)</b>
+        </td>
+        <td>
+            <b>@Html.DisplayFor(modelItem => item.SinisterTypes.Name)</b>
+        </td>
+        <td>
+            <b>@Html.DisplayFor(modelItem => item.ActivitySectors.Name)</b>
+        </td>
+        <td>
+            <b>@Html.DisplayFor(modelItem => item.CreateDate)</b>
+        </td>
+        <td class="text-success">
+            <a href="@Url.Action("Details", "Sinisters", new { id = item.SinisterId })">See more...</a>
+        </td>
+        <td class="text-success">
+            <a href="@Url.Action("Edit", "Sinisters", new { id = item.SinisterId })">Edit</a>
+        </td>
+    </tr>
         }
     </table>
 </div>

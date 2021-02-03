@@ -11,7 +11,8 @@ namespace SinisterWebApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Currencies
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,7 @@ namespace SinisterWebApp.Models
         }
     
         public int CurrencyId { get; set; }
+        [DisplayName("Curerncy")]
         public string Name { get; set; }
         public Nullable<bool> Active { get; set; }
     

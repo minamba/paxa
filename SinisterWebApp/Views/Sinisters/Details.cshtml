@@ -5,183 +5,179 @@
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Sinisters</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LoBId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LoBId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Consequence)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Consequence)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FileOrigine)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FileOrigine)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FileName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FileName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AggravatingFactor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AggravatingFactor)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Amount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Amount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreateDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EditDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EditDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.KeyWord)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.KeyWord)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateUserId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreateUserId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EditUserId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EditUserId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ActivitySectors.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ActivitySectors.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Clients.Code)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Clients.Code)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Countries.Code)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Countries.Code)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Currencies.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Currencies.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DestructionLevels.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DestructionLevels.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Documents.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Documents.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SinisterStatus.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SinisterStatus.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SinisterTypes.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SinisterTypes.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Sites.Code)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Sites.Code)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Users.EmployeeID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Users.EmployeeID)
-        </dd>
-
-    </dl>
+<!--JUmbotron-->
+<div class="jumbotron backgroundHome">
+    <h1 class="otherTitle text-center">D</h1>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SinisterId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+<div class="container pt-3 pb-3 col-lg-12 col-md-12 col-12">
+    <h4 class=" pt-2 subTitle">Details of sinister</h4>
+    <hr class="hrColor" />
+    <div class="bg-light align-content-center col-lg-12 col-md-12 col-12 shadow">
+        <dl class="dl-horizontal align-content-center">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CompleteUserNameForCreate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CompleteUserNameForCreate)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CompleteUserNameForEdit)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CompleteUserNameForEdit)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Clients.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Clients.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Sites.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sites.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Countries.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Countries.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LobName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LobName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SinisterTypes.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SinisterTypes.Name)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ActivitySectors.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ActivitySectors.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DestructionLevels.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DestructionLevels.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Consequence)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Consequence)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AggravatingFactor)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AggravatingFactor)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Currencies.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Currencies.Name)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Amount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Amount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FileOrigine)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FileOrigine)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FileName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FileName)
+            </dd>
+
+
+
+
+
+
+
+            @*<dt>
+                @Html.DisplayNameFor(model => model.KeyWord)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.KeyWord)
+            </dd>*@
+
+
+            @*<dt>
+                @Html.DisplayNameFor(model => model.Documents.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Documents.Name)
+            </dd>*@
+
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SinisterStatus.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SinisterStatus.Name, new { style ="color : red;" })
+            </dd>
+
+
+
+        </dl>
+    </div>
+    </div>
+

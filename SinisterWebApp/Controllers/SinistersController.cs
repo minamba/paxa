@@ -34,6 +34,19 @@ namespace SinisterWebApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Sinisters sinisters = db.Sinisters.Find(id);
+
+            var createUser = (from cu in db.Users
+                              where cu.Userid == sinisters.CreateUserId
+                              select cu).FirstOrDefault();
+
+
+            var editUser = (from eu in db.Users
+                            where eu.Userid == sinisters.EditUserId
+                            select eu).FirstOrDefault();
+
+            sinisters.CompleteUserNameForCreate = createUser.LastName + " " + createUser.FirstName + " : " + sinisters.CreateDate ;
+            sinisters.CompleteUserNameForEdit = editUser.LastName + " " + editUser.FirstName + " : " + sinisters.EditDate;
+            sinisters.LobName = GetLobName((int)sinisters.LoBId);
             if (sinisters == null)
             {
                 return HttpNotFound();
@@ -325,6 +338,15 @@ namespace SinisterWebApp.Controllers
                                  select st).ToList();
 
             return lsinisterType;
+        }
+
+        public string GetLobName(int id)
+        {
+            var lob = (from n in db.Lobs
+                        where n.LobId == id
+                        select n).FirstOrDefault();
+
+            return lob.Name;
         }
 
 

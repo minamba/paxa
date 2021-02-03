@@ -11,7 +11,8 @@ namespace SinisterWebApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Sites
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,6 +25,8 @@ namespace SinisterWebApp.Models
         public string Code { get; set; }
         public Nullable<int> Clientid { get; set; }
         public Nullable<int> CountryId { get; set; }
+
+        [DisplayName("Site")]
         public string Name { get; set; }
         public string Address { get; set; }
         public string City { get; set; }

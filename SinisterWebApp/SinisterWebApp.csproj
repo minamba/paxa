@@ -248,7 +248,8 @@
     <Compile Include="Models\SinisterTypes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SinisterViewModel.cs" />
+    <Compile Include="Models\utils_models\SinisterStatusViewModel.cs" />
+    <Compile Include="Models\utils_models\SinisterViewModel.cs" />
     <Compile Include="Models\Sites.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
