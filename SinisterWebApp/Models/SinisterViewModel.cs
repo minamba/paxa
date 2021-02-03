@@ -19,6 +19,7 @@ namespace SinisterWebApp.Models
         public List<Currencies> ListCurrency { get; set; }
         public List<Keywords> ListKeyword { get; set; }
         public List<SinisterKeywords> ListSinisterKeyword { get; set; }
+        public List<SinisterStatus> ListSinisterStatus { get; set; }
         public List<CheckBoxViewModel> CheckBoxList { get; set; }
         public Sites Site { get; set; }
 

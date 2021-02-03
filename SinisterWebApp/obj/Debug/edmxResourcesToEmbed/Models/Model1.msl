@@ -160,33 +160,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Sinisters">
-      <EntityTypeMapping TypeName="sinisterModel.Sinisters">
-        <MappingFragment StoreEntitySet="Sinisters">
-          <ScalarProperty Name="SinisterStatusId" ColumnName="SinisterStatusId" />
-          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
-          <ScalarProperty Name="EditUserId" ColumnName="EditUserId" />
-          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
-          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="Amount" ColumnName="Amount" />
-          <ScalarProperty Name="AggravatingFactor" ColumnName="AggravatingFactor" />
-          <ScalarProperty Name="FileName" ColumnName="FileName" />
-          <ScalarProperty Name="FileOrigine" ColumnName="FileOrigine" />
-          <ScalarProperty Name="Consequence" ColumnName="Consequence" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="LoBId" ColumnName="LoBId" />
-          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
-          <ScalarProperty Name="DestructionLevelId" ColumnName="DestructionLevelId" />
-          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-          <ScalarProperty Name="ActivitySectorId" ColumnName="ActivitySectorId" />
-          <ScalarProperty Name="SinisterTypeId" ColumnName="SinisterTypeId" />
-          <ScalarProperty Name="SiteId" ColumnName="SiteId" />
-          <ScalarProperty Name="Clientid" ColumnName="Clientid" />
-          <ScalarProperty Name="SinisterId" ColumnName="SinisterId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SinisterTypes">
       <EntityTypeMapping TypeName="sinisterModel.SinisterTypes">
         <MappingFragment StoreEntitySet="SinisterTypes">
@@ -202,6 +175,32 @@
           <ScalarProperty Name="SinisterId" ColumnName="SinisterId" />
           <ScalarProperty Name="KeywordId" ColumnName="KeywordId" />
           <ScalarProperty Name="SinisterKeywordId" ColumnName="SinisterKeywordId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sinisters">
+      <EntityTypeMapping TypeName="sinisterModel.Sinisters">
+        <MappingFragment StoreEntitySet="Sinisters">
+          <ScalarProperty Name="SinisterStatusId" ColumnName="SinisterStatusId" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+          <ScalarProperty Name="EditUserId" ColumnName="EditUserId" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="AggravatingFactor" ColumnName="AggravatingFactor" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FileOrigine" ColumnName="FileOrigine" />
+          <ScalarProperty Name="Consequence" ColumnName="Consequence" />
+          <ScalarProperty Name="LoBId" ColumnName="LoBId" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+          <ScalarProperty Name="DestructionLevelId" ColumnName="DestructionLevelId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="ActivitySectorId" ColumnName="ActivitySectorId" />
+          <ScalarProperty Name="SinisterTypeId" ColumnName="SinisterTypeId" />
+          <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+          <ScalarProperty Name="Clientid" ColumnName="Clientid" />
+          <ScalarProperty Name="SinisterId" ColumnName="SinisterId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

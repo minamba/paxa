@@ -14,6 +14,10 @@ namespace SinisterWebApp.Controllers
     public class SinistersController : Controller
     {
         private sinisterEntities db = new sinisterEntities();
+        private static int sinId = 0;
+        private static DateTime dt = new DateTime();
+        private static int uid = 0;
+        private static int statusId = 0;
 
         // GET: Sinisters
         public ActionResult Index()
@@ -42,20 +46,6 @@ namespace SinisterWebApp.Controllers
         {
             var vm = new Sinisters();
 
-            //ViewBag.ActivitySectorId = new SelectList(db.ActivitySectors, "ActivitySectorId", "Name");
-            //ViewBag.Clientid = new SelectList(db.Clients, "ClientId", "Code");
-            //ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Code");
-            //ViewBag.CurrencyId = new SelectList(db.Currencies, "CurrencyId", "Name");
-            //ViewBag.DestructionLevelId = new SelectList(db.DestructionLevels, "DestructionLevelId", "Name");
-            //ViewBag.DocumentId = new SelectList(db.Documents, "DocumentId", "Name");
-            //ViewBag.SinisterStatusId = new SelectList(db.SinisterStatus, "SinisterStatusId", "Name");
-            //ViewBag.SinisterTypeId = new SelectList(db.SinisterTypes, "SinisterTypeId", "Name");
-            //ViewBag.SiteId = new SelectList(db.Sites, "SiteId", "Code");
-            //ViewBag.UserId = new SelectList(db.Users, "Userid", "EmployeeID");
-
-            //ViewBag.newListKeyword = new List<Keywords>();
-            //ViewBag.sinisterid=1;
-
             vm.ListClient = GetAllClient();
             vm.ListSite = GetAllSite();
             vm.ListCountries = GetAllCountries();
@@ -64,13 +54,6 @@ namespace SinisterWebApp.Controllers
             vm.ListLob = GetAllLobs();
             vm.ListSinisterType = GetAllSinisterType();
             vm.ListDestructionLevel = GetAllDestructionLevels();
-
-            //vm.ListKeyword = GetKeywordList(ViewBag.sinisterid);
-            //vm.ListSinisterKeyword = GetAllSinisterKeywords();
-
-
-            //ViewBag.SiteId = new SelectList(db.Sites,"SiteId","Name");
-
 
             return View(vm);
         }
@@ -85,10 +68,9 @@ namespace SinisterWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                s.SinisterStatusId = 1;
+                s.SinisterStatusId = 2;
                 s.CreateDate = DateTime.Now;
-                s.UserId = 1;
-                s.CreateUserId = s.UserId;
+                s.CreateUserId = 1;
                 
                 db.Sinisters.Add(s);
                 db.SaveChanges();
@@ -111,6 +93,11 @@ namespace SinisterWebApp.Controllers
                 return HttpNotFound();
             }
 
+            sinId = sinisters.SinisterId;
+            dt = (DateTime)sinisters.CreateDate;
+            uid = (int)sinisters.CreateUserId;
+            statusId = (int)sinisters.SinisterStatusId;
+
             ViewBag.Clid = sinisters.Clientid;
             ViewBag.Sid = sinisters.SiteId;
             ViewBag.Crid = sinisters.CountryId;
@@ -123,6 +110,7 @@ namespace SinisterWebApp.Controllers
             ViewBag.Amt = sinisters.Amount.ToString();
             ViewBag.Filename = sinisters.FileName;
             ViewBag.Fileorigine = sinisters.FileOrigine;
+            ViewBag.Statusid = sinisters.SinisterStatusId;
             sinisters.ListClient = GetAllClient();
             sinisters.ListSite = GetAllSiteByClientId(sinisters.Clientid);
             sinisters.ListCountries = GetCountriesByClientId(sinisters.Clientid);
@@ -131,6 +119,7 @@ namespace SinisterWebApp.Controllers
             sinisters.ListLob = GetAllLobs();
             sinisters.ListSinisterType = GetAllSinisterTypeByLobId(sinisters.LoBId);
             sinisters.ListDestructionLevel = GetAllDestructionLevels();
+            sinisters.ListSinisterStatus = GetAllStatus();
 
             return View(sinisters);
         }
@@ -140,24 +129,35 @@ namespace SinisterWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SinisterId,Clientid,SiteId,SinisterTypeId,ActivitySectorId,CountryId,DestructionLevelId,CurrencyId,LoBId,UserId,Consequence,FileOrigine,FileName,AggravatingFactor,Amount,CreateDate,EditDate,KeyWord,CreateUserId,EditUserId,DocumentId,SinisterStatusId")] Sinisters sinisters)
+        public ActionResult Edit([Bind(Include = "SinisterId,Clientid,SiteId,SinisterTypeId,ActivitySectorId,CountryId,DestructionLevelId,CurrencyId,LoBId,UserId,Consequence,FileOrigine,FileName,AggravatingFactor,Amount,CreateDate,EditDate,KeyWord,CreateUserId,EditUserId,DocumentId,SinisterStatusId,SinisterKeywords")] Sinisters sinisters)
         {
             if (ModelState.IsValid)
             {
+                sinisters.SinisterId = sinId;
+                sinisters.CreateDate = dt;
+                sinisters.CreateUserId = uid;
+                sinisters.EditDate = DateTime.Now;
+                sinisters.EditUserId = 1;
+
+                if(sinisters.SinisterStatusId == null)
+                {
+                    sinisters.SinisterStatusId = statusId;
+                }
+
                 db.Entry(sinisters).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit");
             }
-            ViewBag.ActivitySectorId = new SelectList(db.ActivitySectors, "ActivitySectorId", "Name", sinisters.ActivitySectorId);
-            ViewBag.Clientid = new SelectList(db.Clients, "ClientId", "Code", sinisters.Clientid);
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Code", sinisters.CountryId);
-            ViewBag.CurrencyId = new SelectList(db.Currencies, "CurrencyId", "Name", sinisters.CurrencyId);
-            ViewBag.DestructionLevelId = new SelectList(db.DestructionLevels, "DestructionLevelId", "Name", sinisters.DestructionLevelId);
-            ViewBag.DocumentId = new SelectList(db.Documents, "DocumentId", "Name", sinisters.DocumentId);
-            ViewBag.SinisterStatusId = new SelectList(db.SinisterStatus, "SinisterStatusId", "Name", sinisters.SinisterStatusId);
-            ViewBag.SinisterTypeId = new SelectList(db.SinisterTypes, "SinisterTypeId", "Name", sinisters.SinisterTypeId);
-            ViewBag.SiteId = new SelectList(db.Sites, "SiteId", "Code", sinisters.SiteId);
-            ViewBag.UserId = new SelectList(db.Users, "Userid", "EmployeeID", sinisters.UserId);
+            //ViewBag.ActivitySectorId = new SelectList(db.ActivitySectors, "ActivitySectorId", "Name", sinisters.ActivitySectorId);
+            //ViewBag.Clientid = new SelectList(db.Clients, "ClientId", "Code", sinisters.Clientid);
+            //ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Code", sinisters.CountryId);
+            //ViewBag.CurrencyId = new SelectList(db.Currencies, "CurrencyId", "Name", sinisters.CurrencyId);
+            //ViewBag.DestructionLevelId = new SelectList(db.DestructionLevels, "DestructionLevelId", "Name", sinisters.DestructionLevelId);
+            //ViewBag.DocumentId = new SelectList(db.Documents, "DocumentId", "Name", sinisters.DocumentId);
+            //ViewBag.SinisterStatusId = new SelectList(db.SinisterStatus, "SinisterStatusId", "Name", sinisters.SinisterStatusId);
+            //ViewBag.SinisterTypeId = new SelectList(db.SinisterTypes, "SinisterTypeId", "Name", sinisters.SinisterTypeId);
+            //ViewBag.SiteId = new SelectList(db.Sites, "SiteId", "Code", sinisters.SiteId);
+            //ViewBag.UserId = new SelectList(db.Users, "Userid", "EmployeeID", sinisters.CreateUserId);
             return View(sinisters);
         }
 
@@ -284,6 +284,14 @@ namespace SinisterWebApp.Controllers
                                     select sk).ToList();
 
             return lsinisterKeyword;
+        }
+
+        public List<SinisterStatus> GetAllStatus()
+        {
+            var lstatus = (from s in db.SinisterStatus
+                           select s).ToList();
+
+            return lstatus;
         }
 
         public List<Countries> GetCountriesByClientId(int? clienid)
