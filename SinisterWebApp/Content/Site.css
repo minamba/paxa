@@ -60,3 +60,28 @@ textarea{
     width : 100%;
 }
 
+
+dt{
+    text-align :center;
+    color : darkslateblue;
+}
+
+dd {
+    text-align: center;
+    color : gray;
+    font-weight :500;
+}
+
+dl{
+/*    border :dashed;*/
+}
+
+.statusValid{
+    color : mediumseagreen;
+}
+
+.statusWaiting {
+     color: orange;
+}
+
+}

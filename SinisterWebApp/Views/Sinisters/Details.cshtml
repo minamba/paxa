@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
+
+    string status = "";
 }
 
 
@@ -13,10 +15,34 @@
 
 
 <div class="container pt-3 pb-3 col-lg-12 col-md-12 col-12">
-    <h4 class=" pt-2 subTitle">Details of sinister</h4>
+    <h4 class=" pt-2 subTitle">Sinister informations</h4>
     <hr class="hrColor" />
-    <div class="bg-light align-content-center col-lg-12 col-md-12 col-12 shadow">
+    <div class=" container bg-light col-lg-12 col-md-12 col-12 shadow">
         <dl class="dl-horizontal align-content-center">
+
+
+
+            <dt class="pt-4">
+                @Html.DisplayNameFor(model => model.SinisterStatus.Name)
+            </dt>
+
+            @{
+                if (Model.SinisterStatusId != 1)
+                {
+                    status = "statusWaiting";
+                }
+                else
+                {
+                    status = "statusValid";
+
+                }
+            }
+
+            <dd class=" @status">
+                @Html.DisplayFor(model => model.SinisterStatus.Name, new { style = "color : red;" })
+            </dd>
+
+            <hr />
 
             <dt>
                 @Html.DisplayNameFor(model => model.CompleteUserNameForCreate)
@@ -25,7 +51,7 @@
             <dd>
                 @Html.DisplayFor(model => model.CompleteUserNameForCreate)
             </dd>
-
+            <hr />
 
             <dt>
                 @Html.DisplayNameFor(model => model.CompleteUserNameForEdit)
@@ -34,6 +60,7 @@
             <dd>
                 @Html.DisplayFor(model => model.CompleteUserNameForEdit)
             </dd>
+            <hr />
 
             <dt>
                 @Html.DisplayNameFor(model => model.Clients.Name)
@@ -42,7 +69,7 @@
             <dd>
                 @Html.DisplayFor(model => model.Clients.Name)
             </dd>
-
+            <hr />
             <dt>
                 @Html.DisplayNameFor(model => model.Sites.Name)
             </dt>
@@ -50,7 +77,7 @@
             <dd>
                 @Html.DisplayFor(model => model.Sites.Name)
             </dd>
-
+            <hr />
             <dt>
                 @Html.DisplayNameFor(model => model.Countries.Name)
             </dt>
@@ -58,6 +85,7 @@
             <dd>
                 @Html.DisplayFor(model => model.Countries.Name)
             </dd>
+            <hr />
 
             <dt>
                 @Html.DisplayNameFor(model => model.LobName)
@@ -66,7 +94,7 @@
             <dd>
                 @Html.DisplayFor(model => model.LobName)
             </dd>
-
+            <hr />
             <dt>
                 @Html.DisplayNameFor(model => model.SinisterTypes.Name)
             </dt>
@@ -74,7 +102,7 @@
             <dd>
                 @Html.DisplayFor(model => model.SinisterTypes.Name)
             </dd>
-
+            <hr />
 
             <dt>
                 @Html.DisplayNameFor(model => model.ActivitySectors.Name)
@@ -83,7 +111,7 @@
             <dd>
                 @Html.DisplayFor(model => model.ActivitySectors.Name)
             </dd>
-
+            <hr />
             <dt>
                 @Html.DisplayNameFor(model => model.DestructionLevels.Name)
             </dt>
@@ -91,7 +119,7 @@
             <dd>
                 @Html.DisplayFor(model => model.DestructionLevels.Name)
             </dd>
-
+            <hr />
             <dt>
                 @Html.DisplayNameFor(model => model.Consequence)
             </dt>
@@ -99,7 +127,7 @@
             <dd>
                 @Html.DisplayFor(model => model.Consequence)
             </dd>
-
+            <hr />
             <dt>
                 @Html.DisplayNameFor(model => model.AggravatingFactor)
             </dt>
@@ -108,7 +136,7 @@
                 @Html.DisplayFor(model => model.AggravatingFactor)
             </dd>
 
-
+            <hr />
             <dt>
                 @Html.DisplayNameFor(model => model.Currencies.Name)
             </dt>
@@ -116,7 +144,7 @@
             <dd>
                 @Html.DisplayFor(model => model.Currencies.Name)
             </dd>
-
+            <hr />
 
             <dt>
                 @Html.DisplayNameFor(model => model.Amount)
@@ -125,7 +153,7 @@
             <dd>
                 @Html.DisplayFor(model => model.Amount)
             </dd>
-
+            <hr />
             <dt>
                 @Html.DisplayNameFor(model => model.FileOrigine)
             </dt>
@@ -133,12 +161,12 @@
             <dd>
                 @Html.DisplayFor(model => model.FileOrigine)
             </dd>
-
+            <hr />
             <dt>
                 @Html.DisplayNameFor(model => model.FileName)
             </dt>
 
-            <dd>
+            <dd class="pb-4">
                 @Html.DisplayFor(model => model.FileName)
             </dd>
 
@@ -149,34 +177,21 @@
 
 
             @*<dt>
-                @Html.DisplayNameFor(model => model.KeyWord)
-            </dt>
+            @Html.DisplayNameFor(model => model.KeyWord)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.KeyWord)
-            </dd>*@
+        <dd>
+            @Html.DisplayFor(model => model.KeyWord)
+        </dd>*@
 
 
             @*<dt>
-                @Html.DisplayNameFor(model => model.Documents.Name)
-            </dt>
+            @Html.DisplayNameFor(model => model.Documents.Name)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Documents.Name)
-            </dd>*@
-
-
-
-            <dt>
-                @Html.DisplayNameFor(model => model.SinisterStatus.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.SinisterStatus.Name, new { style ="color : red;" })
-            </dd>
-
-
-
+        <dd>
+            @Html.DisplayFor(model => model.Documents.Name)
+        </dd>*@
         </dl>
     </div>
     </div>
