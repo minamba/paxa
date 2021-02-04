@@ -14,185 +14,221 @@
 </div>
 
 
-<div class="container pt-3 pb-3 col-lg-12 col-md-12 col-12">
+<div class="container-fluid pt-3 pb-3 col-lg-12 col-md-12 col-12 bg-success">
     <h4 class=" pt-2 subTitle">Sinister informations</h4>
     <hr class="hrColor" />
-    <div class=" container bg-light col-lg-12 col-md-12 col-12 shadow">
-        <dl class="dl-horizontal align-content-center">
+    <div class="container bg-info col-lg-12 shadow">
+        <div class="card-deck bg-dark">
+            <div class="card">
+                <dl class="dl-horizontal col-lg-12 col-md-12 col-12">
+                    <dt class="pt-4">
+                        @Html.DisplayNameFor(model => model.SinisterStatus.Name)
+                    </dt>
+
+                    @{
+                        if (Model.SinisterStatusId != 1)
+                        {
+                            status = "statusWaiting";
+                        }
+                        else
+                        {
+                            status = "statusValid";
+
+                        }
+                    }
+
+                    <dd class=" @status">
+                        @Html.DisplayFor(model => model.SinisterStatus.Name, new { style = "color : red;" })
+                    </dd>
+
+                    <hr />
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CompleteUserNameForCreate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CompleteUserNameForCreate)
+                    </dd>
+                    <hr />
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CompleteUserNameForEdit)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CompleteUserNameForEdit)
+                    </dd>
+                    <hr />
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Clients.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Clients.Name)
+                    </dd>
+                    <hr />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Sites.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Sites.Name)
+                    </dd>
+                    <hr />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Countries.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Countries.Name)
+                    </dd>
+                    <hr />
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LobName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.LobName)
+                    </dd>
+                    <hr />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SinisterTypes.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SinisterTypes.Name)
+                    </dd>
+                    <hr />
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ActivitySectors.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ActivitySectors.Name)
+                    </dd>
+                    <hr />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DestructionLevels.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DestructionLevels.Name)
+                    </dd>
+                    <hr />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Consequence)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Consequence)
+                    </dd>
+                    <hr />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AggravatingFactor)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.AggravatingFactor)
+                    </dd>
+
+                    <hr />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Currencies.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Currencies.Name)
+                    </dd>
+                    <hr />
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Amount)
+                    </dd>
+                    <hr />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FileOrigine)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.FileOrigine)
+                    </dd>
+                    <hr />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FileName)
+                    </dt>
+
+                    <dd class="pb-4">
+                        @Html.DisplayFor(model => model.FileName)
+                    </dd>
+                    @*<dt>
+                    @Html.DisplayNameFor(model => model.KeyWord)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.KeyWord)
+                </dd>*@
 
 
+                    @*<dt>
+                    @Html.DisplayNameFor(model => model.Documents.Name)
+                </dt>
 
-            <dt class="pt-4">
-                @Html.DisplayNameFor(model => model.SinisterStatus.Name)
-            </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Documents.Name)
+                </dd>*@
+                </dl>
 
-            @{
-                if (Model.SinisterStatusId != 1)
-                {
-                    status = "statusWaiting";
-                }
-                else
-                {
-                    status = "statusValid";
+            </div>
+        </div>
 
-                }
-            }
+        <div class="card-deck pt-5 pb-5">
 
-            <dd class=" @status">
-                @Html.DisplayFor(model => model.SinisterStatus.Name, new { style = "color : red;" })
-            </dd>
+            <div class="card">
+                <div class="card-m3 shadow-lg">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <b>Client</b>
+                            <hr class="bg-danger" />
+                        </h5>
+                    </div>
 
-            <hr />
+                </div>
+            </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.CompleteUserNameForCreate)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CompleteUserNameForCreate)
-            </dd>
-            <hr />
-
-            <dt>
-                @Html.DisplayNameFor(model => model.CompleteUserNameForEdit)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CompleteUserNameForEdit)
-            </dd>
-            <hr />
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Clients.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Clients.Name)
-            </dd>
-            <hr />
-            <dt>
-                @Html.DisplayNameFor(model => model.Sites.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Sites.Name)
-            </dd>
-            <hr />
-            <dt>
-                @Html.DisplayNameFor(model => model.Countries.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Countries.Name)
-            </dd>
-            <hr />
-
-            <dt>
-                @Html.DisplayNameFor(model => model.LobName)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.LobName)
-            </dd>
-            <hr />
-            <dt>
-                @Html.DisplayNameFor(model => model.SinisterTypes.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.SinisterTypes.Name)
-            </dd>
-            <hr />
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ActivitySectors.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ActivitySectors.Name)
-            </dd>
-            <hr />
-            <dt>
-                @Html.DisplayNameFor(model => model.DestructionLevels.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.DestructionLevels.Name)
-            </dd>
-            <hr />
-            <dt>
-                @Html.DisplayNameFor(model => model.Consequence)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Consequence)
-            </dd>
-            <hr />
-            <dt>
-                @Html.DisplayNameFor(model => model.AggravatingFactor)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.AggravatingFactor)
-            </dd>
-
-            <hr />
-            <dt>
-                @Html.DisplayNameFor(model => model.Currencies.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Currencies.Name)
-            </dd>
-            <hr />
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Amount)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Amount)
-            </dd>
-            <hr />
-            <dt>
-                @Html.DisplayNameFor(model => model.FileOrigine)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.FileOrigine)
-            </dd>
-            <hr />
-            <dt>
-                @Html.DisplayNameFor(model => model.FileName)
-            </dt>
-
-            <dd class="pb-4">
-                @Html.DisplayFor(model => model.FileName)
-            </dd>
+            <div class="card">
+                <div class="card-m3 shadow-lg">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <b>Site</b>
+                            <hr class="bg-danger" />
+                        </h5>
 
 
+                        <div class="form-horizontal pt-3">
+                                <div class="form-group">
+                                    <label class="control-label">Adresse :</label>
+                                    <b class="col-8">glglgllgglglg</b>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Adresse :</label>
+                                    <b>glglgllgglglg</b>
+                                </div>
+                        </div>
+                    </div>
 
+                    </div>
+            </div>
 
-
-
-
-            @*<dt>
-            @Html.DisplayNameFor(model => model.KeyWord)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.KeyWord)
-        </dd>*@
-
-
-            @*<dt>
-            @Html.DisplayNameFor(model => model.Documents.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Documents.Name)
-        </dd>*@
-        </dl>
-    </div>
-    </div>
+        </div>
+    
+  </div>
+</div>
 
