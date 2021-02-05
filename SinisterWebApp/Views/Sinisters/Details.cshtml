@@ -14,135 +14,132 @@
 </div>
 
 <div class="container-fluid pt-3 pb-3 col-lg-12 col-md-12 col-12">
-    <h4 class=" pt-2 subTitle">Details</h4>
-    <hr class="hrColor mb-3" />
+    @*<h4 class=" pt-2 subTitle">Details</h4>
+    <hr class="hrColor mb-3" />*@
     <div>
         <div class="card-deck col-lg-12">
             <div class="card mb-5">
                 <div class="card-m3 shadow ol-lg-4">
-                    <dl class="dl-horizontal col-lg-12 col-md-12 col-12">
-                        @{
-                            if (Model.SinisterStatusId != 1)
-                            {
-                                status = "statusWaiting";
+                    <div class="card-body">
+                        <dl class="dl-horizontal col-lg-12 col-md-12 col-12">
+                            @{
+                                if (Model.SinisterStatusId != 1)
+                                {
+                                    status = "statusWaiting";
+                                }
+                                else
+                                {
+                                    status = "statusValid";
+
+                                }
                             }
-                            else
-                            {
-                                status = "statusValid";
 
-                            }
-                        }
+                            <h5 class="card-title">
+                                <b>Sinister informations</b>
+                                <hr class="bg-danger" />
+                            </h5>
 
-                        <h5 class="card-title pt-3">
-                            <b>Sinister informations</b>
-                            <hr class="bg-danger" />
-                        </h5>
+                            <div class="form-group pt-4">
+                                @Html.LabelFor(model => model.SinisterStatus.Name, new { @Class = "cardLabel" }) :
+                                @Html.EditorFor(model => model.SinisterStatus.Name, new { htmlAttributes = new { @class = status, disabled = "disabled" } })
+                            </div>
+                            <hr />
 
-                        <div class="form-group pt-4">
-                            @Html.LabelFor(model => model.SinisterStatus.Name, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.SinisterStatus.Name, new { htmlAttributes = new { @class = status, disabled = "disabled" } })
-                        </div>
-                        <hr />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CompleteUserNameForCreate, new { @Class = "cardLabel" }) :
+                                @Html.EditorFor(model => model.CompleteUserNameForCreate, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CompleteUserNameForEdit, new { @Class = "cardLabel" }) :
+                                @Html.EditorFor(model => model.CompleteUserNameForEdit, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
+                            </div>
+                            <hr />
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Sites.Name, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.Sites.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Clients.Name, new { @Class = "cardLabel" }) :
+                                @Html.EditorFor(model => model.Clients.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Sites.Name, new { @Class = "cardLabel" }) :
+                                @Html.EditorFor(model => model.Sites.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Countries.Name, new { @Class = "cardLabel" }) :
+                                @Html.EditorFor(model => model.Countries.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.LobName, new { @Class = "cardLabel" }) :
+                                @Html.EditorFor(model => model.LobName, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SinisterTypes.Name, new { @Class = "cardLabel" }) :
+                                @Html.EditorFor(model => model.SinisterTypes.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ActivitySectors.Name, new { @Class = "cardLabel" }) :
+                                @Html.EditorFor(model => model.ActivitySectors.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DestructionLevels.Name, new { @Class = "cardLabel" }) :
+                                @Html.EditorFor(model => model.DestructionLevels.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Consequence, new { @Class = "cardLabel" }) :
+                                @Html.EditorFor(model => model.Consequence, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.AggravatingFactor, new { @Class = "cardLabel" }) :
+                                @Html.TextAreaFor(model => model.AggravatingFactor, new { htmlAttributes = new { @class = "cardTxt", rows = 5 } })
+                            </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.CompleteUserNameForCreate, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.CompleteUserNameForCreate, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.CompleteUserNameForEdit, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.CompleteUserNameForEdit, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                        </div>
-                        <hr />
+                            <hr />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Currencies.Name, new { @Class = "cardLabel" }) :
+                                @Html.EditorFor(model => model.Currencies.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Amount, new { @Class = "cardLabel" }) :
+                                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.FileOrigine, new { @Class = "cardLabel" }) :
+                                @Html.EditorFor(model => model.FileOrigine, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.FileName, new { @Class = "cardLabel" }) :
+                                @Html.EditorFor(model => model.FileName, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
+                            </div>
+                            @*<dt>
+                    @Html.DisplayNameFor(model => model.KeyWord)
+                </dt>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Clients.Name, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.Clients.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Sites.Name, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.Sites.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Countries.Name, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.Countries.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.LobName, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.LobName, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.SinisterTypes.Name, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.SinisterTypes.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ActivitySectors.Name, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.ActivitySectors.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.DestructionLevels.Name, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.DestructionLevels.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Consequence, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.Consequence, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.AggravatingFactor, new { @Class = "cardLabel" }) :
-                            @Html.TextAreaFor(model => model.AggravatingFactor, new { htmlAttributes = new { @class = "cardTxt", rows = 5 } })
-                        </div>
-
-                        <hr />
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Currencies.Name, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.Currencies.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Amount, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.FileOrigine, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.FileOrigine, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.FileName, new { @Class = "cardLabel" }) :
-                            @Html.EditorFor(model => model.FileName, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                        </div>
-                        @*<dt>
-                        @Html.DisplayNameFor(model => model.KeyWord)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.KeyWord)
-                    </dd>*@
+                <dd>
+                    @Html.DisplayFor(model => model.KeyWord)
+                </dd>*@
 
 
-                        @*<dt>
-                        @Html.DisplayNameFor(model => model.Documents.Name)
-                    </dt>
+                            @*<dt>
+                    @Html.DisplayNameFor(model => model.Documents.Name)
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.Documents.Name)
-                    </dd>*@
-                    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.Documents.Name)
+                </dd>*@
+                        </dl>
                     </div>
+                </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="card mb-5">
