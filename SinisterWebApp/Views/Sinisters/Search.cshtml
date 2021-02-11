@@ -1,0 +1,155 @@
+﻿@model SinisterWebApp.Models.Sinisters
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+
+    var lclients = Model.ListClient;
+}
+
+<h2>Search</h2>
+
+<script type="text/javascript">
+    $(function () {
+        $("#ccid").chosen();
+    });
+
+    $(function () {
+        $("#sid").chosen();
+    });
+
+    $(function () {
+        $("#crid").chosen();
+    });
+
+    $(function () {
+        $("#aid").chosen();
+    });
+
+    $(function () {
+        $("#lid").chosen();
+    });
+
+    $(document).ready(function () {
+        $(".datepicker").datepicker({
+            dateFormat: "dd-mm-yy",
+            changemonth: true,
+            changeyear: true
+        });
+    });
+
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Sinisters</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*@Html.HiddenFor(model => model.SinisterId)*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Clientid, "Clientid", htmlAttributes: new { @class = "control-label col-12" })
+        <div class="col-12">
+            @Html.DropDownListFor(model => model.Clientid, new SelectList(Model.ListClient, "Clientid", "Name"), new { id = "ccid", style = "width:100%;", onChange = "javascript: GetSites(this.value);", @class = "col-12 form-control search_select_box" })
+            @Html.ValidationMessageFor(model => model.Clientid, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.Clientid, "Client", htmlAttributes: new { @class = "control-label col-12" })
+            <select id="cid" class="form-control search_select_box">
+                <option value="">--Please choose an option--</option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="hamster">Hamster</option>
+                <option value="parrot">Parrot</option>
+                <option value="spider">Spider</option>
+                <option value="goldfish">Goldfish</option>
+            </select>
+        </div>*@
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SiteId, "Site", htmlAttributes: new { @class = "control-label col-12" })
+        <div class="col-12">
+            @Html.DropDownListFor(model => model.SiteId, new SelectList(Model.ListSite, "Clientid", "Name", ViewBag.Sid), new { id = "sid", style = "width:100%;", onChange = "javascript: GetCountries(this.value);", @class = "col-12 form-control", name = "SiteId" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ListCountries, "Country", htmlAttributes: new { @class = "control-label col-12" })
+        <div class="col-12">
+            @Html.DropDownListFor(model => model.CountryId, new SelectList(Model.ListCountries, "CountryId", "Name", ViewBag.Crid), new { id = "crid", style = "width:100%;", @class = "col-12 form-control", name = "CountryId" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LoBId, "Lob", htmlAttributes: new { @class = "control-label col-12" })
+        <div class="col-12">
+            @Html.DropDownListFor(model => model.LoBId, new SelectList(Model.ListLob, "LobId", "Name", ViewBag.Lobid), new { id = "lid", style = "width:100%;", onChange = "javascript: GetSinisterTypes(this.value);", @class = "col-12 form-control", name = "LobId" })
+            @*@Html.ValidationMessageFor(model => model.LoBId, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SinisterTypeId, "Sinister type", htmlAttributes: new { @class = "control-label col-12" })
+        <div class="col-12">
+            @Html.DropDownListFor(model => model.SinisterTypeId, new SelectList(Model.ListSinisterType, "SinisterTypeId", "Name", ViewBag.Sntid), new { id = "stid", onChange = "javascript: GetKeywords(this.value);", style = "width:100%;", @class = "col-12 form-control", name = "SinisterTypeId" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ActivitySectorId, "Activity sector", htmlAttributes: new { @class = "control-label col-12" })
+        <div class="col-12">
+            @Html.DropDownListFor(model => model.ActivitySectorId, new SelectList(Model.ListActivitySector, "ActivitySectorId", "Name", ViewBag.Actsectid), htmlAttributes: new { id = "aid", @class = "form-control", name = "ActivitySectorId" })
+            @*@Html.ValidationMessageFor(model => model.ActivitySectorId, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DestructionLevelId, "Destruction level", htmlAttributes: new { @class = "control-label col-12" })
+        <div class="col-12">
+            @Html.DropDownListFor(model => model.DestructionLevelId, new SelectList(Model.ListDestructionLevel, "DestructionLevelId", "Name", ViewBag.Dlevelid), htmlAttributes: new { @class = "form-control", name = "DestructionLevelId", id = "DestructionLevelId" })
+            @*@Html.ValidationMessageFor(model => model.DestructionLevelId, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row col-lg-offset-2 col-lg-12 col-12">
+            <div class="col-lg-6">
+                @Html.LabelFor(model => model.CreateDate, "Date start", htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.CreateDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                    @Html.ValidationMessageFor(model => model.CreateDate)
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                @Html.LabelFor(model => model.CreateDate, "Date start", htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.CreateDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                    @Html.ValidationMessageFor(model => model.CreateDate)
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" class="btn btn-default bg-success text-white" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+}

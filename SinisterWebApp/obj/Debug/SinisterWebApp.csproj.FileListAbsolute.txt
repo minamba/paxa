@@ -107,8 +107,8 @@ D:\sinister_project\repos\SinisterWebApp\bin\Microsoft.Owin.Security.Twitter.xml
 D:\sinister_project\repos\SinisterWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\sinister_project\repos\SinisterWebApp\bin\Microsoft.Owin.Security.OAuth.xml
 D:\sinister_project\repos\SinisterWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.csprojAssemblyReference.cache
 D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.csproj.CoreCompileInputs.cache
 D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.csproj.CopyComplete
 D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.dll
 D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.pdb
-D:\sinister_project\repos\SinisterWebApp\obj\Debug\SinisterWebApp.csprojAssemblyReference.cache

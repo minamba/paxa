@@ -26,6 +26,23 @@ namespace SinisterWebApp.Controllers
             return View(sinisters.ToListAsync());
         }
 
+
+        public ActionResult Search()
+        {
+            var vm = new Sinisters();
+
+            vm.ListClient = GetAllClient();
+            vm.ListSite = GetAllSite();
+            vm.ListCountries = GetAllCountries();
+            vm.ListActivitySector = GetAllActivitySectors();
+            vm.ListCurrency = GetAllCurrencies();
+            vm.ListLob = GetAllLobs();
+            vm.ListSinisterType = GetAllSinisterType();
+            vm.ListDestructionLevel = GetAllDestructionLevels();
+
+            return View(vm);
+        }
+
         // GET: Sinisters/Details/5
         public ActionResult Details(int? id)
         {
@@ -358,6 +375,17 @@ namespace SinisterWebApp.Controllers
             List<Sites> objSite = new List<Sites>();
             objSite = GetAllSite().Where(s => s.Clientid == clientId).ToList();
             SelectList obgSite = new SelectList(objSite,"SiteId","Name",0);
+
+            return Json(obgSite);
+        }
+
+
+        [HttpPost]
+        public ActionResult GetClientList(int i)
+        {
+            List<Clients> objSite = new List<Clients>();
+            objSite = GetAllClient();
+            SelectList obgSite = new SelectList(objSite, "SiteId", "Name", 0);
 
             return Json(obgSite);
         }

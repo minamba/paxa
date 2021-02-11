@@ -3,10 +3,15 @@
 <head>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
     @RenderSection("Scripts", false)
     @*@RenderSection("scripts")*@
     <meta name="viewport" content="width=device-width" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/v4-shims.css">
     <link rel="stylesheet" type="text/css" href="~/Content/NavBar.css" />
@@ -27,7 +32,7 @@
                         <a class="nav-link" href="@Url.Action("Create","Sinisters")">Add sinister<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Search sinister</a>
+                        <a class="nav-link" href="@Url.Action("Search","Sinisters")">Search sinister</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Client</a>
@@ -47,8 +52,16 @@
         </nav>
     </div>
     @RenderBody()
-    @Scripts.Render("~/bundles/bootstrap")
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
     @Styles.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/chosen.jquery.js"></script>
+    <script src="~/Scripts/bootstrap-select.min.js"></script>
+    <script src="~/Scripts/SelectPicker.js"></script>
+
+    @*<script src="~/Scripts/SelectPicker.js"></script>*@
+    @*<script src="~/Scripts/bootstrap-select.min.js"></script>*@
 </body>
 
 @Html.Partial("_FooterPartial")
