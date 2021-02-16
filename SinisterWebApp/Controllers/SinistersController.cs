@@ -43,6 +43,34 @@ namespace SinisterWebApp.Controllers
             return View(vm);
         }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Search([Bind(Include = "Clientid,SiteId,SinisterTypeId,ActivitySectorId,CountryId,DestructionLevelId,CurrencyId,LoBId,SinisterStatusId,DateStart,DateEnd")] Sinisters sinisters)
+        {
+            if (ModelState.IsValid)
+            {
+                int cid = (int)sinisters.Clientid;
+                int sid = (int)sinisters.SiteId;
+                int crid = (int)sinisters.CountryId;
+                int lid = (int)sinisters.LoBId;
+                int stid = (int)sinisters.SinisterTypeId;
+                int aid = (int)sinisters.ActivitySectorId;
+                int did = (int)sinisters.DestructionLevelId;
+                DateTime dateStart = (DateTime)sinisters.DateStart;
+                DateTime dateEnd = (DateTime)sinisters.DateEnd;
+
+
+                //int aid = 
+
+
+
+                return RedirectToAction("Search");
+            }
+            return RedirectToAction("Search");
+        }
+
+
         // GET: Sinisters/Details/5
         public ActionResult Details(int? id)
         {

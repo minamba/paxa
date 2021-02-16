@@ -14,34 +14,31 @@
 
 <!--populate the site list and sinister type-->
 <script language="javascript" type="text/javascript">
+
                     function GetSites(_clientId) {
                         console.log("je suis dans la methode de get site");
-                    var procemessage = "<option value ='0'> No site selected...</option>";
-                    $("#sid").html(procemessage).show();
-                    var url = "@Url.Action("GetSiteByClientId", "Sinisters")";
+                        var procemessage = "<option value ='0'> No site selected...</option>";
+                        $("#sid").html(procemessage).show();
+                        var url = "@Url.Action("GetSiteByClientId", "Sinisters")";
 
-                    $.ajax({
-                        url: url,
-                        data: { clientId: _clientId },
-                        cache: false,
-                        type: "POST",
-                        success: function (data) {
-                            var markup = "<option value='0'> Select a site</option>";
-                            for (var x = 0; x < data.length; x++) {
-                                markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                        $.ajax({
+                            url: url,
+                            data: { clientId: _clientId },
+                            cache: false,
+                            type: "POST",
+                            success: function (data) {
+                                var markup = "<option value='0'> Select a site</option>";
+                                for (var x = 0; x < data.length; x++) {
+                                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                                }
+                                $("#sid").html(markup).show();
+                                $("#sid").html(markup).select(1);
+                            },
+                            error: function (response) {
+                                alert("error : " + reponse);
                             }
-                            $("#sid").html(markup).show();
-                            $("#sid").html(markup).select(1);
-                        },
-                        error: function (response) {
-                            alert("error : " + reponse);
-                        }
-                    });
-    }
-
-                        //$(document).ready(function () {
-                        //    GetSites($("#clientDP").val());
-                        //})
+                        });
+                    }
 
                     function GetSinisterTypes(_lobid) {
                         var procemessage = "<option value ='0'> No type selected...</option>";
@@ -254,4 +251,5 @@
         @*<div>
                 @Html.ActionLink("Back to List", "Index")
             </div>*@
+    </div>
     </div>

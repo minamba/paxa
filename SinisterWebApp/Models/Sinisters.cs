@@ -92,6 +92,12 @@ namespace SinisterWebApp.Models
         [DisplayName("Lob")]
         public string LobName { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public Nullable<System.DateTime> DateStart { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public Nullable<System.DateTime> DateEnd { get; set; }
+
 
 
 
