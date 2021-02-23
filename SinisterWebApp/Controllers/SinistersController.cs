@@ -483,9 +483,6 @@ namespace SinisterWebApp.Controllers
         {
             var sinisters = (from s in db.Sinisters.Include(s => s.ActivitySectors).Include(s => s.Clients).Include(s => s.Countries).Include(s => s.Currencies).Include(s => s.DestructionLevels).Include(s => s.Documents).Include(s => s.SinisterStatus).Include(s => s.SinisterTypes).Include(s => s.Sites).Include(s => s.Users)
                              select s).ToList();
-
-            
-
             return sinisters;
         }
 

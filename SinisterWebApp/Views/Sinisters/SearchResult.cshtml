@@ -5,67 +5,70 @@
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<h2>SearchResult</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Country
-        </th>
-        <th>
-            Client
-        </th>
-        <th>
-            Site
-        </th>
-        <th>
-            Type
-        </th>
-        <th>
-            Sector
-        </th>
-        <th>
-            Date
-        </th>
-        <th>
-            Details
-        </th>
-        <th>
-            Edit
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <b>@Html.DisplayFor(modelItem => item.Countries.Name)</b>
-            </td>
-            <td>
-                <b>@Html.DisplayFor(modelItem => item.Clients.Name)</b>
-            </td>
-            <td>
-                <b>@Html.DisplayFor(modelItem => item.Sites.Name)</b>
-            </td>
-            <td>
-                <b>@Html.DisplayFor(modelItem => item.SinisterTypes.Name)</b>
-            </td>
-            <td>
-                <b>@Html.DisplayFor(modelItem => item.ActivitySectors.Name)</b>
-            </td>
-            <td>
-                <b>@Html.DisplayFor(modelItem => item.CreateDate)</b>
-            </td>
-            <td class="text-success">
-                <a href="@Url.Action("Details", "Sinisters", new { id = item.SinisterId })">See more...</a>
-            </td>
-            <td class="text-success">
-                <a href="@Url.Action("Edit", "Sinisters", new { id = item.SinisterId })">Edit</a>
-            </td>
+<div class="jumbotron backgroundHome">
+    <h1 class="otherTitle text-center">Sinister search results</h1>
+</div>
+<div class="container pt-3 pb-3 col-lg-12 col-md-12 col-12">
+    <h4 class=" pt-2 subTitle">Results</h4>
+    <hr class="hrColor mb-1" />
+    <table class="table table-striped text-muted border shadow">
+        <tr class="tableHeader">
+            <th>
+                Country
+            </th>
+            <th>
+                Client
+            </th>
+            <th>
+                Site
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Sector
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                Edit
+            </th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.Countries.Name)</b>
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.Clients.Name)</b>
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.Sites.Name)</b>
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.SinisterTypes.Name)</b>
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.ActivitySectors.Name)</b>
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.CreateDate)</b>
+                </td>
+                <td class="text-success">
+                    <a href="@Url.Action("Details", "Sinisters", new { id = item.SinisterId })">See more...</a>
+                </td>
+                <td class="text-success">
+                    <a href="@Url.Action("Edit", "Sinisters", new { id = item.SinisterId })">Edit</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
