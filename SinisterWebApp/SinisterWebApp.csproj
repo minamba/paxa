@@ -638,6 +638,7 @@
     <Content Include="Views\Sinisters\Edit.cshtml" />
     <Content Include="Views\Sinisters\Index.cshtml" />
     <Content Include="Views\Sinisters\Search.cshtml" />
+    <Content Include="Views\Sinisters\SearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

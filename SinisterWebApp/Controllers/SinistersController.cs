@@ -18,6 +18,7 @@ namespace SinisterWebApp.Controllers
         private static DateTime dt = new DateTime();
         private static int uid = 0;
         private static int statusId = 0;
+        private static List<Sinisters> listSinisters = new List<Sinisters>();
 
         // GET: Sinisters
         public ActionResult Index()
@@ -48,6 +49,8 @@ namespace SinisterWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Search([Bind(Include = "Clientid,SiteId,SinisterTypeId,ActivitySectorId,CountryId,DestructionLevelId,CurrencyId,LoBId,SinisterStatusId,DateStart,DateEnd")] Sinisters sinisters)
         {
+
+
             if (ModelState.IsValid)
             {
                 int cid = (int)sinisters.Clientid;
@@ -60,14 +63,24 @@ namespace SinisterWebApp.Controllers
                 DateTime dateStart = (DateTime)sinisters.DateStart;
                 DateTime dateEnd = (DateTime)sinisters.DateEnd;
 
+           
+               listSinisters = GetSinistersSearch(cid,sid,crid,lid,stid,aid,did, dateStart.ToString(), dateEnd.ToString());
 
-                //int aid = 
-
-
-
-                return RedirectToAction("Search");
+                TempData["listSinisters"] = listSinisters;
+                return RedirectToAction("SearchResult","Sinisters");
             }
             return RedirectToAction("Search");
+        }
+
+
+        public ActionResult SearchResult()
+        {
+          using (db)
+          {
+               List<Sinisters> sinisters = TempData["listSinisters"] as List<Sinisters>;
+               
+                return View(sinisters.ToList());
+            }
         }
 
 
@@ -462,6 +475,18 @@ namespace SinisterWebApp.Controllers
             lstKeyword = db.Keywords.Where(st => st.SinisterTypeId == sinisterTypeid).ToList();
             SelectList obgKey = new SelectList(lstKeyword, "KeywordId", "Name", 0);
             return Json(obgKey);
+        }
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public List<Sinisters> GetSinistersSearch(int cid, int sid, int crid, int lid, int stid, int aid, int did, string dateStart, string dateEnd)
+        {
+            var sinisters = (from s in db.Sinisters.Include(s => s.ActivitySectors).Include(s => s.Clients).Include(s => s.Countries).Include(s => s.Currencies).Include(s => s.DestructionLevels).Include(s => s.Documents).Include(s => s.SinisterStatus).Include(s => s.SinisterTypes).Include(s => s.Sites).Include(s => s.Users)
+                             select s).ToList();
+
+            
+
+            return sinisters;
         }
 
     }
