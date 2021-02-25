@@ -11,7 +11,8 @@ namespace SinisterWebApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,12 +22,22 @@ namespace SinisterWebApp.Models
         }
     
         public int Userid { get; set; }
+
+        [DisplayName("Jamie Id")]
         public string EmployeeID { get; set; }
         public Nullable<int> CountryId { get; set; }
         public Nullable<int> RoleId { get; set; }
+
+        [DisplayName("Last name")]
         public string LastName { get; set; }
+
+        [DisplayName("First name")]
         public string FirstName { get; set; }
+
+        [DisplayName("Contact")]
         public string Email { get; set; }
+
+        [DisplayName("Jamie user name")]
         public string UserName { get; set; }
         public string Password { get; set; }
     
