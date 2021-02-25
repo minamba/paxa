@@ -483,8 +483,44 @@ namespace SinisterWebApp.Controllers
         {
             var sinisters = (from s in db.Sinisters.Include(s => s.ActivitySectors).Include(s => s.Clients).Include(s => s.Countries).Include(s => s.Currencies).Include(s => s.DestructionLevels).Include(s => s.Documents).Include(s => s.SinisterStatus).Include(s => s.SinisterTypes).Include(s => s.Sites).Include(s => s.Users)
                              select s).ToList();
+
+            if(cid != 0)
+            {
+                sinisters = sinisters.Where(x => x.Clientid == cid).ToList();
+            }
+
+            if (sid != 0)
+            {
+                sinisters = sinisters.Where(x => x.SiteId == sid).ToList();
+            }
+
+            if (crid != 0)
+            {
+                sinisters = sinisters.Where(x => x.CountryId == crid).ToList();
+            }
+
+
+            if (lid != 0)
+            {
+                sinisters = sinisters.Where(x => x.LoBId == lid).ToList();
+            }
+
+            if (stid != 0)
+            {
+                sinisters = sinisters.Where(x => x.SinisterTypeId == stid).ToList();
+            }
+
+            if (aid != 0)
+            {
+                sinisters = sinisters.Where(x => x.ActivitySectorId == aid).ToList();
+            }
+
+            if (did != 0)
+            {
+                sinisters = sinisters.Where(x => x.DestructionLevelId == did).ToList();
+            }
+
             return sinisters;
         }
-
     }
 }
