@@ -19,6 +19,7 @@ namespace SinisterWebApp.Controllers
         private static int uid = 0;
         private static int statusId = 0;
         private static List<Sinisters> listSinisters = new List<Sinisters>();
+        private static List<Sinisters> tempListSinisters = new List<Sinisters>();
 
         // GET: Sinisters
         public ActionResult Index()
@@ -95,7 +96,13 @@ namespace SinisterWebApp.Controllers
         public ActionResult SearchResult()
         {
           List<Sinisters> sinisters = TempData["listSinisters"] as List<Sinisters>;
-               
+
+            if (sinisters != null)
+                tempListSinisters = TempData["listSinisters"] as List<Sinisters>;
+
+            if (sinisters == null)
+                sinisters = tempListSinisters;
+
           return View(sinisters.ToList());
         }
 
