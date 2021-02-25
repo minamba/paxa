@@ -50,7 +50,74 @@
         });
     });
 
+     function GetSites(_clientId) {
+                    var procemessage = "<option value ='0'> No site selected...</option>";
+                    $("#sid").html(procemessage).show();
+                    var url = "@Url.Action("GetSiteByClientId", "Sinisters")";
 
+                    $.ajax({
+                        url: url,
+                        data: { clientId: _clientId },
+                        cache: false,
+                        type: "POST",
+                        success: function (data) {
+                            var markup = "<option value='0'> Select a site</option>";
+                            for (var x = 0; x < data.length; x++) {
+                                markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                            }
+                            $("#sid").html(markup).show();
+                        },
+                        error: function (response) {
+                            alert("error : " + reponse);
+                        }
+                    });
+                }
+
+                    function GetSinisterTypes(_lobid) {
+                        var procemessage = "<option value ='0'> No type selected...</option>";
+                        $("#stid").html(procemessage).show();
+                        var url = "@Url.Action("GetSinisterTypeByLobID", "Sinisters")";
+
+                        $.ajax({
+                            url: url,
+                            data: { lobid: _lobid },
+                            cache: false,
+                            type: "POST",
+                            success: function (data) {
+                                var markup = "<option value='0'> Select a type</option>";
+                                for (var x = 0; x < data.length; x++) {
+                                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                                }
+                                $("#stid").html(markup).show();
+                            },
+                            error: function (response) {
+                                alert("error : " + reponse);
+                            }
+                        });
+                    }
+
+                    function GetCountries(_siteid) {
+                        //var procemessage = "<option value=" + data[0].Value + ">" + data[0].Text + "</option>";
+                        //$("#cid").html(procemessage).show();
+                        var url = "@Url.Action("GetCountriesBySiteId", "Sinisters")";
+                        $.ajax({
+                            url: url,
+                            data: { siteid: _siteid },
+                            cache: false,
+                            type: "POST",
+                            success: function (data) {
+                                //var markup = "<option value='0'> Select a country</option>";
+                                var markup = "";
+                                for (var x = 0; x < data.length; x++) {
+                                  var  markup = "<option value=" + data[0].Value + ">" + data[0].Text + "</option>";
+                                }
+                                $("#cid").html(markup).show();
+                            },
+                            error: function (response) {
+                                alert("error : " + reponse);
+                            }
+                        });
+                    }
 
 
 </script>
@@ -80,19 +147,6 @@
                         @Html.ValidationMessageFor(model => model.Clientid, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-                @*<div class="form-group">
-                    @Html.LabelFor(model => model.Clientid, "Client", htmlAttributes: new { @class = "control-label col-12" })
-                    <select id="cid" class="form-control search_select_box">
-                        <option value="">--Please choose an option--</option>
-                        <option value="dog">Dog</option>
-                        <option value="cat">Cat</option>
-                        <option value="hamster">Hamster</option>
-                        <option value="parrot">Parrot</option>
-                        <option value="spider">Spider</option>
-                        <option value="goldfish">Goldfish</option>
-                    </select>
-                </div>*@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.SiteId, "Site", htmlAttributes: new { @class = "control-label col-12" })
