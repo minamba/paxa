@@ -54,7 +54,7 @@
                                 @Html.LabelFor(model => model.CompleteUserNameForEdit, new { @Class = "cardLabel" }) :
                                 @Html.EditorFor(model => model.CompleteUserNameForEdit, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
                             </div>
-                            <hr />
+                            @*<hr />
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Clients.Name, new { @Class = "cardLabel" }) :
@@ -69,7 +69,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Countries.Name, new { @Class = "cardLabel" }) :
                                 @Html.EditorFor(model => model.Countries.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
-                            </div>
+                            </div>*@
                             <hr />
                             <div class="form-group">
                                 @Html.LabelFor(model => model.LobName, new { @Class = "cardLabel" }) :
@@ -149,6 +149,12 @@
                                 <b>Client</b>
                                 <hr class="bg-danger" />
                             </h5>
+                            <div class="form-horizontal pt-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Clients.Name, "Name", new { @Class = "cardLabel" }) :
+                                    @Html.EditorFor(model => model.Clients.Name, new { htmlAttributes = new { @class = "cardTxt", disabled = "disabled" } })
+                                </div>
+                            </div>
                         </div>
 
                     </div>
