@@ -49,19 +49,38 @@ namespace SinisterWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Search([Bind(Include = "Clientid,SiteId,SinisterTypeId,ActivitySectorId,CountryId,DestructionLevelId,CurrencyId,LoBId,SinisterStatusId,DateStart,DateEnd")] Sinisters sinisters)
         {
-
+            DateTime dateStart = new DateTime();
+            DateTime dateEnd = new DateTime();
+            int cid = 0;
+            int sid = 0;
+            int crid = 0;
+            int lid = 0;
+            int stid = 0;
+            int aid = 0;
+            int did = 0;
 
             if (ModelState.IsValid)
             {
-                int cid = (int)sinisters.Clientid;
-                int sid = (int)sinisters.SiteId;
-                int crid = (int)sinisters.CountryId;
-                int lid = (int)sinisters.LoBId;
-                int stid = (int)sinisters.SinisterTypeId;
-                int aid = (int)sinisters.ActivitySectorId;
-                int did = (int)sinisters.DestructionLevelId;
-                DateTime dateStart = (DateTime)sinisters.DateStart;
-                DateTime dateEnd = (DateTime)sinisters.DateEnd;
+                if(sinisters.Clientid != null)
+                 cid = (int)sinisters.Clientid;
+                if (sinisters.SiteId != null)
+                    sid = (int)sinisters.SiteId;
+                if (sinisters.CountryId != null)
+                    crid = (int)sinisters.CountryId;
+                if (sinisters.LoBId != null)
+                    lid = (int)sinisters.LoBId;
+                if (sinisters.SinisterTypeId != null)
+                    stid = (int)sinisters.SinisterTypeId;
+                if (sinisters.ActivitySectorId != null)
+                    aid = (int)sinisters.ActivitySectorId;
+                if (sinisters.DestructionLevelId != null)
+                    did = (int)sinisters.DestructionLevelId;
+
+                if(sinisters.DateStart != null)
+                    dateStart = (DateTime)sinisters.DateStart;
+
+                if(sinisters.DateEnd != null)
+                    dateEnd = (DateTime)sinisters.DateEnd;
 
            
                listSinisters = GetSinistersSearch(cid,sid,crid,lid,stid,aid,did, dateStart.ToString(), dateEnd.ToString());
@@ -75,12 +94,9 @@ namespace SinisterWebApp.Controllers
 
         public ActionResult SearchResult()
         {
-          using (db)
-          {
-               List<Sinisters> sinisters = TempData["listSinisters"] as List<Sinisters>;
+          List<Sinisters> sinisters = TempData["listSinisters"] as List<Sinisters>;
                
-                return View(sinisters.ToList());
-            }
+          return View(sinisters.ToList());
         }
 
 
@@ -481,44 +497,44 @@ namespace SinisterWebApp.Controllers
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public List<Sinisters> GetSinistersSearch(int cid, int sid, int crid, int lid, int stid, int aid, int did, string dateStart, string dateEnd)
         {
+            DateTime refDefaultDate = new DateTime();
+
             var sinisters = (from s in db.Sinisters.Include(s => s.ActivitySectors).Include(s => s.Clients).Include(s => s.Countries).Include(s => s.Currencies).Include(s => s.DestructionLevels).Include(s => s.Documents).Include(s => s.SinisterStatus).Include(s => s.SinisterTypes).Include(s => s.Sites).Include(s => s.Users)
                              select s).ToList();
 
-            if(cid != 0)
-            {
+            if (cid != 0)
                 sinisters = sinisters.Where(x => x.Clientid == cid).ToList();
-            }
 
             if (sid != 0)
-            {
                 sinisters = sinisters.Where(x => x.SiteId == sid).ToList();
-            }
 
             if (crid != 0)
-            {
                 sinisters = sinisters.Where(x => x.CountryId == crid).ToList();
-            }
 
 
             if (lid != 0)
-            {
                 sinisters = sinisters.Where(x => x.LoBId == lid).ToList();
-            }
 
             if (stid != 0)
-            {
                 sinisters = sinisters.Where(x => x.SinisterTypeId == stid).ToList();
-            }
 
             if (aid != 0)
-            {
                 sinisters = sinisters.Where(x => x.ActivitySectorId == aid).ToList();
-            }
 
             if (did != 0)
-            {
                 sinisters = sinisters.Where(x => x.DestructionLevelId == did).ToList();
-            }
+
+            if(dateStart != refDefaultDate.ToString() && dateEnd == refDefaultDate.ToString())
+                sinisters = sinisters.Where(x => x.CreateDate >= DateTime.Parse(dateStart)).ToList();
+            
+
+            if(dateStart == refDefaultDate.ToString() && dateEnd != refDefaultDate.ToString())
+                sinisters = sinisters.Where(x => x.CreateDate <= DateTime.Parse(dateEnd)).ToList();
+            
+
+            if(dateStart != refDefaultDate.ToString() && dateEnd != refDefaultDate.ToString())
+                sinisters = sinisters.Where(x => x.CreateDate >= DateTime.Parse(dateStart) && x.CreateDate <= DateTime.Parse(dateEnd)).ToList();
+
 
             return sinisters;
         }
