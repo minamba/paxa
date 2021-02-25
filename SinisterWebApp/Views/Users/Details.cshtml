@@ -5,80 +5,91 @@
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Users</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EmployeeID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmployeeID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+<div class="jumbotron backgroundHome">
+    <h1 class="otherTitle text-center">My informations</h1>
+</div>
 
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
+<div class="container pt-3 pb-3 col-lg-8 col-md-8 col-12">
+    <h4 class=" pt-2 subTitle">Profil</h4>
+    <hr class="hrColor" />
+    <div class="bg-light align-content-center col-lg-12 col-md-12 col-12 shadow pb-3 pt-3">
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeID) :
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Countries.Code)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeID)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName) :
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Countries.Code)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName) :
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Roles.Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName) :
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Roles.Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.Email) :
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <hr />
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Password) :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+            <hr />
+            <dt>
+                Based in :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Countries.Name)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.Roles.Name) :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Roles.Name)
+            </dd>
+
+        </dl>
+    </div>
+
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Userid }) |
-    @Html.ActionLink("Back to List", "Index")
+    <div class="col-md-offset-2 col-md-10">
+        <a href="@Url.Action("Edit","Users", new { id = Model.Userid })"><input type="submit" value="Edit" class="btn btn-default bg-success text-white" /></a>
+    </div>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Userid })*@
+    @*@Html.ActionLink("Back to List", "Index")*@
 </p>
