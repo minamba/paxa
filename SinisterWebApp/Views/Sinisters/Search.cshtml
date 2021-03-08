@@ -12,42 +12,14 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-
         $("#ccid").select2({});
-        $("#crid").select2({});
+
         $("#aid").select2({});
         $("#lid").select2({});
         $("#stid").select2({});
-
+        $("#sid").select2({});
+        $("#crid").select2({});
     })
-
-    //    $(function () {
-    //    $("#ccid").chosen();
-    //});
-
-    //$(function () {
-    //    $("#ccid").chosen();
-    //});
-
-    //$(function () {
-    //    $("#crid").chosen();
-    //});
-
-    //$(function () {
-    //    $("#sid").chosen();
-    //});
-
-    //$(function () {
-    //    $("#aid").chosen();
-    //});
-
-    //$(function () {
-    //    $("#lid").chosen();
-    //});
-
-    //$(function () {
-    //    $("#stid").chosen();
-    //});
 
     $(document).ready(function () {
         $(".datepicker1").datepicker({
@@ -65,45 +37,21 @@
         });
     });
 
-     function GetSites(_clientId) {
-                    //var procemessage = "<option value ='0'> No site selected...</option>";
-                    //$("#sid").html(procemessage).show();
-                    var url = "@Url.Action("GetSiteByClientId", "Sinisters")";
-
-                    $.ajax({
-                        url: url,
-                        data: { clientId: _clientId },
-                        cache: false,
-                        type: "POST",
-                        success: function (data) {
-                            var markup = "<option value='0'> Select a site</option>";
-                            for (var x = 0; x < data.length; x++) {
-                                markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
-                            }
-                            $("#sid").html(markup).show();
-                            $("#sid").select2({});
-                        },
-                        error: function (response) {
-                            alert("error : " + reponse);
-                        }
-                    });
-    }
-                    function GetSinisterTypes(_lobid) {
-                        var procemessage = "<option value ='0'> No type selected...</option>";
-                        $("#stid").html(procemessage).show();
-                        var url = "@Url.Action("GetSinisterTypeByLobID", "Sinisters")";
+                    function GetSites(_clientId) {
+                        var url = "@Url.Action("GetSiteByClientId", "Sinisters")";
 
                         $.ajax({
                             url: url,
-                            data: { lobid: _lobid },
+                            data: { clientId: _clientId },
                             cache: false,
                             type: "POST",
                             success: function (data) {
-                                var markup = "<option value='0'> Select a type</option>";
+                                var markup = "<option value='0'> Select a site</option>";
                                 for (var x = 0; x < data.length; x++) {
                                     markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
                                 }
-                                $("#stid").html(markup).show();
+                                $("#sid").html(markup).show();
+                                $("#sid").select2({});
                             },
                             error: function (response) {
                                 alert("error : " + reponse);
@@ -111,28 +59,49 @@
                         });
                     }
 
-                    function GetCountries(_siteid) {
-                        //var procemessage = "<option value=" + data[0].Value + ">" + data[0].Text + "</option>";
-                        //$("#cid").html(procemessage).show();
-                        var url = "@Url.Action("GetCountriesBySiteId", "Sinisters")";
-                        $.ajax({
-                            url: url,
-                            data: { siteid: _siteid },
-                            cache: false,
-                            type: "POST",
-                            success: function (data) {
-                                //var markup = "<option value='0'> Select a country</option>";
-                                var markup = "";
-                                for (var x = 0; x < data.length; x++) {
-                                  var  markup = "<option value=" + data[0].Value + ">" + data[0].Text + "</option>";
-                                }
-                                $("#cid").html(markup).show();
-                            },
-                            error: function (response) {
-                                alert("error : " + reponse);
+                            function GetCountriesBySiteId(_siteid) {
+                                var url = "@Url.Action("GetCountriesBySiteId", "Sinisters")";
+                                $.ajax({
+                                    url: url,
+                                    data: { siteid: _siteid },
+                                    cache: false,
+                                    type: "POST",
+                                    success: function (data) {
+                                        var markup = "";
+                                        for (var x = 0; x < data.length; x++) {
+                                            markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                                        }
+                                        $("#crid").html(markup).show();
+                                        $("#crid").select2({});
+                                    },
+                                    error: function (response) {
+                                        alert("error : " + reponse);
+                                    }
+                                });
                             }
-                        });
-                    }
+
+                        function GetSinisterTypes(_lobid) {
+                                var procemessage = "<option value ='0'> No type selected...</option>";
+                                $("#stid").html(procemessage).show();
+                                var url = "@Url.Action("GetSinisterTypeByLobID", "Sinisters")";
+
+                                $.ajax({
+                                    url: url,
+                                    data: { lobid: _lobid },
+                                    cache: false,
+                                    type: "POST",
+                                    success: function (data) {
+                                        var markup = "<option value='0'> Select a type</option>";
+                                        for (var x = 0; x < data.length; x++) {
+                                            markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                                        }
+                                        $("#stid").html(markup).show();
+                                    },
+                                    error: function (response) {
+                                        alert("error : " + reponse);
+                                    }
+                                });
+                        }
 </script>
 
 
@@ -149,89 +118,90 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-horizontal pt-3">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @*@Html.HiddenFor(model => model.SinisterId)*@
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Clientid, "Client", htmlAttributes: new { @class = "control-label col-12" })
-                    <div class="col-12">
-                        @Html.DropDownListFor(model => model.Clientid, new SelectList(Model.ListClient, "Clientid", "Name"), "Select...", new { id = "ccid", style = "width:100%;", onChange = "javascript: GetSites(this.value);", @class = "col-12 form-control search_select_box" })
-                        @Html.ValidationMessageFor(model => model.Clientid, "", new { @class = "text-danger" })
-                    </div>
+        <div class="form-horizontal pt-3">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @*@Html.HiddenFor(model => model.SinisterId)*@
+            <div class="form-group">
+                @Html.LabelFor(model => model.Clientid, "Client", htmlAttributes: new { @class = "control-label col-12" })
+                <div class="col-12">
+                    @Html.DropDownListFor(model => model.Clientid, new SelectList(Model.ListClient, "Clientid", "Name"), "Select a client...", new { id = "ccid", style = "width:100%;", onChange = "javascript: GetSites(this.value);", @class = "col-12 form-control search_select_box" })
+                    @Html.ValidationMessageFor(model => model.Clientid, "", new { @class = "text-danger" })
                 </div>
+            </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.SiteId, "Site", htmlAttributes: new { @class = "control-label col-12" })
-                    <div class="col-12">
-                        <select id="sid" name="SiteId" onclick="javascript: GetCountries(this.value);" class="control-label col-12 form-control">
-                        </select>
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SiteId, "Site", htmlAttributes: new { @class = "control-label col-12" })
+                <div class="col-12">
+                    <select id="sid" name="SiteId" style="width : 100%" onchange="javascript:GetCountriesBySiteId(this.value);" class="control-label col-12 form-control">
+                    </select>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ListCountries, "Country", htmlAttributes: new { @class = "control-label col-12" })
-                    <div class="col-12">
-                        @Html.DropDownListFor(model => model.CountryId, new SelectList(Model.ListCountries, "CountryId", "Name", ViewBag.Crid), "Select...", new { id = "crid", style = "width:100%;", @class = "col-12 form-control", name = "CountryId" })
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CountryId, "Country", htmlAttributes: new { @class = "control-label col-12" })
+                <div class="col-12">
+                    <select id="crid" name="CountryId" style="width : 100%"  class="control-label col-12 form-control">
+                    </select>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.LoBId, "Lob", htmlAttributes: new { @class = "control-label col-12" })
-                    <div class="col-12">
-                        @Html.DropDownListFor(model => model.LoBId, new SelectList(Model.ListLob, "LobId", "Name", ViewBag.Lobid), "Select...", new { id = "lid", style = "width:100%;", onChange = "javascript: GetSinisterTypes(this.value);", @class = "col-12 form-control", name = "LobId" })
-                        @*@Html.ValidationMessageFor(model => model.LoBId, "", new { @class = "text-danger" })*@
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.LoBId, "Lob", htmlAttributes: new { @class = "control-label col-12" })
+                <div class="col-12">
+                    @Html.DropDownListFor(model => model.LoBId, new SelectList(Model.ListLob, "LobId", "Name", ViewBag.Lobid), "Select...", new { id = "lid", style = "width:100%;", onChange = "javascript: GetSinisterTypes(this.value);", @class = "col-12 form-control", name = "LobId" })
+                    @*@Html.ValidationMessageFor(model => model.LoBId, "", new { @class = "text-danger" })*@
                 </div>
+            </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.SinisterTypeId, "Sinister type", htmlAttributes: new { @class = "control-label col-12" })
-                    <div class="col-12">
-                        @Html.DropDownListFor(model => model.SinisterTypeId, new SelectList(Model.ListSinisterType, "SinisterTypeId", "Name", ViewBag.Sntid), "Select...", new { id = "stid", onChange = "javascript: GetKeywords(this.value);", style = "width:100%;", @class = "col-12 form-control", name = "SinisterTypeId" })
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SinisterTypeId, "Sinister type", htmlAttributes: new { @class = "control-label col-12" })
+                <div class="col-12">
+                    @Html.DropDownListFor(model => model.SinisterTypeId, new SelectList(Model.ListSinisterType, "SinisterTypeId", "Name", ViewBag.Sntid), "Select...", new { id = "stid", onChange = "javascript: GetKeywords(this.value);", style = "width:100%;", @class = "col-12 form-control", name = "SinisterTypeId" })
                 </div>
+            </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ActivitySectorId, "Activity sector", htmlAttributes: new { @class = "control-label col-12" })
-                    <div class="col-12">
-                        @Html.DropDownListFor(model => model.ActivitySectorId, new SelectList(Model.ListActivitySector, "ActivitySectorId", "Name", ViewBag.Actsectid), "Select...", htmlAttributes: new { id = "aid", @class = "form-control", name = "ActivitySectorId" })
-                        @*@Html.ValidationMessageFor(model => model.ActivitySectorId, "", new { @class = "text-danger" })*@
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ActivitySectorId, "Activity sector", htmlAttributes: new { @class = "control-label col-12" })
+                <div class="col-12">
+                    @Html.DropDownListFor(model => model.ActivitySectorId, new SelectList(Model.ListActivitySector, "ActivitySectorId", "Name", ViewBag.Actsectid), "Select...", htmlAttributes: new { id = "aid", @class = "form-control", name = "ActivitySectorId" })
+                    @*@Html.ValidationMessageFor(model => model.ActivitySectorId, "", new { @class = "text-danger" })*@
                 </div>
+            </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DestructionLevelId, "Destruction level", htmlAttributes: new { @class = "control-label col-12" })
-                    <div class="col-12">
-                        @Html.DropDownListFor(model => model.DestructionLevelId, new SelectList(Model.ListDestructionLevel, "DestructionLevelId", "Name", ViewBag.Dlevelid), "Select...", htmlAttributes: new { @class = "form-control", name = "DestructionLevelId", id = "DestructionLevelId" })
-                        @*@Html.ValidationMessageFor(model => model.DestructionLevelId, "", new { @class = "text-danger" })*@
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DestructionLevelId, "Destruction level", htmlAttributes: new { @class = "control-label col-12" })
+                <div class="col-12">
+                    @Html.DropDownListFor(model => model.DestructionLevelId, new SelectList(Model.ListDestructionLevel, "DestructionLevelId", "Name", ViewBag.Dlevelid), "Select...", htmlAttributes: new { @class = "form-control", name = "DestructionLevelId", id = "DestructionLevelId" })
+                    @*@Html.ValidationMessageFor(model => model.DestructionLevelId, "", new { @class = "text-danger" })*@
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="row col-lg-offset-2 col-lg-12 col-12">
-                        <div class="col-lg-6">
-                            @Html.LabelFor(model => model.DateStart, "Date start", htmlAttributes: new { @class = "control-label" })
-                            <div>
-                                @Html.EditorFor(model => model.DateStart, new { htmlAttributes = new { @class = "form-control datepicker1" }, id = "dateStart", name = "dateStart" })
-                                @Html.ValidationMessageFor(model => model.DateStart)
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-                            @Html.LabelFor(model => model.DateEnd, "Date end", htmlAttributes: new { @class = "control-label" })
-                            <div>
-                                @Html.EditorFor(model => model.DateEnd, new { htmlAttributes = new { @class = "form-control datepicker1" }, id = "dateEnd", name = "dateEnd" })
-                                @*@Html.ValidationMessageFor(model => model.CreateDate)*@
-                            </div>
+            <div class="form-group">
+                <div class="row col-lg-offset-2 col-lg-12 col-12">
+                    <div class="col-lg-6">
+                        @Html.LabelFor(model => model.DateStart, "Date start", htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.DateStart, new { htmlAttributes = new { @class = "form-control datepicker1" }, id = "dateStart", name = "dateStart" })
+                            @Html.ValidationMessageFor(model => model.DateStart)
                         </div>
                     </div>
-                </div>
 
-                <div class="form-group pb-5">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Search" class="btn btn-default bg-success text-white" />
+                    <div class="col-lg-6">
+                        @Html.LabelFor(model => model.DateEnd, "Date end", htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.DateEnd, new { htmlAttributes = new { @class = "form-control datepicker1" }, id = "dateEnd", name = "dateEnd" })
+                            @*@Html.ValidationMessageFor(model => model.CreateDate)*@
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div class="form-group pb-5">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Search" class="btn btn-default bg-success text-white" />
+                </div>
+            </div>
+        </div>
         }
 
     </div>
