@@ -14,9 +14,14 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/v4-shims.css">
+    <link href="~/Content/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="~/Content/NavBar.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/Map.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/Footer.css" />
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    @*<script src="~/Scripts/chosen.jquery.js"></script>*@
+    <script src="~/Scripts/select2.min.js"></script>
+    <script src="~/Scripts/SelectPicker.js"></script>
     <title>@ViewBag.Title</title>
 </head>
 <body>
@@ -55,16 +60,8 @@
         </nav>
     </div>
     @RenderBody()
-    @*<script src="~/Scripts/jquery-ui-1.12.1.js"></script>*@
     @Styles.Render("~/bundles/jquery")
-    <script src="~/Scripts/chosen.jquery.js"></script>
-    <script src="~/Scripts/SelectPicker.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
-    @*<script src="~/Scripts/bootstrap-select.min.js"></script>*@
-
-
-    @*<script src="~/Scripts/SelectPicker.js"></script>*@
-    @*<script src="~/Scripts/bootstrap-select.min.js"></script>*@
 </body>
 @Html.Partial("_FooterPartial")
 </html>

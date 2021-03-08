@@ -5,34 +5,49 @@
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 
     var lclients = Model.ListClient;
+    var lsites = Model.ListSite;
 }
 
 <h2>Search</h2>
 
 <script type="text/javascript">
-    $(function () {
-        $("#ccid").chosen();
-    });
+    $(document).ready(function () {
 
-    $(function () {
-        $("#sid").chosen();
-    });
+        $("#ccid").select2({});
+        $("#crid").select2({});
+        $("#aid").select2({});
+        $("#lid").select2({});
+        $("#stid").select2({});
 
-    $(function () {
-        $("#crid").chosen();
-    });
+    })
 
-    $(function () {
-        $("#aid").chosen();
-    });
+    //    $(function () {
+    //    $("#ccid").chosen();
+    //});
 
-    $(function () {
-        $("#lid").chosen();
-    });
+    //$(function () {
+    //    $("#ccid").chosen();
+    //});
 
-    $(function () {
-        $("#stid").chosen();
-    });
+    //$(function () {
+    //    $("#crid").chosen();
+    //});
+
+    //$(function () {
+    //    $("#sid").chosen();
+    //});
+
+    //$(function () {
+    //    $("#aid").chosen();
+    //});
+
+    //$(function () {
+    //    $("#lid").chosen();
+    //});
+
+    //$(function () {
+    //    $("#stid").chosen();
+    //});
 
     $(document).ready(function () {
         $(".datepicker1").datepicker({
@@ -51,8 +66,8 @@
     });
 
      function GetSites(_clientId) {
-                    var procemessage = "<option value ='0'> No site selected...</option>";
-                    $("#sid").html(procemessage).show();
+                    //var procemessage = "<option value ='0'> No site selected...</option>";
+                    //$("#sid").html(procemessage).show();
                     var url = "@Url.Action("GetSiteByClientId", "Sinisters")";
 
                     $.ajax({
@@ -66,13 +81,13 @@
                                 markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
                             }
                             $("#sid").html(markup).show();
+                            $("#sid").select2({});
                         },
                         error: function (response) {
                             alert("error : " + reponse);
                         }
                     });
-                }
-
+    }
                     function GetSinisterTypes(_lobid) {
                         var procemessage = "<option value ='0'> No type selected...</option>";
                         $("#stid").html(procemessage).show();
@@ -118,8 +133,6 @@
                             }
                         });
                     }
-
-
 </script>
 
 
@@ -132,7 +145,6 @@
     <hr class="hrColor" />
     <div class="bg-light align-content-center col-lg-12 col-md-12 col-12 shadow">
 
-
         @using (Html.BeginForm("Search", "Sinisters", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
@@ -143,7 +155,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Clientid, "Client", htmlAttributes: new { @class = "control-label col-12" })
                     <div class="col-12">
-                        @Html.DropDownListFor(model => model.Clientid, new SelectList(Model.ListClient, "Clientid", "Name"),"Select...", new { id = "ccid", style = "width:100%;", onChange = "javascript: GetSites(this.value);", @class = "col-12 form-control search_select_box" })
+                        @Html.DropDownListFor(model => model.Clientid, new SelectList(Model.ListClient, "Clientid", "Name"), "Select...", new { id = "ccid", style = "width:100%;", onChange = "javascript: GetSites(this.value);", @class = "col-12 form-control search_select_box" })
                         @Html.ValidationMessageFor(model => model.Clientid, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -151,7 +163,8 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.SiteId, "Site", htmlAttributes: new { @class = "control-label col-12" })
                     <div class="col-12">
-                        @Html.DropDownListFor(model => model.SiteId, new SelectList(Model.ListSite, "Clientid", "Name", ViewBag.Sid), "Select...", new { id = "sid", style = "width:100%;", onChange = "javascript: GetCountries(this.value);", @class = "col-12 form-control", name = "SiteId" })
+                        <select id="sid" name="SiteId" onclick="javascript: GetCountries(this.value);" class="control-label col-12 form-control">
+                        </select>
                     </div>
                 </div>
 
@@ -222,8 +235,9 @@
         }
 
     </div>
-    </div>
+</div>
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jquery")
-        }
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/select2.min.js"></script>
+}
